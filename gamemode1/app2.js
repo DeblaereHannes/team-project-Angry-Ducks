@@ -9,7 +9,7 @@ link2.href = "bg.png";
 link3.href = "catapult_2.png";
 timerAan = false;
 
-//start
+//load
 function loadGame() {
     myScore = new component("score", "30px", "Consolas", "black", 0, 40, "text");
     mytimer = new component("timer", "30px", "Consolas", "black", 800, 40, "text");
