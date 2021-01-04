@@ -28,6 +28,7 @@ function loadGame() {
     myGameArea.load();
 }
 
+//buttons
 function start() {
     timerAan = true;
 }
@@ -45,6 +46,10 @@ function reshoot() {
     duck = new component("duck", 50, 50, link1.href, 75, 195, "image");
 }
 
+function reload() {
+    myGameArea.stop();
+    loadGame();
+}
 
 //gameaerea aka canvas
 var myGameArea = {
@@ -64,7 +69,7 @@ var myGameArea = {
       }
 }
 
-//component to make
+//component init
 function component(name, width, height, color, x, y, type) {
     this.name = name;
     this.type = type;
@@ -143,7 +148,7 @@ function component(name, width, height, color, x, y, type) {
       }
 }
 
-//updategame
+//updategame (gebeurt 50 keer per minuut)
 function updateGameArea() {
     if (score <= 0){
         endText.text = "Gewonnen :)";
@@ -175,5 +180,3 @@ function updateGameArea() {
     endText.update();
     //catapult.update();
 }
-
-//motion
