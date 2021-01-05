@@ -1,4 +1,4 @@
-var duck, yellowGamePiece, progressbarbackside, progressbar;
+var duck, duckhitbox, target, targetdetection, targetdetection2, targetdetection3, targetdetection4, targetdetection5, progressbarbackside, progressbar;
 var myScore, score, testscore, endText, timerAan, mytimer, time, time2;
 var link1 = document.createElement('link');
 var link2 = document.createElement('link');
@@ -6,21 +6,26 @@ var link3 = document.createElement('link');
 //var link3 = document.createElement('link');
 link1.href = "quak.png";
 link2.href = "bg.png";
-link3.href = "catapult_2.png";
+link3.href = "target.png";
 timerAan = false;
 
 //load
 function loadGame() {
     myScore = new component("score", "30px", "Consolas", "black", 0, 40, "text");
     mytimer = new component("timer", "30px", "Consolas", "black", 800, 40, "text");
-    yellowGamePiece = new component("target", 10, 10, "yellow", 650, 415);
+    target = new component("target", 150, 50, link3.href, 600, 410, "image");
+    targetdetection = new component("target", 50, 2, "red", 650, 433);
+    targetdetection2 = new component("target", 25, 2, "white", 625, 433);
+    targetdetection3 = new component("target", 25, 2, "white", 700, 433);
+    targetdetection4 = new component("target", 25, 2, "red", 600, 433);
+    targetdetection5 = new component("target", 25, 2, "red", 725, 433);
     progressbarbackside = new component("progressbar", 500, 20, "white", 200, 25);
     progressbar = new component("progressbar", 500, 18, "red", 200, 26);
     endText = new component("endText", "30px", "Consolas", "black", 100, 100, "text");
     //console.log(endScore);
     myBackground = new component("background", 1024, 435, link2.href, 0, 0, "image");
-    //catapult = new component("catapult", 61, 100, link3.href, 0, 0, "image");
     duck = new component("duck", 50, 50, link1.href, 75, 195, "image");
+    duckhitbox = new component("duck", 1, 1, "black", 100, 245);
     time = 0;
     time2 = 0;
     score = 500;
@@ -39,12 +44,16 @@ function sendit() {
     console.log(parseFloat(speed, 10));
     testscore = score;
     duck.gravity = 0.05;
+    duckhitbox.gravity = 0.05;
     duck.speedX = parseFloat(speed, 10);
+    duckhitbox.speedX = parseFloat(speed, 10);
     duck.speedY = -2;
+    duckhitbox.speedY = -2;
 }
 
 function reshoot() {
     duck = new component("duck", 50, 50, link1.href, 75, 195, "image");
+    duckhitbox = new component("duck", 1, 1, "black", 100, 245);
 }
 
 function reload() {
@@ -157,7 +166,19 @@ function updateGameArea() {
         timerAan = false;
         myGameArea.stop();
     }
-    if (duck.crashWith(yellowGamePiece)) {
+    if (duckhitbox.crashWith(targetdetection4) || duckhitbox.crashWith(targetdetection5)) {
+        if (testscore == score){
+            score -= 25;
+            progressbar.width -= 25;
+        }
+    }
+    if (duckhitbox.crashWith(targetdetection2) || duckhitbox.crashWith(targetdetection3)) {
+        if (testscore == score){
+            score -= 50;
+            progressbar.width -= 50;
+        }
+    }
+    if (duckhitbox.crashWith(targetdetection)) {
         if (testscore == score){
             score -= 100;
             progressbar.width -= 100;
@@ -173,16 +194,23 @@ function updateGameArea() {
     
     myGameArea.clear();
 
+    duckhitbox.newPos();
     duck.newPos();
     mytimer.text = "tijd: " + time2;
     myScore.text = "SCORE: " + score;
     myBackground.update();
-    yellowGamePiece.update();
+    target.update();
+    targetdetection.update();
+    targetdetection2.update();
+    targetdetection3.update();
+    targetdetection4.update();
+    targetdetection5.update();
     duck.update();
+    duckhitbox.update();
+    
     myScore.update();
     mytimer.update();
     progressbarbackside.update();
     progressbar.update();
     endText.update();
-    //catapult.update();
 }
