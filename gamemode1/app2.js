@@ -1,4 +1,4 @@
-var duck, yellowGamePiece, progressbarbackside, progressbar;
+var duck, target, targetdetection, targetdetection2, progressbarbackside, progressbar;
 var myScore, score, testscore, endText, timerAan, mytimer, time, time2;
 var link1 = document.createElement('link');
 var link2 = document.createElement('link');
@@ -6,20 +6,21 @@ var link3 = document.createElement('link');
 //var link3 = document.createElement('link');
 link1.href = "quak.png";
 link2.href = "bg.png";
-link3.href = "catapult_2.png";
+link3.href = "target.png";
 timerAan = false;
 
 //load
 function loadGame() {
     myScore = new component("score", "30px", "Consolas", "black", 0, 40, "text");
     mytimer = new component("timer", "30px", "Consolas", "black", 800, 40, "text");
-    yellowGamePiece = new component("target", 10, 10, "yellow", 650, 415);
+    target = new component("target", 150, 50, link3.href, 600, 410, "image");
+    targetdetection = new component("target", 20, 3, "", 665, 430);
+    targetdetection2 = new component("target", 20, 3, "blue", 628, 430);
     progressbarbackside = new component("progressbar", 500, 20, "white", 200, 25);
     progressbar = new component("progressbar", 500, 18, "red", 200, 26);
     endText = new component("endText", "30px", "Consolas", "black", 100, 100, "text");
     //console.log(endScore);
     myBackground = new component("background", 1024, 435, link2.href, 0, 0, "image");
-    //catapult = new component("catapult", 61, 100, link3.href, 0, 0, "image");
     duck = new component("duck", 50, 50, link1.href, 75, 195, "image");
     time = 0;
     time2 = 0;
@@ -157,10 +158,17 @@ function updateGameArea() {
         timerAan = false;
         myGameArea.stop();
     }
-    if (duck.crashWith(yellowGamePiece)) {
+    if (duck.crashWith(targetdetection2)) {
         if (testscore == score){
-            score -= 100;
-            progressbar.width -= 100;
+            score -= 50;
+            progressbar.width -= 50;
+        }
+    }else{
+        if (duck.crashWith(targetdetection)) {
+            if (testscore == score){
+                score -= 100;
+                progressbar.width -= 100;
+            }
         }
     }
     if (timerAan == true){
@@ -177,12 +185,13 @@ function updateGameArea() {
     mytimer.text = "tijd: " + time2;
     myScore.text = "SCORE: " + score;
     myBackground.update();
-    yellowGamePiece.update();
+    target.update();
+    targetdetection.update();
+    targetdetection2.update();
     duck.update();
     myScore.update();
     mytimer.update();
     progressbarbackside.update();
     progressbar.update();
     endText.update();
-    //catapult.update();
 }
