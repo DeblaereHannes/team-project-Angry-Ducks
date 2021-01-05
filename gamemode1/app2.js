@@ -22,9 +22,9 @@ function loadGame() {
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), link3.href, (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
-    targetDetection3 = new component("target", 25, 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
-    targetDetection4 = new component("target", 25, 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
-    targetDetection5 = new component("target", 25, 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
+    targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
+    targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
+    targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.1953125), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.1953125), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "black", (viewport * 0.09765625), (viewport * 0.09765625), "text");
