@@ -1,5 +1,5 @@
 var duck, yellowGamePiece, progressbarbackside, progressbar;
-var myScore, score, testscore, endText, timerAan, mytimer, time;
+var myScore, score, testscore, endText, timerAan, mytimer, time, time2;
 var link1 = document.createElement('link');
 var link2 = document.createElement('link');
 var link3 = document.createElement('link');
@@ -22,6 +22,7 @@ function loadGame() {
     //catapult = new component("catapult", 61, 100, link3.href, 0, 0, "image");
     duck = new component("duck", 50, 50, link1.href, 75, 195, "image");
     time = 0;
+    time2 = 0;
     score = 500;
     amountsended = 0;
     amountsendedafter = 1;
@@ -47,6 +48,7 @@ function reshoot() {
 }
 
 function reload() {
+    timerAan = false;
     myGameArea.stop();
     loadGame();
 }
@@ -148,7 +150,7 @@ function component(name, width, height, color, x, y, type) {
       }
 }
 
-//updategame (gebeurt 50 keer per minuut)
+//updategame (gebeurt 50 keer per seconde)
 function updateGameArea() {
     if (score <= 0){
         endText.text = "Gewonnen :)";
@@ -163,12 +165,16 @@ function updateGameArea() {
     }
     if (timerAan == true){
         time += 1;
+        if (time == 50){
+            time2 += 1;
+            time = 0;
+        }
     }
     
     myGameArea.clear();
 
     duck.newPos();
-    mytimer.text = "tijd: " + time;
+    mytimer.text = "tijd: " + time2;
     myScore.text = "SCORE: " + score;
     myBackground.update();
     yellowGamePiece.update();
