@@ -81,6 +81,7 @@ function reload() {
 //gameaerea aka canvas
 var myGameArea = {
     canvas: document.createElement("canvas"),
+    //canvas inladen
     load: function() {
         this.canvas.width = viewport;
         this.canvas.height = (viewport * 0.4248046875);
@@ -88,9 +89,11 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
     },
+    //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
+    //canvas freezen
     stop: function() {
         clearInterval(this.interval);
     }
@@ -98,6 +101,7 @@ var myGameArea = {
 
 //component init
 function component(name, width, height, color, x, y, type) {
+    //default instellingen van component
     this.name = name;
     this.type = type;
     if (type == "image") {
@@ -115,6 +119,7 @@ function component(name, width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.bounce = 0.001;
     this.amounthitbottom = 0;
+    //herteken img of herschrijf text
     this.update = function() {
         ctx = myGameArea.context;
         if (type == "text") {
@@ -133,12 +138,14 @@ function component(name, width, height, color, x, y, type) {
             }
         }
     };
+    //verandert de positie van het component
     this.newPos = function() {
         this.gravitySpeed += this.gravity;
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
         this.hitBottom();
     };
+    //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
@@ -155,6 +162,7 @@ function component(name, width, height, color, x, y, type) {
             this.amounthitbottom += 1;
         }
     };
+    //checkt of het component de positie van ander object raakt
     this.crashWith = function(otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
@@ -239,5 +247,9 @@ function updateGameArea() {
     lblSecondsPast.update();
     progressbarBackground.update();
     progressbarHealth.update();
-    endOfGameMessage.update();
+    
+
+    if (score <= 0){
+        endOfGameMessage.update();
+    }
 }
