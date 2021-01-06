@@ -3,8 +3,9 @@ let homepage, loadingpage;
 
 const listenToButtons = function(){
     startButton.addEventListener("click", function(){
-        homepage.classList.remove("current");
-        loadingpage.classList.add("current");
+        //homepage.classList.remove("current");
+        //loadingpage.classList.add("current");
+        window.location.href = "gamemode1.html";
     });
 }
 
