@@ -1,5 +1,5 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackbox;
 var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
 var canShoot;
 var viewport = document.documentElement.clientWidth;
@@ -18,16 +18,16 @@ function loadGame() {
     //alle componenten aanmaken
     lblScore = new component("score", "30px", "Consolas", "black", 0, (viewport * 0.0390625), "text");
     lblSecondsPast = new component("timer", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
-    new component("target", 150, 50, link3.href, 600, 410, "image");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), link3.href, (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
     targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
+    blackbox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.1953125), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.1953125), (viewport * 0.025390625));
-    endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "black", (viewport * 0.09765625), (viewport * 0.09765625), "text");
+    endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
     myBackground = new component("background", viewport, (viewport * 0.4248046875), link2.href, 0, 0, "image");
     duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
@@ -81,6 +81,7 @@ function reload() {
 //gameaerea aka canvas
 var myGameArea = {
     canvas: document.createElement("canvas"),
+    //canvas inladen
     load: function() {
         this.canvas.width = viewport;
         this.canvas.height = (viewport * 0.4248046875);
@@ -88,9 +89,11 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
     },
+    //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
+    //canvas freezen
     stop: function() {
         clearInterval(this.interval);
     }
@@ -98,6 +101,7 @@ var myGameArea = {
 
 //component init
 function component(name, width, height, color, x, y, type) {
+    //default instellingen van component
     this.name = name;
     this.type = type;
     if (type == "image") {
@@ -115,6 +119,7 @@ function component(name, width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.bounce = 0.001;
     this.amounthitbottom = 0;
+    //herteken img of herschrijf text
     this.update = function() {
         ctx = myGameArea.context;
         if (type == "text") {
@@ -133,12 +138,14 @@ function component(name, width, height, color, x, y, type) {
             }
         }
     };
+    //verandert de positie van het component
     this.newPos = function() {
         this.gravitySpeed += this.gravity;
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
         this.hitBottom();
     };
+    //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
@@ -155,6 +162,7 @@ function component(name, width, height, color, x, y, type) {
             this.amounthitbottom += 1;
         }
     };
+    //checkt of het component de positie van ander object raakt
     this.crashWith = function(otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
@@ -180,10 +188,10 @@ function updateGameArea() {
 
     //score controleren op einde spel
     if (score <= 0) {
+        timerOn = false;
         score = 0;
         progressbarHealth.width = 0;
-        endOfGameMessage.text = "Gewonnen :)";
-        timerOn = false;
+        endOfGameMessage.text = "Gewonnen je tijd was " + secondsPast + " seconden";
         myGameArea.stop();
     }
 
@@ -239,5 +247,10 @@ function updateGameArea() {
     lblSecondsPast.update();
     progressbarBackground.update();
     progressbarHealth.update();
-    endOfGameMessage.update();
+    
+
+    if (score <= 0){
+        blackbox.update();
+        endOfGameMessage.update();
+    }
 }
