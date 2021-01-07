@@ -65,9 +65,12 @@ function shoot() {
 
 function reload() {
     //locatie eend resetten
-    canShoot = true;
+    if(secondsPast != 0){
+        canShoot = true;
+    }
     duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125));
+
 
 }
 
