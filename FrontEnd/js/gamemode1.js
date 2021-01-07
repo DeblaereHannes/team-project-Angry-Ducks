@@ -4,15 +4,15 @@ var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, fram
 var canShoot;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
-/*var links = ["link1", "link2"]*/
-var link1 = document.createElement('link');
-var link2 = document.createElement('link');
-var link3 = document.createElement('link');
-var link4 = document.createElement('link');
-link1.href = "quak.png";
-link2.href = "bg.png";
-link3.href = "target.png";
-link4.href = "pause.png";
+var links = ["link1", "link2", "link3", "link4"]
+for(link of links)
+{
+    link = document.createElement('link');
+}
+links[0] = "quak.png";
+links[1] = "bg.png";
+links[2] = "target.png";
+links[3] = "pause.png";
 //tijd standaard uit
 timerOn = false;
 
@@ -21,8 +21,8 @@ function loadGame() {
     //alle componenten aanmaken
     lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
-    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), link4.href, (viewport * 0.029296875), (viewport * 0.01953125), "image");
-    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), link3.href, (viewport * 0.5859375), (viewport * 0.400390625), "image");
+    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), links[3], (viewport * 0.029296875), (viewport * 0.01953125), "image");
+    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
     targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
@@ -32,8 +32,8 @@ function loadGame() {
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
-    myBackground = new component("background", viewport, (viewport * 0.4248046875), link2.href, 0, 0, "image");
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    myBackground = new component("background", viewport, (viewport * 0.4248046875), links[1], 0, 0, "image");
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
@@ -67,11 +67,12 @@ function shoot() {
 }
 
 function reload() {
+    console.log("attempting reload")
     //locatie eend resetten
     if(secondsPast != 0){
         canShoot = true;
     }
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125));
 
 
