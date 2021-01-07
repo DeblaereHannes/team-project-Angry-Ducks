@@ -1,5 +1,5 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackbox;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, pauseMenu, showPauseMenu;
 var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause;
 var canShoot;
 var viewport = document.documentElement.clientWidth;
@@ -28,7 +28,8 @@ const loadGame = function() {
     targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
-    blackbox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
+    blackBox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
+    pauseMenu = new component("pauseMenu", (viewport * 0.40), (viewport * 0.35), "White", (viewport * 0.30), (viewport * 0.025));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
@@ -41,6 +42,13 @@ const loadGame = function() {
     myGameArea.load(); //laad de canvas in
     
 }
+/*const OpenPauseMenu = function(){
+    console.log("Opening pause menu")
+    pauseMenu.update(); 
+}
+const closePauseMenu = function(){
+    console.log("Close pause menu")
+}*/
 
 //buttons
 const start = function() {
@@ -264,6 +272,8 @@ const updateGameArea = function() {
     if (myGameArea.x && myGameArea.y) {
         if (btnPause.clicked()) {
             console.log("im clicked");
+            showPauseMenu = true;
+            myGameArea.stop(); 
         }
     }
 
@@ -292,7 +302,12 @@ const updateGameArea = function() {
     
 
     if (score <= 0){
-        blackbox.update();
+        blackBox.update();
         endOfGameMessage.update();
+    }
+
+    if(showPauseMenu == true)
+    {
+        pauseMenu.update(); 
     }
 }
