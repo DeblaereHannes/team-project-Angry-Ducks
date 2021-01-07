@@ -308,6 +308,7 @@ const updateGameArea = function() {
 
     if(showPauseMenu == true)
     {
+        //opens or closes pause menu
         pauseMenu.update(); 
     }
 }
