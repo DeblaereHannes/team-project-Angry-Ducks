@@ -95,6 +95,22 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('mousedown', function (e) {
+            myGameArea.x = e.pageX;
+            myGameArea.y = e.pageY;
+        })
+        window.addEventListener('mouseup', function (e) {
+            myGameArea.x = false;
+            myGameArea.y = false;
+        })
+        window.addEventListener('touchstart', function (e) {
+            myGameArea.x = e.pageX;
+            myGameArea.y = e.pageY;
+        })
+        window.addEventListener('touchend', function (e) {
+            myGameArea.x = false;
+            myGameArea.y = false;
+        })
     },
     //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {
@@ -187,7 +203,19 @@ const component = function(name, width, height, color, x, y, type) {
             crash = false;
         }
         return crash;
-    }
+    };
+    //check if clicked
+    this.clicked = function() {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var clicked = true;
+        if ((mybottom < myGameArea.y) || (mytop > myGameArea.y) || (myright < myGameArea.x) || (myleft > myGameArea.x)) {
+          clicked = false;
+        }
+        return clicked;
+    };
 }
 
 //updategame (gebeurt 50 keer per seconde)
@@ -232,6 +260,12 @@ const updateGameArea = function() {
     }
 
     myGameArea.clear(); //canvas clearen
+
+    if (myGameArea.x && myGameArea.y) {
+        if (btnPause.clicked()) {
+            console.log("im clicked");
+        }
+    }
 
     duckHitbox.newPos(); //nieuwe positie van duck instellen
     duck.newPos();
