@@ -1,23 +1,27 @@
 //variablen definieren
 var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackbox;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
+var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause;
 var canShoot;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
+/*var links = ["link1", "link2"]*/
 var link1 = document.createElement('link');
 var link2 = document.createElement('link');
 var link3 = document.createElement('link');
+var link4 = document.createElement('link');
 link1.href = "quak.png";
 link2.href = "bg.png";
 link3.href = "target.png";
+link4.href = "pause.png";
 //tijd standaard uit
 timerOn = false;
 
 //load als pagina geladen is
 function loadGame() {
     //alle componenten aanmaken
-    lblScore = new component("score", "30px", "Consolas", "black", 0, (viewport * 0.0390625), "text");
-    lblSecondsPast = new component("timer", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
+    lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
+    lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
+    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), link4.href, (viewport * 0.029296875), (viewport * 0.01953125), "image");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), link3.href, (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
@@ -25,8 +29,8 @@ function loadGame() {
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
     blackbox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
-    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.1953125), (viewport * 0.0244140625));
-    progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.1953125), (viewport * 0.025390625));
+    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
+    progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
     myBackground = new component("background", viewport, (viewport * 0.4248046875), link2.href, 0, 0, "image");
     duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
@@ -34,7 +38,6 @@ function loadGame() {
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
     score = 500;
-    amountsended = 0;
     myGameArea.load(); //laad de canvas in
 }
 
@@ -232,8 +235,8 @@ function updateGameArea() {
     duckHitbox.newPos(); //nieuwe positie van duck instellen
     duck.newPos();
 
-    lblSecondsPast.text = "tijd: " + secondsPast; //text aanpassen van tijd en score
-    lblScore.text = "SCORE: " + score;
+    lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
+    lblScore.text = "Score: " + score;
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -246,6 +249,7 @@ function updateGameArea() {
     myBackground.update();
     target.update();
     duck.update();
+    btnPause.update();
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
