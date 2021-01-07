@@ -17,7 +17,7 @@ links[3] = "pause.png";
 timerOn = false;
 
 //load als pagina geladen is
-function loadGame() {
+const loadGame = function() {
     //alle componenten aanmaken
     lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
@@ -39,10 +39,11 @@ function loadGame() {
     secondsPast = 0; //tijd in seconden op 0 zetten
     score = 500;
     myGameArea.load(); //laad de canvas in
+    
 }
 
 //buttons
-function start() {
+const start = function() {
     //tijd aanleggen
     if (secondsPast == 0) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
@@ -50,7 +51,7 @@ function start() {
     }
 }
 
-function shoot() {
+const shoot = function() {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
     if (canShoot == true) {
         canShoot = false;
@@ -66,8 +67,7 @@ function shoot() {
     }
 }
 
-function reload() {
-    console.log("attempting reload")
+const reload = function() {
     //locatie eend resetten
     if(secondsPast != 0){
         canShoot = true;
@@ -107,7 +107,7 @@ var myGameArea = {
 }
 
 //component init
-function component(name, width, height, color, x, y, type) {
+const component = function(name, width, height, color, x, y, type) {
     //default instellingen van component
     this.name = name;
     this.type = type;
@@ -191,7 +191,7 @@ function component(name, width, height, color, x, y, type) {
 }
 
 //updategame (gebeurt 50 keer per seconde)
-function updateGameArea() {
+const updateGameArea = function() {
 
     //score controleren op einde spel
     if (score <= 0) {
