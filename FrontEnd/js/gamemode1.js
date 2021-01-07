@@ -1,6 +1,6 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, BackgroundBox;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause, btnExit;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, backgroundBox;
+var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause, btnExit, btnContinueBackground, btnSettingsBackground, btnMainMenuBackground, lblContinue, lblSettings, lblMainMenu;
 var canShoot, showBackgroundBox = false;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
@@ -22,7 +22,10 @@ const loadGame = function() {
     //alle componenten aanmaken
     lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
-    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), links[3], (viewport * 0.029296875), (viewport * 0.01953125), "image");
+    lblContinue = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4330078125), (viewport * 0.138670625), "text");
+    lblsettings = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4232421875), (viewport * 0.21890625), "text");
+    lblMainMenu = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4427734375), (viewport * 0.295078125), "text");
+    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), links[3], (viewport * 0.029296875), (viewport * 0.021484375), "image");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
@@ -30,8 +33,11 @@ const loadGame = function() {
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
     blackBox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
-    BackgroundBox = new component("BackgroundBox", (viewport * 0.40), (viewport * 0.35), "White", (viewport * 0.30), (viewport * 0.025));
-    btnExit = new component("btnExit", (viewport * 0.029296875), (viewport * 0.029296875), links[4], (viewport * 0.65296875), (viewport * 0.04453125), "image");
+    backgroundBox = new component("backgroundBox", (viewport * 0.40), (viewport * 0.35), "White", (viewport * 0.30), (viewport * 0.035));
+    btnExit = new component("btnExit", (viewport * 0.029296875), (viewport * 0.029296875), links[4], (viewport * 0.65296875), (viewport * 0.0513671875), "image");
+    btnContinueBackground = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.107421875), "");
+    btnSettingsBackground = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.18765625), "");
+    btnMainMenuBackground = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.26578125), "");
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
@@ -44,13 +50,6 @@ const loadGame = function() {
     myGameArea.load(); //laad de canvas in
     
 }
-/*const OpenBackgroundBox = function(){
-    console.log("Opening pause menu")
-    BackgroundBox.update(); 
-}
-const closeBackgroundBox = function(){
-    console.log("Close pause menu")
-}*/
 
 //buttons
 const start = function() {
@@ -87,13 +86,6 @@ const reload = function() {
 
 
 }
-
-/*I suppose you can remove this*/
-/*function refresh() {
-    timerOn = false;       //tijd terug uit zetten
-    myGameArea.stop();      //canvas freezen
-    loadGame();             //volledige game terug aanmaken
-}*/
 
 //gameaerea aka canvas
 var myGameArea = {
@@ -276,9 +268,15 @@ const updateGameArea = function() {
             console.log("im clicked");
             showBackgroundBox = true; 
         }
-        if (btnExit.clicked()) {
+        if (btnExit.clicked() || btnContinueBackground.clicked()) {
             showBackgroundBox = false; 
         }
+        /*if (btnSettingsBackground.clicked()) {
+             
+        }*/
+        /*if (btnMainMenuBackground.clicked()) {
+             
+        }*/
     }
 
     duckHitbox.newPos(); //nieuwe positie van duck instellen
@@ -286,6 +284,9 @@ const updateGameArea = function() {
 
     lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
     lblScore.text = "Score: " + score;
+    lblContinue.text = "Verdergaan";
+    lblsettings.text = "Instellingen";
+    lblMainMenu.text = "Hoofdmenu";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -313,7 +314,13 @@ const updateGameArea = function() {
     if(showBackgroundBox == true)
     {
         //opens or closes pause menu
-        BackgroundBox.update();
-        btnExit.update();  
+        backgroundBox.update();
+        btnExit.update();
+        btnContinueBackground.update();
+        btnSettingsBackground.update();
+        btnMainMenuBackground.update();
+        lblContinue.update();
+        lblsettings.update();
+        lblMainMenu.update();
     }
 }
