@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Roboto";
+    font-weight: 400;
+    src: url("../fonts/Roboto-Bold.ttf");
+}
+
 :root{
     --global-sky-color: #87ceeb;
 }
@@ -20,6 +26,12 @@ body{
     margin-top: 10%;
     justify-content: center;
     align-items: center;
+    animation: fade 4.7s ease-in-out;
+}
+
+@keyframes fade {
+    0%,70% {opacity: 0%;}
+    100% {opacity: 100%}
 }
 
 .logo{
@@ -29,6 +41,11 @@ body{
     margin: auto;
     animation: logo 2s ease-in-out infinite;
     z-index: 1;
+}
+
+.logo img{
+    width: 95%;
+    margin: auto;
 }
 
 @keyframes logo {
@@ -45,14 +62,18 @@ body{
 }
 
 .menu-item{
-    margin-bottom: 16px;
-    font-size: 2rem;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 34px;
+    font-size: 48px;
+    padding-top: 26px;
+    padding-bottom: 26px;
     width: 100%;
-    border: 1px solid chocolate;
-    background: chocolate;
-    border-radius: 25px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    border: 1px solid #F88F3E;
+    background: #F88F3E ;
+    border-radius: 8px;
+    color: white;
 }
 
 .icanfly {
