@@ -1,55 +1,68 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackbox;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
-var canShoot;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, backgroundBox;
+var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause, btnExit, btnContinueBackground, btnSettingsBackground, btnMainMenuBackground, lblContinue, lblSettings, lblMainMenu;
+var canShoot, showBackgroundBox = false;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
-var link1 = document.createElement('link');
-var link2 = document.createElement('link');
-var link3 = document.createElement('link');
-link1.href = "quak.png";
-link2.href = "bg.png";
-link3.href = "target.png";
+var links = ["link1", "link2", "link3", "link4", "link5"]
+for(link of links)
+{
+    link = document.createElement('link');
+}
+links[0] = "quak.png";
+links[1] = "bg.png";
+links[2] = "target.png";
+links[3] = "pause.png";
+links[4] = "exit.png";
 //tijd standaard uit
 timerOn = false;
 
 //load als pagina geladen is
-function loadGame() {
+const loadGame = function() {
     //alle componenten aanmaken
-    lblScore = new component("score", "30px", "Consolas", "black", 0, (viewport * 0.0390625), "text");
-    lblSecondsPast = new component("timer", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
-    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), link3.href, (viewport * 0.5859375), (viewport * 0.400390625), "image");
+    lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
+    lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
+    lblContinue = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4330078125), (viewport * 0.138670625), "text");
+    lblsettings = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4232421875), (viewport * 0.21890625), "text");
+    lblMainMenu = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4427734375), (viewport * 0.295078125), "text");
+    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), links[3], (viewport * 0.029296875), (viewport * 0.021484375), "image");
+    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
     targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
-    blackbox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
-    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.1953125), (viewport * 0.0244140625));
-    progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.1953125), (viewport * 0.025390625));
+    blackBox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
+    backgroundBox = new component("backgroundBox", (viewport * 0.40), (viewport * 0.35), "White", (viewport * 0.30), (viewport * 0.035));
+    btnExit = new component("btnExit", (viewport * 0.029296875), (viewport * 0.029296875), links[4], (viewport * 0.65296875), (viewport * 0.0513671875), "image");
+    btnContinueBackground = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.107421875), "");
+    btnSettingsBackground = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.18765625), "");
+    btnMainMenuBackground = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.26578125), "");
+    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
+    progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
-    myBackground = new component("background", viewport, (viewport * 0.4248046875), link2.href, 0, 0, "image");
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    myBackground = new component("background", viewport, (viewport * 0.4248046875), links[1], 0, 0, "image");
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
     score = 500;
-    amountsended = 0;
     myGameArea.load(); //laad de canvas in
+    
 }
 
 //buttons
-function start() {
+const start = function() {
     //tijd aanleggen
-    if (secondsPast == 0) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
+    if (secondsPast == 0 && showBackgroundBox == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
     }
 }
 
-function shoot() {
+const shoot = function() {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true) {
+    if (canShoot == true && showBackgroundBox == false) {
         canShoot = false;
         var speed = document.getElementById("speedx").value;
         console.log(parseFloat(speed, 10));
@@ -63,20 +76,16 @@ function shoot() {
     }
 }
 
-function reload() {
+const reload = function() {
     //locatie eend resetten
-    canShoot = true;
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), link1.href, (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    if(secondsPast != 0 && showBackgroundBox == false){
+        canShoot = true;
+    }
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125));
 
-}
 
-/*I suppose you can remove this*/
-/*function refresh() {
-    timerOn = false;       //tijd terug uit zetten
-    myGameArea.stop();      //canvas freezen
-    loadGame();             //volledige game terug aanmaken
-}*/
+}
 
 //gameaerea aka canvas
 var myGameArea = {
@@ -88,6 +97,22 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('mousedown', function (e) {
+            myGameArea.x = e.pageX;
+            myGameArea.y = e.pageY;
+        })
+        window.addEventListener('mouseup', function (e) {
+            myGameArea.x = false;
+            myGameArea.y = false;
+        })
+        window.addEventListener('touchstart', function (e) {
+            myGameArea.x = e.pageX;
+            myGameArea.y = e.pageY;
+        })
+        window.addEventListener('touchend', function (e) {
+            myGameArea.x = false;
+            myGameArea.y = false;
+        })
     },
     //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {
@@ -100,7 +125,7 @@ var myGameArea = {
 }
 
 //component init
-function component(name, width, height, color, x, y, type) {
+const component = function(name, width, height, color, x, y, type) {
     //default instellingen van component
     this.name = name;
     this.type = type;
@@ -180,11 +205,23 @@ function component(name, width, height, color, x, y, type) {
             crash = false;
         }
         return crash;
-    }
+    };
+    //check if clicked
+    this.clicked = function() {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var clicked = true;
+        if ((mybottom < myGameArea.y) || (mytop > myGameArea.y) || (myright < myGameArea.x) || (myleft > myGameArea.x)) {
+          clicked = false;
+        }
+        return clicked;
+    };
 }
 
 //updategame (gebeurt 50 keer per seconde)
-function updateGameArea() {
+const updateGameArea = function() {
 
     //score controleren op einde spel
     if (score <= 0) {
@@ -216,7 +253,7 @@ function updateGameArea() {
     }
 
     //tijd aanpassen
-    if (timerOn == true) {
+    if (timerOn == true && showBackgroundBox == false) {
         frames += 1; //aantal frames berekenen
         if (frames == 50) { //game doet 50 frames per seconde
             secondsPast += 1; //aantal seconden berekenen
@@ -226,11 +263,30 @@ function updateGameArea() {
 
     myGameArea.clear(); //canvas clearen
 
+    if (myGameArea.x && myGameArea.y) {
+        if (btnPause.clicked()) {
+            console.log("im clicked");
+            showBackgroundBox = true; 
+        }
+        if (btnExit.clicked() || btnContinueBackground.clicked()) {
+            showBackgroundBox = false; 
+        }
+        /*if (btnSettingsBackground.clicked()) {
+             
+        }*/
+        /*if (btnMainMenuBackground.clicked()) {
+             
+        }*/
+    }
+
     duckHitbox.newPos(); //nieuwe positie van duck instellen
     duck.newPos();
 
-    lblSecondsPast.text = "tijd: " + secondsPast; //text aanpassen van tijd en score
-    lblScore.text = "SCORE: " + score;
+    lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
+    lblScore.text = "Score: " + score;
+    lblContinue.text = "Verdergaan";
+    lblsettings.text = "Instellingen";
+    lblMainMenu.text = "Hoofdmenu";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -243,6 +299,7 @@ function updateGameArea() {
     myBackground.update();
     target.update();
     duck.update();
+    btnPause.update();
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
@@ -250,7 +307,20 @@ function updateGameArea() {
     
 
     if (score <= 0){
-        blackbox.update();
+        blackBox.update();
         endOfGameMessage.update();
+    }
+
+    if(showBackgroundBox == true)
+    {
+        //opens or closes pause menu
+        backgroundBox.update();
+        btnExit.update();
+        btnContinueBackground.update();
+        btnSettingsBackground.update();
+        btnMainMenuBackground.update();
+        lblContinue.update();
+        lblsettings.update();
+        lblMainMenu.update();
     }
 }

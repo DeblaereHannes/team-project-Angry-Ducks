@@ -13,6 +13,10 @@ body{
     overflow: hidden;
 }
 
+.c-button{
+    position: fixed;
+}
+
 .menu-container{
     display: flex;
     flex-direction: column;
