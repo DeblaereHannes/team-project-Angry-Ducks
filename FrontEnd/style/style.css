@@ -4,11 +4,13 @@
     src: url("../fonts/Roboto-Bold.ttf");
 }
 
+
 :root{
     --global-sky-color: #87ceeb;
 }
 
 html{
+    font-family: "Roboto", sans-serif;
 }
 
 body{
@@ -37,7 +39,6 @@ body{
 .logo{
     width: 400px;
     height: 200px;
-    background: red;
     margin: auto;
     animation: logo 2s ease-in-out infinite;
     z-index: 1;
