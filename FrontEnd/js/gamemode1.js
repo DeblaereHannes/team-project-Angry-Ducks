@@ -1,6 +1,6 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, backgroundBox;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause, btnExit, btnContinueBackground, btnSettingsBackground, btnMainMenuBackground, lblContinue, lblSettings, lblMainMenu;
+var duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
+var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
 var canShoot, showBackgroundBox = false;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
@@ -20,29 +20,18 @@ timerOn = false;
 //load als pagina geladen is
 const loadGame = function() {
     //alle componenten aanmaken
+    CommonComponents();
     lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
-    lblContinue = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4330078125), (viewport * 0.138670625), "text");
-    lblsettings = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4232421875), (viewport * 0.21890625), "text");
-    lblMainMenu = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "white", (viewport * 0.4427734375), (viewport * 0.295078125), "text");
-    btnPause = new component("btnPause", (viewport * 0.029296875), (viewport * 0.029296875), links[3], (viewport * 0.029296875), (viewport * 0.021484375), "image");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 2, "red", (viewport * 0.634765625), (viewport * 0.4228515625));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.6103515625), (viewport * 0.4228515625));
     targetDetection3 = new component("target", (viewport * 0.0244140625), 2, "white", (viewport * 0.68359375), (viewport * 0.4228515625));
     targetDetection4 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.5859375), (viewport * 0.4228515625));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
-    blackBox = new component("endScreen", (viewport * 0.5), 200, "black", (viewport * 0.25), (0));
-    backgroundBox = new component("backgroundBox", (viewport * 0.40), (viewport * 0.35), "White", (viewport * 0.30), (viewport * 0.035));
-    btnExit = new component("btnExit", (viewport * 0.029296875), (viewport * 0.029296875), links[4], (viewport * 0.65296875), (viewport * 0.0513671875), "image");
-    btnContinueBackground = new component("btnContinue", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.107421875), "");
-    btnSettingsBackground = new component("btnSettings", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.18765625), "");
-    btnMainMenuBackground = new component("btnMainMenu", (viewport * 0.29296875), (viewport * 0.048828125), "orange", (viewport * 0.35), (viewport * 0.26578125), "");
-    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
+    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
-    myBackground = new component("background", viewport, (viewport * 0.4248046875), links[1], 0, 0, "image");
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
