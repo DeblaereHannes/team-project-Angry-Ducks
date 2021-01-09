@@ -45,7 +45,7 @@ const loadGame = function() {
 const listenToButtons = function(){
     btnExit.addEventListener("click", function(){
         console.log("Exit Clicked");
-        showPauseMenu = false; 
+        hidePauseMenu();
     });
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
@@ -57,6 +57,9 @@ const init = function() {
     btnPause = document.querySelector(".js-pause");
     btnExit = document.querySelector(".js-exit");
     listenToButtons();
+}
+const hidePauseMenu = function(){
+    showPauseMenu = false; 
 }
 
 //buttons

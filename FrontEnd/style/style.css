@@ -85,6 +85,8 @@ body{
     margin: 0.5em;
     height: 80px;
     width: 500px;
+    outline: none;
+    border: 0;
 }
 
 .menu-container{
