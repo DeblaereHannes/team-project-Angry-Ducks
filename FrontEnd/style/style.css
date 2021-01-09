@@ -84,52 +84,6 @@ body{
     color: white;
 }
 
-.icanfly {
-    width:101px;
-    height:81px;
-    margin-top: 800px;
-    transform-origin:1200% center;
-    position:relative;
-    animation:rotate 10s linear infinite;
-    z-index: -50;
-}
-.icanfly:before { 
-    content:'';
-    position:absolute;
-    height:100%; 
-    width:100%;
-    animation:rotate 10s linear reverse infinite;
-}
-
-.icanfly-left {
-    width:101px;
-    height:81px;
-    margin-top: 800px;
-    transform-origin:1200% center;
-    position:absolute;
-    animation:rotate-left 10s linear infinite;
-    z-index: -50;
-}
-.icanfly-left:before { 
-    content:'';
-    position:relative;
-    height:100%; 
-    width:100%;
-    background: turquoise;
-    animation:rotate-left 10s linear reverse infinite;
-}
-
-.flying-duck{
-    animation: rotate 1.5s linear infinite;
-}
-@keyframes rotate {
-    100% { transform:rotate(360deg); } 
-}
-@keyframes rotate-left {
-    100% { transform:rotate(-360deg); } 
-}
-
-
 .ishidden{
     display: none;
 }
