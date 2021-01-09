@@ -14,11 +14,14 @@ html{
 }
 
 body{
-    background-image: url("/img/intro.webm");
+    background: black;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     overflow: hidden;
+}
+.intro, .homepage, .background{
+    opacity: 0;
 }
 
 .menu-container{

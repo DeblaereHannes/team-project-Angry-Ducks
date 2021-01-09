@@ -5,13 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Angry Ducks</title>
         <link rel="stylesheet" href="./style/style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
         <script src="./js/app.js"></script>
     </head>
         <body>
-            <div class="ishidden js-homepage current">
+            <div class="ishidden intro-container js-intro current">
+                <img class="intro js-howest" src="img/Introscreen1.png" />
+                <img class="intro js-sport" src="img/Introscreen2.png" />
+                <img class="intro js-logo" src="img/Introscreen3.png" />
+            </div>
+            <div class="ishidden background js-background">
                 <video playsinline autoplay muted loop id="bgvid">
                     <source src="./img/intro.webm" type="video/webm">
                 </video>
+            </div>
+            <div class="ishidden homepage js-homepage">
                 <div class="menu">
                     <div class="menu-container">
                         <div class="logo"><img src="img/duckslogo.png"></div>
