@@ -1,8 +1,19 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
 @font-face {
     font-family: "Roboto";
     font-weight: 400;
-    src: url("../fonts/Roboto-Bold.ttf");
+    src: url("../fonts/Roboto-Regular.ttf") format("ttf")
 }
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 700;
+    src: url("../fonts/Roboto-Bold.ttf") format("ttf")
+}
+
 
 
 :root{
@@ -24,8 +35,62 @@ body{
     opacity: 0;
 }
 
-.c-button{
+.c-pause-menu{
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: hidden;
+}
+.c-pause-button{
+    position: absolute;
+    font-size: 3em;
+    top: 10px;
+    left: 10px;
+}
+.c-exit-button{
+    position: absolute;
+    font-size: 4em;
+    top: 0px;
+    left: 620px;
+}
+
+.o-hide-accessible{
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+.c-button{
+    /*styling button*/
+    font-family: Roboto;
+    /*padding: 0px 2em 0px 2em;*/
+    font-size: 38px;
+    color: white;
+    font-weight: 700;
+    background-color: #F88F3E;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    height: 80px;
+    width: 500px;
+    outline: none;
+    border: 0;
 }
 
 .menu-container{
@@ -101,3 +166,11 @@ video {
     top: 0;
     left: 0;
   }
+
+.c-card {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 0 1px rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
+    overflow: hidden;
+    padding: 6em 5em 6em 5em;
+}
