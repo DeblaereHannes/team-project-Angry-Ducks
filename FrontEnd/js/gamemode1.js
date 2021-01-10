@@ -118,7 +118,7 @@ const updateGameArea = function() {
     {
         //opens or closes pause menu
         //backgroundBox.update();
-        document.querySelector(".js-ShowOrHide").style.visibility = "visible";
+        document.querySelector(".js-PauseMenu").style.visibility = "visible";
     }
-    else document.querySelector(".js-ShowOrHide").style.visibility = "hidden";
+    else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 }

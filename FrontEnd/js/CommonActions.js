@@ -34,3 +34,8 @@ const reload = function() {
     }
 
 }
+const refresh = function() {
+    timerOn = false;       //tijd terug uit zetten
+    myGameArea.stop();      //canvas freezen
+    loadGame();             //volledige game terug aanmaken
+}

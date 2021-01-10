@@ -40,7 +40,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 .c-pause-button{
     position: absolute;
@@ -53,6 +53,12 @@ body{
     font-size: 4em;
     top: 0px;
     left: 620px;
+}
+
+.c-victory-screen{
+    /*position: fixed;*/
+    display: flex;
+    justify-content: center;
 }
 
 .o-hide-accessible{
@@ -91,6 +97,31 @@ body{
     width: 500px;
     outline: none;
     border: 0;
+}
+.c-button--option{
+    /*styling button*/
+    width: 400px;
+    margin-top: 3em;
+    margin-bottom: -3.5rem;
+    margin-right: -0.1em;
+}
+
+.c-label{
+    margin-top: 0em;
+    font-family: Roboto;
+    font-weight: 700;
+    line-height: 4.5rem;
+    font-size:3.75rem ;
+    text-align: center;
+}
+.c-label--title{
+    margin-top: -0.7em;
+    margin-bottom: 1em;
+    line-height: 6.25rem;
+    font-size: 6rem;
+}
+.c-label--positie{
+    font-size: 2rem;
 }
 
 .menu-container{
