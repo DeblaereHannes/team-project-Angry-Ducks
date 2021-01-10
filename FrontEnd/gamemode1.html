@@ -26,6 +26,9 @@ canvas {
 </style>
 </head>
 <body onload="loadGame()">
+    <div class="c-pause-button js-pause">   
+        &#9612&#9612
+    </div>
 
     <div style="text-align:center;width:480px;">
         <button onclick="start()">Start</button>
@@ -33,11 +36,16 @@ canvas {
         <button onclick="shoot()">Shoot</button>
         <button onclick="reload()">Reload</button>
     </div>
-    <div class="c-button">
-        <button onclick="reload()">Verdergaan</button>
-        <button onclick="reload()">Instellingen</button>
-        <button onclick="reload()">Hoofdmenu</button>
+
+    <div class="c-pause-menu c-card js-ShowOrHide"> 
+        <div class="c-exit-button js-exit">   
+            &#10006
+        </div>
+        <button onclick="hidePauseMenu()"class="c-button o-hide-accessible">Verdergaan</button>
+        <button class="c-button o-hide-accessible">Instellingen</button>
+        <button class="c-button o-hide-accessible">Hoofdmenu</button>
     </div>
+
 
 </body>
 </html>

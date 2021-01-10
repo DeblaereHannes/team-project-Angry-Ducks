@@ -1,10 +1,10 @@
 //variablen definieren
-var duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
-var canShoot, showBackgroundBox = false;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, backgroundBox;
+var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast, btnPause,btnExit;
+var canShoot, showPauseMenu = false;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
-var links = ["link1", "link2", "link3", "link4", "link5"]
+var links = ["link1", "link2", "link3"]
 for(link of links)
 {
     link = document.createElement('link');
@@ -12,8 +12,8 @@ for(link of links)
 links[0] = "quak.png";
 links[1] = "bg.png";
 links[2] = "target.png";
-links[3] = "pause.png";
-links[4] = "exit.png";
+/*links[3] = "pause.png";
+links[4] = "exit.png";*/ //skybro
 //tijd standaard uit
 timerOn = false;
 
@@ -39,11 +39,30 @@ const loadGame = function() {
     myGameArea.load(); //laad de canvas in
     
 }
+const listenToButtons = function(){
+    btnExit.addEventListener("click", function(){
+        console.log("Exit Clicked");
+        hidePauseMenu();
+    });
+    btnPause.addEventListener("click", function(){
+        console.log("Pause Clicked");
+        showPauseMenu = true; 
+    });
+}
+
+const init = function() {
+    btnPause = document.querySelector(".js-pause");
+    btnExit = document.querySelector(".js-exit");
+    listenToButtons();
+}
+const hidePauseMenu = function(){
+    showPauseMenu = false; 
+}
 
 //buttons
 const start = function() {
     //tijd aanleggen
-    if (secondsPast == 0 && showBackgroundBox == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
+    if (secondsPast == 0 && showPauseMenu == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
     }
@@ -51,7 +70,7 @@ const start = function() {
 
 const shoot = function() {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true && showBackgroundBox == false) {
+    if (canShoot == true && showPauseMenu == false) {
         canShoot = false;
         var speed = document.getElementById("speedx").value;
         console.log(parseFloat(speed, 10));
@@ -67,7 +86,7 @@ const shoot = function() {
 
 const reload = function() {
     //locatie eend resetten
-    if(secondsPast != 0 && showBackgroundBox == false){
+    if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
     }
     duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
@@ -110,7 +129,7 @@ const updateGameArea = function() {
     }
 
     //tijd aanpassen
-    if (timerOn == true && showBackgroundBox == false) {
+    if (timerOn == true && showPauseMenu == false) {
         frames += 1; //aantal frames berekenen
         if (frames == 50) { //game doet 50 frames per seconde
             secondsPast += 1; //aantal seconden berekenen
@@ -120,30 +139,11 @@ const updateGameArea = function() {
 
     myGameArea.clear(); //canvas clearen
 
-    if (myGameArea.x && myGameArea.y) {
-        if (btnPause.clicked()) {
-            console.log("im clicked");
-            showBackgroundBox = true; 
-        }
-        if (btnExit.clicked() || btnContinueBackground.clicked()) {
-            showBackgroundBox = false; 
-        }
-        /*if (btnSettingsBackground.clicked()) {
-             
-        }*/
-        /*if (btnMainMenuBackground.clicked()) {
-             
-        }*/
-    }
-
     duckHitbox.newPos(); //nieuwe positie van duck instellen
     duck.newPos();
 
     lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
     lblScore.text = "Score: " + score;
-    lblContinue.text = "Verdergaan";
-    lblsettings.text = "Instellingen";
-    lblMainMenu.text = "Hoofdmenu";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -156,7 +156,7 @@ const updateGameArea = function() {
     myBackground.update();
     target.update();
     duck.update();
-    btnPause.update();
+    // btnPause.update(); #skybro
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
@@ -167,17 +167,12 @@ const updateGameArea = function() {
         blackBox.update();
         endOfGameMessage.update();
     }
-
-    if(showBackgroundBox == true)
+    if(showPauseMenu == true)
     {
         //opens or closes pause menu
-        backgroundBox.update();
-        btnExit.update();
-        btnContinueBackground.update();
-        btnSettingsBackground.update();
-        btnMainMenuBackground.update();
-        lblContinue.update();
-        lblsettings.update();
-        lblMainMenu.update();
+        //backgroundBox.update();
+        document.querySelector(".js-ShowOrHide").style.visibility = "visible";
     }
+    else document.querySelector(".js-ShowOrHide").style.visibility = "hidden";
 }
+document.addEventListener("DOMContentLoaded", init);
