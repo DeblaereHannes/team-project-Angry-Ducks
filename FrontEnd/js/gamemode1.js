@@ -111,9 +111,11 @@ const updateGameArea = function() {
     
 
     if (score <= 0){
-        blackBox.update();
-        endOfGameMessage.update();
+        //blackBox.update();
+        //endOfGameMessage.update();
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible";
     }
+    else document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
     if(showPauseMenu == true)
     {
         //opens or closes pause menu

@@ -40,7 +40,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 .c-pause-button{
     position: absolute;
@@ -115,6 +115,7 @@ body{
     text-align: center;
 }
 .c-label--title{
+    color: red;
     margin-top: -0.7em;
     margin-bottom: 1em;
     line-height: 6.25rem;
