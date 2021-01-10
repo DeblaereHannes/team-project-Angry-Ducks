@@ -1,9 +1,10 @@
 //variablen definieren
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, blackBox, backgroundBox;
+var duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
 var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
+var canShoot, showBackgroundBox = false;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
-var links = ["link1", "link2", "link3"]
+var links = ["link1", "link2", "link3", "link4", "link5"]
 for(link of links)
 {
     link = document.createElement('link');
@@ -11,8 +12,8 @@ for(link of links)
 links[0] = "quak.png";
 links[1] = "bg.png";
 links[2] = "target.png";
-/*links[3] = "pause.png";
-links[4] = "exit.png";*/ //skybro
+links[3] = "pause.png";
+links[4] = "exit.png";
 //tijd standaard uit
 timerOn = false;
 
@@ -39,8 +40,41 @@ const loadGame = function() {
     
 }
 
+//buttons
+const start = function() {
+    //tijd aanleggen
+    if (secondsPast == 0 && showBackgroundBox == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
+        timerOn = true;
+        canShoot = true;
+    }
+}
+
+const shoot = function() {
+    //ophalen van snelheid (slider ingesteld in html: 1-6)
+    if (canShoot == true && showBackgroundBox == false) {
+        canShoot = false;
+        var speed = document.getElementById("speedx").value;
+        console.log(parseFloat(speed, 10));
+        checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
+        duck.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+        duckHitbox.gravity = 0.05;
+        duck.speedX = parseFloat(speed, 10); //horizontale snelheid volgens de slider waarde
+        duckHitbox.speedX = parseFloat(speed, 10);
+        duck.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        duckHitbox.speedY = -2;
+    }
+}
+
+const reload = function() {
+    //locatie eend resetten
+    if(secondsPast != 0 && showBackgroundBox == false){
+        canShoot = true;
+    }
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125));
 
 
+}
 
 
 //updategame (gebeurt 50 keer per seconde)
@@ -76,7 +110,7 @@ const updateGameArea = function() {
     }
 
     //tijd aanpassen
-    if (timerOn == true && showPauseMenu == false) {
+    if (timerOn == true && showBackgroundBox == false) {
         frames += 1; //aantal frames berekenen
         if (frames == 50) { //game doet 50 frames per seconde
             secondsPast += 1; //aantal seconden berekenen
@@ -86,11 +120,30 @@ const updateGameArea = function() {
 
     myGameArea.clear(); //canvas clearen
 
+    if (myGameArea.x && myGameArea.y) {
+        if (btnPause.clicked()) {
+            console.log("im clicked");
+            showBackgroundBox = true; 
+        }
+        if (btnExit.clicked() || btnContinueBackground.clicked()) {
+            showBackgroundBox = false; 
+        }
+        /*if (btnSettingsBackground.clicked()) {
+             
+        }*/
+        /*if (btnMainMenuBackground.clicked()) {
+             
+        }*/
+    }
+
     duckHitbox.newPos(); //nieuwe positie van duck instellen
     duck.newPos();
 
     lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
     lblScore.text = "Score: " + score;
+    lblContinue.text = "Verdergaan";
+    lblsettings.text = "Instellingen";
+    lblMainMenu.text = "Hoofdmenu";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -103,7 +156,7 @@ const updateGameArea = function() {
     myBackground.update();
     target.update();
     duck.update();
-    // btnPause.update(); #skybro
+    btnPause.update();
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
@@ -114,11 +167,17 @@ const updateGameArea = function() {
         blackBox.update();
         endOfGameMessage.update();
     }
-    if(showPauseMenu == true)
+
+    if(showBackgroundBox == true)
     {
         //opens or closes pause menu
-        //backgroundBox.update();
-        document.querySelector(".js-ShowOrHide").style.visibility = "visible";
+        backgroundBox.update();
+        btnExit.update();
+        btnContinueBackground.update();
+        btnSettingsBackground.update();
+        btnMainMenuBackground.update();
+        lblContinue.update();
+        lblsettings.update();
+        lblMainMenu.update();
     }
-    else document.querySelector(".js-ShowOrHide").style.visibility = "hidden";
 }
