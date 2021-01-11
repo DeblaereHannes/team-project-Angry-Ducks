@@ -33,6 +33,19 @@ body{
     overflow: hidden;
 }
 
+.bgGamemode{
+
+    background-image: url("../img/gamemodeBG.gif");
+}
+
+.bgGamemode--blur{
+    backdrop-filter: blur(10px);
+}
+
+.game--blur{
+    filter: blur(10px);
+}
+
 .texty{
     color: wheat;
 }
@@ -53,12 +66,14 @@ body{
     font-size: 3em;
     top: 10px;
     left: 10px;
+    cursor: pointer;
 }
 .c-exit-button{
     position: absolute;
     font-size: 4em;
     top: 0px;
     left: 620px;
+    cursor: pointer;
 }
 
 .c-victory-screen{
@@ -102,7 +117,7 @@ body{
         height: 80px;
         width: 500px;
         outline: none;
-        border: 0;
+        cursor: pointer;
 }
 .c-card {
     background-color: white;
@@ -110,6 +125,7 @@ body{
     box-shadow: 0 0 0 1px rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
     overflow: hidden;
     padding: 6em 5em 6em 5em;
+    filter: blur(-10px);
 }
 .c-button--option{
     /*styling button*/
@@ -117,6 +133,7 @@ body{
     margin-top: 3em;
     margin-bottom: -3.5rem;
     margin-right: -0.1em;
+    cursor: pointer;
 }
 
 .c-label{
@@ -210,10 +227,6 @@ video {
     position: fixed;
     top: 0;
     left: 0;
-  }
-
-  .game{
-      z-index: 999;
   }
 
   .js-canvas-div{

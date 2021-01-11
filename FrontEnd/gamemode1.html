@@ -8,8 +8,8 @@
     <script src="./js/ComponentClass.js"></script>
     <script src="./js/CommonComponents.js"></script>
     <script src="./js/bluethootConnection.js"></script>
-    <script src="./js/CommonPauseMenu.js"></script>
     <script src="./js/gamemode1.js"></script>
+    <script src="./js/CommonPauseMenu.js"></script>
     <script src="./js/CommonActions.js"></script>
     <link href="./style/style.css" rel="stylesheet"><link>
     <style>
@@ -28,11 +28,7 @@ body{
 } */
 </style>
 </head>
-<body onload="loadGame()">
-    <video playsinline autoplay muted loop id="bgvid">
-        <source src="./img/intro.webm" type="video/webm">
-    </video>
-    <div class="game">
+<body onload="loadGame()" class="bgGamemode">
         <div class="js-canvas-div">
         </div>
         <div class="c-pause-button js-pause">   
@@ -76,7 +72,6 @@ body{
                 <button onclick="refresh()"class="c-button c-button--option o-hide-accessible">Speel Opnieuw</button>
             </div>
         </div>
-    </div>
         
 
         

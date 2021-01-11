@@ -103,8 +103,9 @@ const updateGameArea = function() {
 
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
+        document.querySelector(".js-pause").style.display="none";
     }
-    else document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};
     if(showPauseMenu == true)
     {
         //opens or closes pause menu

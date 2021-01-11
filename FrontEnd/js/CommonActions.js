@@ -14,8 +14,8 @@ const shoot = function() {
     if (canShoot == true && showPauseMenu == false) {
         canShoot = false;
         if(HR != null){
-            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${HR}`;
-            var speed = HR;
+            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${HR/10}`;
+            var speed = HR/10;
         }
         else{
             var speed = parseFloat(document.getElementById("speedx").value , 10);
@@ -43,6 +43,7 @@ const reload = function() {
 const refresh = function() {
     timerOn = false;       //tijd terug uit zetten
     canShoot = false;
+    document.querySelector(".js-pause").style.display="block";
     myGameArea.stop();      //canvas freezen
     loadGame();             //volledige game terug aanmaken
 }
