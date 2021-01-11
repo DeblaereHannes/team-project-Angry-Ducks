@@ -34,8 +34,7 @@ body{
 }
 
 .bgGamemode{
-
-    background-image: url("../img/gamemodeBG.gif");
+    background-image: url("../img/BGGamemode.png");
 }
 
 .bgGamemode--blur{
