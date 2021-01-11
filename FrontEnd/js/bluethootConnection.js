@@ -1,13 +1,13 @@
 let chosenHeartRateService = null;
 var HR;
 
-const test = function() {
+const BTconnection = function() {
     //opent de bluetooth interface van google waar je aparaten kan koppelen
     navigator.bluetooth.requestDevice({
         filters: [{
           services: ['heart_rate'],
-        }]
-      }).then(device => device.gatt.connect())                  //vanaf hier paar instellingen die ik niet versta
+        }]                                                      //vanaf hier paar instellingen die ik niet versta
+      }).then(device => device.gatt.connect())                  
       .then(server => server.getPrimaryService('heart_rate'))
       .then(service => {
         chosenHeartRateService = service;
@@ -19,6 +19,7 @@ const test = function() {
   };
 
 function handleHeartRateMeasurementCharacteristic(characteristic) {
+    console.log(characteristic);
   return characteristic.startNotifications()
   .then(char => {
     characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
@@ -30,37 +31,6 @@ function onHeartRateChanged(event) {
   //console.log(parseHeartRate(characteristic.value));
   HR = parseHeartRate(characteristic.value).heartRate;
   document.querySelector('.js-liveHR').innerHTML = `live heart rate: ${HR}`;
-}
-
-  const BT = function() {
-    //opent de bluetooth interface van google waar je aparaten kan koppelen
-    navigator.bluetooth.requestDevice({
-        filters: [{
-          services: ['heart_rate'],
-        }]
-      }).then(device => device.gatt.connect())                  //vanaf hier paar instellingen die ik niet versta
-      .then(server => server.getPrimaryService('heart_rate'))
-      .then(service => {
-        chosenHeartRateService = service;
-        return Promise.all([
-          service.getCharacteristic('heart_rate_measurement')
-            .then(handleHeartRateMeasurementCharacteristic2),
-        ]);
-      });
-  };
-
-function handleHeartRateMeasurementCharacteristic2(characteristic) {
-  return characteristic.startNotifications()
-  .then(char => {
-    characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged2);
-  });
-}
-
-function onHeartRateChanged2(event) {
-  const characteristic = event.target;
-  //console.log(parseHeartRate(characteristic.value));
-  HR = parseHeartRate(characteristic.value).heartRate;
-  document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR}`;
 }
 
 function parseHeartRate(data) {         //functie die de heartrate leesbaar maakt
@@ -94,14 +64,4 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
       result.rrIntervals = rrIntervals;
     }
     return result;
-  }
-
-  const shoot = function() {
-    //console.log(HR);
-    document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${HR}`;
-  }
-
-  const shoot2 = function() {
-    //console.log(HR);
-    document.querySelector('.js-shootwaarde2').innerHTML = `shootwaarde: ${HR}`;
   }
