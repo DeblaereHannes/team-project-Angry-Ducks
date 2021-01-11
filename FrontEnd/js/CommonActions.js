@@ -13,13 +13,19 @@ const shoot = function() {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
     if (canShoot == true && showPauseMenu == false) {
         canShoot = false;
-        var speed = document.getElementById("speedx").value;
-        console.log(parseFloat(speed, 10));
+        if(HR != null){
+            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${HR}`;
+            var speed = HR;
+        }
+        else{
+            var speed = parseFloat(document.getElementById("speedx").value , 10);
+        }
+        console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         duck.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
         duckHitbox.gravity = 0.05;
-        duck.speedX = parseFloat(speed, 10); //horizontale snelheid volgens de slider waarde
-        duckHitbox.speedX = parseFloat(speed, 10);
+        duck.speedX = speed; //horizontale snelheid volgens de slider waarde
+        duckHitbox.speedX = speed;
         duck.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
         duckHitbox.speedY = -2;
     }
