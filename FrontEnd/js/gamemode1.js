@@ -92,7 +92,7 @@ const updateGameArea = function() {
     targetDetection3.update();
     targetDetection4.update();
     targetDetection5.update();
-    myBackground.update();
+    // myBackground.update();
     target.update();
     duck.update();
     lblScore.update();

@@ -211,3 +211,11 @@ video {
     top: 0;
     left: 0;
   }
+
+  .game{
+      z-index: 999;
+  }
+
+  .js-canvas-div{
+      background: transparent;
+  }
