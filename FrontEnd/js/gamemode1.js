@@ -8,7 +8,7 @@ for(link of links)
 {
     link = document.createElement('link');
 }
-links[0] = "quak.png";
+links[0] = "./img/Duck_Gray.png";
 links[1] = "bg.png";
 links[2] = "target.png";
 //tijd standaard uit
