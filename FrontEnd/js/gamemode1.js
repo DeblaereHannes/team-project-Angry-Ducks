@@ -61,7 +61,6 @@ const updateGameArea = function() {
         if (checkScore == score) {
             score -= 25;
             progressbarHealth.width -= 25;
-            checkScore = secondsPast;
         }
         
     }
@@ -69,7 +68,6 @@ const updateGameArea = function() {
         if (checkScore == score) {
             score -= 50;
             progressbarHealth.width -= 50;
-            checkScore = secondsPast;
         }
 
     }
@@ -77,7 +75,6 @@ const updateGameArea = function() {
         if (checkScore == score) {
             score -= 100;
             progressbarHealth.width -= 100;
-            checkScore = secondsPast;
         }
     }
     
@@ -95,7 +92,7 @@ const updateGameArea = function() {
             }
         }
     }
-    if(secondsPast - checkScore > 1) //auto reload 1sec nadat de target is geraakt
+    if(secondsPast - checkScore > 5) //auto reload 5sec na shoot
         reload();
 
     myGameArea.clear(); //canvas clearen
