@@ -32,6 +32,11 @@ body{
     min-height: 100vh;
     overflow: hidden;
 }
+
+.texty{
+    color: wheat;
+}
+
 .intro, .homepage, .background{
     opacity: 0;
 }
