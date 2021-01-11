@@ -1,5 +1,5 @@
 let chosenHeartRateService = null;
-var HR;
+var HR, HR2;
 
 const test = function() {
     //opent de bluetooth interface van google waar je aparaten kan koppelen
@@ -59,8 +59,8 @@ function handleHeartRateMeasurementCharacteristic2(characteristic) {
 function onHeartRateChanged2(event) {
   const characteristic = event.target;
   //console.log(parseHeartRate(characteristic.value));
-  HR = parseHeartRate(characteristic.value).heartRate;
-  document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR}`;
+  HR2 = parseHeartRate(characteristic.value).heartRate;
+  document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR2}`;
 }
 
 function parseHeartRate(data) {         //functie die de heartrate leesbaar maakt
@@ -103,5 +103,5 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
 
   const shoot2 = function() {
     //console.log(HR);
-    document.querySelector('.js-shootwaarde2').innerHTML = `shootwaarde: ${HR}`;
+    document.querySelector('.js-shootwaarde2').innerHTML = `shootwaarde: ${HR2}`;
   }
