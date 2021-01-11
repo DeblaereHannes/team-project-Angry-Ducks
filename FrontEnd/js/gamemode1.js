@@ -1,6 +1,6 @@
 //variablen definieren
 var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast, countdownTimer, lblCountdownTimer;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast, countdownTimer, lblCountdownTimer, checkSecondsPast;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3"]
@@ -37,12 +37,6 @@ const loadGame = function() {
     myGameArea.load(); //laad de canvas in
     
     
-}
-const checkTimePast = function()
-{
-    checkTimePast = secondsPast;
-    reload()
-
 }
 //updategame (gebeurt 50 keer per seconde)
 const updateGameArea = function() {
@@ -92,7 +86,7 @@ const updateGameArea = function() {
             }
         }
     }
-    if(secondsPast - checkScore > 5) //auto reload 5sec na shoot
+    if(secondsPast - checkSecondsPast > 5) //auto reload 5sec na shoot
         reload();
 
     myGameArea.clear(); //canvas clearen
