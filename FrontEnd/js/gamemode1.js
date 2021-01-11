@@ -1,6 +1,6 @@
 //variablen definieren
 var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast, countdownTimer, lblCountdownTimer;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3"]
@@ -8,7 +8,7 @@ for(link of links)
 {
     link = document.createElement('link');
 }
-links[0] = "./img/Duck_Gray.png";
+links[0] = "./img/Duck_Male1.png";
 links[1] = "bg.png";
 links[2] = "target.png";
 //tijd standaard uit
@@ -29,11 +29,20 @@ const loadGame = function() {
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    lblCountdownTimer = new component("score", "300px", "Consolas", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
     score = 500;
+    countdownTimer = 3;
     myGameArea.load(); //laad de canvas in
     
+    
+}
+const checkTimePast = function()
+{
+    checkTimePast = secondsPast;
+    reload()
+
 }
 //updategame (gebeurt 50 keer per seconde)
 const updateGameArea = function() {
@@ -52,29 +61,42 @@ const updateGameArea = function() {
         if (checkScore == score) {
             score -= 25;
             progressbarHealth.width -= 25;
+            checkScore = secondsPast;
         }
+        
     }
     if (duckHitbox.crashWith(targetDetection2) || duckHitbox.crashWith(targetDetection3)) { //middelste ring 50 punten
         if (checkScore == score) {
             score -= 50;
             progressbarHealth.width -= 50;
+            checkScore = secondsPast;
         }
+
     }
     if (duckHitbox.crashWith(targetDetection)) { //middelpunt 100 punten
         if (checkScore == score) {
             score -= 100;
             progressbarHealth.width -= 100;
+            checkScore = secondsPast;
         }
     }
+    
 
     //tijd aanpassen
-    if (timerOn == true && showPauseMenu == false) {
+    if (showPauseMenu == false) {
         frames += 1; //aantal frames berekenen
         if (frames == 50) { //game doet 50 frames per seconde
-            secondsPast += 1; //aantal seconden berekenen
+            //aantal seconden berekenen
             frames = 0;
+            if(countdownTimer > 0) countdownTimer--;
+            else{
+                start();
+                secondsPast++;
+            }
         }
     }
+    if(secondsPast - checkScore > 1) //auto reload 1sec nadat de target is geraakt
+        reload();
 
     myGameArea.clear(); //canvas clearen
 
@@ -83,6 +105,9 @@ const updateGameArea = function() {
 
     lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
     lblScore.text = "Score: " + score;
+    if(countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
+        lblCountdownTimer.text = countdownTimer;
+    else lblCountdownTimer.text = "";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
@@ -99,6 +124,7 @@ const updateGameArea = function() {
     lblSecondsPast.update();
     progressbarBackground.update();
     progressbarHealth.update();
+    lblCountdownTimer.update();
     
 
     if (score <= 0){
