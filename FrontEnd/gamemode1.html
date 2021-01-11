@@ -33,11 +33,31 @@ canvas {
         <button onclick="shoot()">Shoot</button>
         <button onclick="reload()">Reload</button>
     </div>
-    <div class="c-button">
-        <button onclick="reload()">Verdergaan</button>
-        <button onclick="reload()">Instellingen</button>
-        <button onclick="reload()">Hoofdmenu</button>
+
+    <div class="c-pause-menu c-card js-PauseMenu"> 
+        <div class="c-exit-button js-exit">   
+            &#10006
+        </div>
+        <button onclick="hidePauseMenu()"class="c-button o-hide-accessible">Verdergaan</button>
+        <button class="c-button o-hide-accessible">Instellingen</button>
+        <button class="c-button o-hide-accessible">Hoofdmenu</button>
     </div>
+
+    <div class="c-pause-menu c-card js-VictoryScreen">
+        <span class="c-label c-label--title">NIEUW RECORD!</span>
+        <span class="c-label">speler 1</span>
+        <span class="c-label c-label--positie">positie: 10</span>
+        <span class="c-label">punten: 10</span>
+        <div class="c-victory-screen">
+            <button class="c-button c-button--option o-hide-accessible">Hoofdmenu</button>
+            <button class="c-button c-button--option o-hide-accessible">Scorebord</button>
+            <button onclick="refresh()"class="c-button c-button--option o-hide-accessible">Speel Opnieuw</button>
+        </div>
+    </div>
+        
+
+        
+      
 
 </body>
 </html>

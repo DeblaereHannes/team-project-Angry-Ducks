@@ -1,7 +1,6 @@
 //variablen definieren
-var duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, endOfGameMessage, timerOn, lblSecondsPast, frames, secondsPast;
-var canShoot, showBackgroundBox = false;
+var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3", "link4", "link5"]
@@ -31,7 +30,6 @@ const loadGame = function() {
     targetDetection5 = new component("target", (viewport * 0.0244140625), 2, "red", (viewport * 0.7080078125), (viewport * 0.4228515625));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
-    endOfGameMessage = new component("endOfGameMessage", "30px", "Consolas", "white", (viewport * 0.25), (viewport * 0.09765625), "text");
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
@@ -85,7 +83,7 @@ const updateGameArea = function() {
         timerOn = false;
         score = 0;
         progressbarHealth.width = 0;
-        endOfGameMessage.text = "Gewonnen je tijd was " + secondsPast + " seconden";
+        /*endOfGameMessage.text = "Gewonnen je tijd was " + secondsPast + " seconden";*/
         myGameArea.stop();
     }
 
@@ -164,20 +162,13 @@ const updateGameArea = function() {
     
 
     if (score <= 0){
-        blackBox.update();
-        endOfGameMessage.update();
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible";
     }
-
-    if(showBackgroundBox == true)
+    else document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    if(showPauseMenu == true)
     {
         //opens or closes pause menu
-        backgroundBox.update();
-        btnExit.update();
-        btnContinueBackground.update();
-        btnSettingsBackground.update();
-        btnMainMenuBackground.update();
-        lblContinue.update();
-        lblsettings.update();
-        lblMainMenu.update();
+        document.querySelector(".js-PauseMenu").style.visibility = "visible";
     }
+    else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 }
