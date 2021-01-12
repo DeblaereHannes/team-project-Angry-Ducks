@@ -1,5 +1,5 @@
 let startButton;
-let homepage, background, backtohome, playerselection;
+let homepage, background, backtohome, playerselection, players;
 
 // fade intro screen
 const showIntro = function(){
@@ -67,6 +67,26 @@ const listenToButtons = function(){
         homepage.classList.add("current");
         background.classList.remove("homescreen--blur");
     })
+
+    for(let player of players){
+        player.addEventListener("click", function(){
+            for(let remove of players){
+                remove.classList.remove("player--selected");
+            }
+
+            player.classList.add("player--selected");
+
+            if(player.innerHTML == "1 speler"){
+
+                document.querySelector(".js-2spelers").classList.add("ishidden");
+                document.querySelector(".js-1speler").classList.remove("ishidden");
+            }
+            if(player.innerHTML == "2 spelers"){
+                document.querySelector(".js-1speler").classList.add("ishidden");
+                document.querySelector(".js-2spelers").classList.remove("ishidden");
+            }
+        })
+    }
 }
 
 
@@ -76,6 +96,7 @@ const init = function() {
     background = document.querySelector(".js-background");
     playerselection = document.querySelector(".js-playerselection");
     backtohome = document.querySelector(".js-backtohome");
+    players = document.querySelectorAll(".js-player");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();
