@@ -1,5 +1,18 @@
-var canShoot, CalmHR, ShootHR;
-
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3;
+var characters = ["", "", "","", "", "","", "", ""]
+for(link of characters)
+{
+    link = document.createElement('character');
+}
+characters[0] = "./img/characters/Duck_Male1.png";
+characters[1] = "./img/characters/Duck_Male2.png";
+characters[2] = "./img/characters/Duck_Male3.png";
+characters[3] = "./img/characters/Duck_Female1.png";
+characters[4] = "./img/characters/Duck_Female2.png";
+characters[5] = "./img/characters/Duck_Female3.png";
+characters[6] = "./img/characters/Duck_White.png";
+characters[7] = "./img/characters/Duck_Yellow.png";
+characters[8] = "./img/characters/Duck_Gray.png";
 //buttons
 const start = function() {
     //tijd aanleggen
@@ -55,13 +68,17 @@ const rusthartslag = function() {
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
 }
 const characterSelection = function(Number){
-    //var array = fs.readdir(path, callbackFunction)
     switch(Number)
     {
-        case 1: console.log("choosing a character (1)"); break;
-        case 2: console.log("choosing a character (2)"); break;
-        case 3: console.log("choosing a character (3)"); break;
-        case 4: console.log("choosing a character (4)"); break;
+        
+        case 1: duckPlayer1--; if(duckPlayer1 == duckPlayer2) duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
+        case 2: duckPlayer1++; if(duckPlayer1 == duckPlayer2) duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
+        case 3: duckPlayer2--; if(duckPlayer1 == duckPlayer2) duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
+        case 4: duckPlayer2++; if(duckPlayer1 == duckPlayer2) duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
+        
     }
+    document.getElementById("0").src= characters[duckPlayer1];
+    document.getElementById("1").src= characters[duckPlayer1];
+    document.getElementById("2").src= characters[duckPlayer2];
 
 }

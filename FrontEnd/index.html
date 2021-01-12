@@ -6,8 +6,9 @@
         <title>Angry Ducks</title>
         <link rel="stylesheet" href="./style/style.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-        <script src="./js/homepage.js"></script>
         <script src="./js/CommonActions.js"></script>
+        <script src="./js/CommonComponents.js"></script>
+        <script src="./js/homepage.js"></script>
     </head>
         <body>
             <div class="ishidden intro-container js-intro current">
@@ -49,7 +50,7 @@
                         <div class="avatar">
                             <div class="c-character-selection">
                                 <button class="o-hide-accessible" onclick="characterSelection(1);"><svg  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(-4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-                                <img src="img/playerAvatar.png" alt="Avatar player 1" draggable="false"/>
+                                <img src="img/characters/Duck_Male1.png" alt="Avatar player 1" draggable="false" width="200px" id="1"/>
                                 <button class="o-hide-accessible" onclick="characterSelection(2);"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
                             </div>
                             <input type="text" class="name js-player1name" placeholder="player1"/>
@@ -57,7 +58,7 @@
                         <div class="avatar js-player2">
                             <div class="c-character-selection">
                                 <button class="o-hide-accessible" onclick="characterSelection(3);"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(-4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-                                <img src="img/playerAvatar.png" alt="Avatar player 2" draggable="false"/>
+                                <img src="img/characters/Duck_Female1.png" alt="Avatar player 1" draggable="false" width="200px" id="2"/>
                                 <button class="o-hide-accessible" onclick="characterSelection(4);"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
                             </div>
                             <input type="text" class="name js-player1name" placeholder="player2"/>
@@ -65,7 +66,11 @@
                     </div>
                     <div class="ishidden avatar-container1 js-1speler">
                         <div class="avatar">
-                            <img src="img/playerAvatar.png" alt="Avatar player 1" draggable="false"/>
+                            <div class="c-character-selection">
+                                <button class="o-hide-accessible" onclick="characterSelection(1);"><svg  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(-4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+                                <img src="img/characters/Duck_Male1.png" alt="Avatar player 1" draggable="false" width="200px" id="0"/>
+                                <button class="o-hide-accessible" onclick="characterSelection(2);"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+                            </div>
                             <input type="text" class="name js-player1name" placeholder="player1"/>
                         </div>
                     </div>
