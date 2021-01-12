@@ -1,4 +1,4 @@
-var canShoot;
+var canShoot, CalmHR, ShootHR;
 
 //buttons
 const start = function() {
@@ -14,8 +14,9 @@ const shoot = function() {
     if (canShoot == true && showPauseMenu == false) {
         canShoot = false;
         if(HR != null){
-            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${HR}`;
-            var speed = HR;
+            ShootHR = (HR - CalmHR) / 5;
+            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
+            var speed = ShootHR;
         }
         else{
             var speed = parseFloat(document.getElementById("speedx").value , 10);
@@ -45,4 +46,9 @@ const refresh = function() {
     canShoot = false;
     myGameArea.stop();      //canvas freezen
     loadGame();             //volledige game terug aanmaken
+}
+
+const rusthartslag = function() {
+    CalmHR = HR;
+    document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
 }
