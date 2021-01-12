@@ -1,5 +1,5 @@
 let startButton;
-let homepage, loadingpage, background;
+let homepage, background, backtohome, playerselection;
 
 // fade intro screen
 const showIntro = function(){
@@ -57,18 +57,25 @@ const showIntro = function(){
 
 const listenToButtons = function(){
     startButton.addEventListener("click", function(){
-        //homepage.classList.remove("current");
-        //loadingpage.classList.add("current");
-        window.location.href = "gamemode1.html";
+        homepage.classList.remove("current");
+        playerselection.classList.add("current");
+        background.classList.add("homescreen--blur");
     });
+
+    backtohome.addEventListener("click", function(){
+        playerselection.classList.remove("current");
+        homepage.classList.add("current");
+        background.classList.remove("homescreen--blur");
+    })
 }
 
 
 const init = function() {
     startButton = document.querySelector(".js-play");
     homepage = document.querySelector(".js-homepage");
-    loadingpage = document.querySelector(".js-loadpage");
     background = document.querySelector(".js-background");
+    playerselection = document.querySelector(".js-playerselection");
+    backtohome = document.querySelector(".js-backtohome");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();

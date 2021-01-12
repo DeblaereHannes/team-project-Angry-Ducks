@@ -6,7 +6,7 @@
         <title>Angry Ducks</title>
         <link rel="stylesheet" href="./style/style.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-        <script src="./js/app.js"></script>
+        <script src="./js/homepage.js"></script>
     </head>
         <body>
             <div class="ishidden intro-container js-intro current">
@@ -30,9 +30,37 @@
                     </div>
                 </div>
             </div>
-
-            <div class="ishidden js-loadpage">
-                You suck, i'm loading
+            <div class="ishidden playerselection js-playerselection">
+                <div class="ishidden backbutton js-backbutton current">
+                    <div class="back-container js-backtohome">
+                        <img src="img/back.png" alt="backbutton" />
+                    </div>
+                </div>
+                <div class="selection-container">
+                    <div class="title-container">
+                        <span class="selection-title">WIE SPEELT ER?</span>
+                    </div>
+                    <div class="selection-players">
+                        <div class="player js-player">1 speler</div>
+                        <div class="player js-player player--selected">2 spelers</div>
+                    </div>
+                    <div class="avatar-container">
+                        <div class="avatar">
+                            <img src="img/playerAvatar.png" alt="Avatar player 1" />
+                            <input type="text" class="name js-player1name" placeholder="player1"/>
+                        </div>
+                        <div class="avatar">
+                            <img src="img/playerAvatar.png" alt="Avatar player 1" />
+                            <input type="text" class="name js-player1name" placeholder="player2"/>
+                        </div>
+                    </div>
+                    <div class="heartbeat-container">
+                        <img class="heartbeat" src="img/heartbeat.png" alt="hearvbeat" />
+                    </div>
+                    <div class="next-container">
+                        <div class="next-button js-next">volgende</div>
+                    </div>
+                </div>
             </div>
         </body>
 </html>

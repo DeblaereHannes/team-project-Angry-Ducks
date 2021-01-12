@@ -5,13 +5,13 @@
 @font-face {
     font-family: "Roboto";
     font-weight: 400;
-    src: url("../fonts/Roboto-Regular.ttf") format("ttf")
+    src: url("../fonts/Roboto-Regular.ttf");
 }
 
 @font-face {
     font-family: "Roboto";
     font-weight: 700;
-    src: url("../fonts/Roboto-Bold.ttf") format("ttf")
+    src: url("../fonts/Roboto-Bold.ttf");
 }
 
 
@@ -29,6 +29,7 @@ body{
     background: black;
     margin: 0;
     padding: 0;
+    display: flex;
     min-height: 100vh;
     overflow: hidden;
 }
@@ -41,7 +42,7 @@ body{
     backdrop-filter: blur(10px);
 }
 
-.game--blur{
+.game--blur, .homescreen--blur{
     filter: blur(10px);
 }
 
@@ -51,6 +52,10 @@ body{
 
 .intro, .homepage, .background{
     opacity: 0;
+}
+
+.homepage, .background{
+    opacity: 1;
 }
 
 .c-pause-menu{
@@ -161,7 +166,6 @@ body{
     margin-top: 10%;
     justify-content: center;
     align-items: center;
-    animation: fade 4.7s ease-in-out;
 }
 
 @keyframes fade {
@@ -203,11 +207,104 @@ body{
     padding-bottom: 26px;
     width: 100%;
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     border: 1px solid #F88F3E;
     background: #F88F3E ;
     border-radius: 8px;
     color: white;
+}
+
+.back-container{
+    display: flex;
+    position: absolute;
+    top: 31px;
+    left: 31px;
+    cursor: pointer;
+}
+
+.selection-container{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection-title{
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    font-size: 5rem;
+    color: #B44700;
+}
+
+.selection-players{
+    width: 75%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.player{
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+    transition: .2s;
+}
+
+.player:hover,
+.player--selected{
+    font-size: 2.813rem;
+    color: #E95E03;
+    text-shadow: 0 0 6px #B44700;
+}
+
+.avatar-container{
+    margin-top: 2.75rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar{
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar img{
+    margin-bottom: 1.563rem;
+    cursor: pointer;
+}
+
+.name{
+    text-align: center;
+    font-weight: 700;
+}
+.heartbeat-container{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.heartbeat{
+    width: 75%;
+    margin: auto;
+    cursor: pointer;
+}
+
+.next-button{
+    cursor: pointer;
+    background: #F88F3E;
+    border: 1px solid #F88F3E;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    padding: 1rem 100px;
 }
 
 .ishidden{
