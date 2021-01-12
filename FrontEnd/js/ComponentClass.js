@@ -44,9 +44,15 @@ const component = function(name, width, height, color, x, y, type) {
     };
     //verandert de positie van het component
     this.newPos = function() {
-        this.gravitySpeed += this.gravity;
-        this.x += this.speedX;
-        this.y += this.speedY + this.gravitySpeed;
+        if(showPauseMenu == true){
+            this.gravitySpeed = 0;
+            this.speedX = 0;
+            this.speedY = 0;
+        } else{
+            this.gravitySpeed += this.gravity;
+            this.x += this.speedX;
+            this.y += this.speedY + this.gravitySpeed;
+        }
         this.hitBottom();
     };
     //checkt of het component de onderste lijn van de gamearea/canvas raakt
