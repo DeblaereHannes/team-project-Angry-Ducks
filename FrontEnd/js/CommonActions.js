@@ -29,6 +29,7 @@ const shoot = function() {
         duckHitbox.speedX = speed;
         duck.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
         duckHitbox.speedY = -2;
+        checkSecondsPast = secondsPast;
     }
 }
 
