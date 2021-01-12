@@ -1,5 +1,5 @@
 let startButton;
-let homepage, loadingpage, background;
+let homepage, background, backtohome, playerselection, players;
 
 // fade intro screen
 const showIntro = function(){
@@ -57,18 +57,46 @@ const showIntro = function(){
 
 const listenToButtons = function(){
     startButton.addEventListener("click", function(){
-        //homepage.classList.remove("current");
-        //loadingpage.classList.add("current");
-        window.location.href = "gamemode1.html";
+        homepage.classList.remove("current");
+        playerselection.classList.add("current");
+        background.classList.add("homescreen--blur");
     });
+
+    backtohome.addEventListener("click", function(){
+        playerselection.classList.remove("current");
+        homepage.classList.add("current");
+        background.classList.remove("homescreen--blur");
+    })
+
+    for(let player of players){
+        player.addEventListener("click", function(){
+            for(let remove of players){
+                remove.classList.remove("player--selected");
+            }
+
+            player.classList.add("player--selected");
+
+            if(player.innerHTML == "1 speler"){
+
+                document.querySelector(".js-2spelers").classList.add("ishidden");
+                document.querySelector(".js-1speler").classList.remove("ishidden");
+            }
+            if(player.innerHTML == "2 spelers"){
+                document.querySelector(".js-1speler").classList.add("ishidden");
+                document.querySelector(".js-2spelers").classList.remove("ishidden");
+            }
+        })
+    }
 }
 
 
 const init = function() {
     startButton = document.querySelector(".js-play");
     homepage = document.querySelector(".js-homepage");
-    loadingpage = document.querySelector(".js-loadpage");
     background = document.querySelector(".js-background");
+    playerselection = document.querySelector(".js-playerselection");
+    backtohome = document.querySelector(".js-backtohome");
+    players = document.querySelectorAll(".js-player");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();

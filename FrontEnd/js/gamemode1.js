@@ -92,7 +92,7 @@ const updateGameArea = function() {
     targetDetection3.update();
     targetDetection4.update();
     targetDetection5.update();
-    myBackground.update();
+    // myBackground.update();
     target.update();
     duck.update();
     lblScore.update();
@@ -103,8 +103,9 @@ const updateGameArea = function() {
 
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
+        document.querySelector(".js-pause").style.display="none";
     }
-    else document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};
     if(showPauseMenu == true)
     {
         //opens or closes pause menu
