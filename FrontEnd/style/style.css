@@ -54,10 +54,6 @@ body{
     opacity: 0;
 }
 
-.homepage, .background{
-    opacity: 1;
-}
-
 .c-pause-menu{
     position: fixed;
     display: flex;
