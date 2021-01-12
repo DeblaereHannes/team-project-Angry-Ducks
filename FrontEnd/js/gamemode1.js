@@ -26,8 +26,8 @@ const loadGame = function() {
     targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "white", (viewport * 0.68359375), (viewport * 0.4241));
     targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "red", (viewport * 0.5859375), (viewport * 0.4241));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "red", (viewport * 0.7080078125), (viewport * 0.4241));
-    progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
-    progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
+    progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
+    progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Consolas", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     frames = 0; //aantal frames op 0 zetten
@@ -35,8 +35,6 @@ const loadGame = function() {
     score = 500;
     countdownTimer = 3;
     myGameArea.load(); //laad de canvas in
-    
-    
 }
 //updategame (gebeurt 50 keer per seconde)
 const updateGameArea = function() {
@@ -86,6 +84,7 @@ const updateGameArea = function() {
             }
         }
     }
+
     if(secondsPast - checkSecondsPast > 5) //auto reload 5sec na shoot
         reload();
 
@@ -108,7 +107,6 @@ const updateGameArea = function() {
     targetDetection3.update();
     targetDetection4.update();
     targetDetection5.update();
-    // myBackground.update();
     target.update();
     duck.update();
     lblScore.update();

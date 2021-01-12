@@ -21,6 +21,11 @@ const component = function(name, width, height, color, x, y, type) {
     //herteken img of herschrijf text
     this.update = function() {
         ctx = myGameArea.context;
+        if (showPauseMenu == true){
+            ctx.filter = "blur(10px)";
+        }else{
+            ctx.filter = "blur(0px)";
+        }
         if (type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
