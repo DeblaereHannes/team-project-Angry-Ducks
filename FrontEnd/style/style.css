@@ -82,6 +82,14 @@ body{
     display: flex;
     justify-content: center;
 }
+.c-character-selection{
+    /*position: fixed;*/
+    display: flex;
+    justify-content: space-between;
+    width: 17rem;
+    align-items: center;
+    
+}
 
 .o-hide-accessible{
     border: none;
@@ -104,6 +112,7 @@ body{
 
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
+    outline: none;
 }
 .c-button{
         /*styling button*/
@@ -117,7 +126,6 @@ body{
         margin: 0.5em;
         height: 80px;
         width: 500px;
-        outline: none;
         cursor: pointer;
 }
 .c-card {

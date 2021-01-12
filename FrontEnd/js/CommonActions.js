@@ -54,3 +54,14 @@ const rusthartslag = function() {
     CalmHR = HR;
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
 }
+const characterSelection = function(Number){
+    //var array = fs.readdir(path, callbackFunction)
+    switch(Number)
+    {
+        case 1: console.log("choosing a character (1)"); break;
+        case 2: console.log("choosing a character (2)"); break;
+        case 3: console.log("choosing a character (3)"); break;
+        case 4: console.log("choosing a character (4)"); break;
+    }
+
+}
