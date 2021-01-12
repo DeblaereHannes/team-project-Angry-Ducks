@@ -8,7 +8,7 @@ for(link of links)
 {
     link = document.createElement('link');
 }
-links[0] = "./img/Duck_Male1.png";
+links[0] = "./img/Duck_White.png";
 links[1] = "bg.png";
 links[2] = "target.png";
 //tijd standaard uit
@@ -28,7 +28,7 @@ const loadGame = function() {
     targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "red", (viewport * 0.7080078125), (viewport * 0.4241));
     progressbarHealth = new component("progressbar", (viewport * 0.48828125), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (viewport * 0.48828125), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
-    duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.2392578125)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Consolas", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
