@@ -1,3 +1,5 @@
+var testhitbox = false, testduck = false, pauseXduck, pauseYduck, pauseXhitbox, pauseYhitbox;
+
 //component init
 const component = function(name, width, height, color, x, y, type) {
     //default instellingen van component
@@ -44,18 +46,61 @@ const component = function(name, width, height, color, x, y, type) {
     };
     //verandert de positie van het component
     this.newPos = function() {
-        this.gravitySpeed += this.gravity;
-        this.x += this.speedX;
-        this.y += this.speedY + this.gravitySpeed;
+        if(showPauseMenu == true){
+            if(this.name == "duck"){
+                if(testduck == false){
+                    //pausegrav = this.gravity;
+                    pauseXduck = this.speedX;
+                    pauseYduck = this.speedY;
+                    testduck = true;
+                }
+                this.speedX = 0;
+                this.speedY = 0;
+            }
+            if(this.name == "duckhitbox"){
+                if(testhitbox == false){
+                    //pausegrav = this.gravity;
+                    pauseXhitbox = this.speedX;
+                    pauseYhitbox = this.speedY;
+                    testhitbox = true;
+                }
+                this.speedX = 0;
+                this.speedY = 0;
+            }
+            
+  
+        } else{
+
+            if(this.name == "duck"){
+                if(testduck == true){
+                    //this.gravity = pausegrav;
+                    this.speedX = pauseXduck;
+                    this.speedY = pauseYduck;
+                    testduck = false;
+                }
+            }
+            if(this.name == "duckhitbox"){
+                if(testhitbox == true){
+                    //this.gravity = pausegrav;
+                    this.speedX = pauseXhitbox;
+                    this.speedY = pauseYhitbox;
+                    testhitbox = false;
+                }
+            }
+            
+            console.log(`${this.name} .. ${this.speedX}`);
+            this.gravitySpeed += this.gravity;
+            this.x += this.speedX;
+            this.y += this.speedY + this.gravitySpeed;
+        }
         this.hitBottom();
     };
     //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
-            if (this.name == "duck") {
+            if (this.name == "duck" || this.name == "duckhitbox") {
                 this.speedX = 0;
-                this.speeY = 0;
             }
             this.y = rockbottom;
             if (this.amounthitbottom > 0) {

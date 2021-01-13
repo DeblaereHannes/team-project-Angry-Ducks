@@ -34,7 +34,7 @@ const shoot = function() {
         else{
             var speed = parseFloat(document.getElementById("speedx").value , 10);
         }
-        console.log(speed);
+        //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         duck.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
         duckHitbox.gravity = 0.05;
