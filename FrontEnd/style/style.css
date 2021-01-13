@@ -293,6 +293,9 @@ body{
 
 .avatar img{
     margin-bottom: 1.563rem;
+}
+
+.btn-nav{
     cursor: pointer;
 }
 
