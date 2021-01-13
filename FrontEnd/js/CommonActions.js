@@ -38,7 +38,7 @@ const reload = function() {
     if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
         duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duck", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
     }
 
 }
