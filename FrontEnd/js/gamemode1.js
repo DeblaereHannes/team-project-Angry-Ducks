@@ -87,8 +87,9 @@ const updateGameArea = function() {
         }
     }
 
-    if(secondsPast - checkSecondsPast > 5) //auto reload 5sec na shoot
+    if(secondsPast - checkSecondsPast > 5){ //auto reload 5sec na shoot
         reload();
+    }
 
     myGameArea.clear(); //canvas clearen
 
