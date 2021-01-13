@@ -114,7 +114,7 @@ const updateGameArea = function() {
     progressbarBackground.update();
     progressbarHealth.update();
     lblCountdownTimer.update();
-    duckP1.update();
+    //duckP1.update();
 
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
