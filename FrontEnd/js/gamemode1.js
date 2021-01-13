@@ -1,4 +1,5 @@
-//variablen definieren
+//#region *** variablen definieren ***
+
 var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
 var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast, countdownTimer, lblCountdownTimer, checkSecondsPast;
 var viewport = document.documentElement.clientWidth;
@@ -14,10 +15,12 @@ links[2] = "target.png";
 //tijd standaard uit
 timerOn = false;
 
-//load als pagina geladen is
+//#endregion
+
+//#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGame = function() {
     //alle componenten aanmaken
-    CommonComponents();
+    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
     lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
@@ -36,7 +39,10 @@ const loadGame = function() {
     countdownTimer = 3;
     myGameArea.load(); //laad de canvas in
 }
-//updategame (gebeurt 50 keer per seconde)
+
+//#endregion
+
+//#region *** update game function (wat er gebeurt elke frame) ***
 const updateGameArea = function() {
 
     //score controleren op einde spel
@@ -132,3 +138,5 @@ const updateGameArea = function() {
     }
     else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 }
+
+//#endregion
