@@ -81,8 +81,8 @@ const updateGameArea = function() {
             else{
                 start();
                 secondsPast++;
-                console.log(`hitbox ${duckHitbox.speedX}`);
-                console.log(duck.speedX);
+                //console.log(`hitbox ${duckHitbox.speedX}`);
+                //console.log(duck.speedX);
             }
         }
     }
@@ -122,6 +122,7 @@ const updateGameArea = function() {
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
         document.querySelector(".js-pause").style.display="none";
+        document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
     }
     else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};
     if(showPauseMenu == true)

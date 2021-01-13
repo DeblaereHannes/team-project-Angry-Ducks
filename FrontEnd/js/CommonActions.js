@@ -67,6 +67,8 @@ const rusthartslag = function() {
     CalmHR = HR;
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
 }
+
+
 const characterSelection = function(Number){
     switch(Number)
     {
