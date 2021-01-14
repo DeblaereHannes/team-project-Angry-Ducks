@@ -1,5 +1,5 @@
 let startButton;
-let homepage, background, backtohome, playerselection, players;
+let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect;
 
 // fade intro screen
 const showIntro = function(){
@@ -68,6 +68,11 @@ const listenToButtons = function(){
         background.classList.remove("homescreen--blur");
     })
 
+    backtoplayerselection.addEventListener("click", function(){
+        gameselection.classList.remove("current");
+        playerselection.classList.add("current");
+    })
+
     for(let player of players){
         player.addEventListener("click", function(){
             for(let remove of players){
@@ -86,6 +91,16 @@ const listenToButtons = function(){
                 document.querySelector(".js-2spelers").classList.remove("ishidden");
             }
         })
+
+        togamemodeselect.addEventListener("click", function(){
+            playerselection.classList.remove("current");
+            gameselection.classList.add("current");
+            let showmodesforplayer;
+            for(let player of players){
+                if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+
+            }
+        })
     }
 }
 
@@ -96,7 +111,10 @@ const init = function() {
     background = document.querySelector(".js-background");
     playerselection = document.querySelector(".js-playerselection");
     backtohome = document.querySelector(".js-backtohome");
+    backtoplayerselection = document.querySelector(".js-backtoplayerselection");
     players = document.querySelectorAll(".js-player");
+    togamemodeselect = document.querySelector(".js-togamemodeselect");
+    gameselection = document.querySelector(".js-gameselection");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();
