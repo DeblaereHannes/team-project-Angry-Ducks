@@ -93,7 +93,7 @@ const component = function(name, width, height, color, x, y, type) {
                 }
             }
             
-            console.log(`${this.name} .. ${this.speedX}`);
+            //console.log(`${this.name} .. ${this.speedX}`);
             this.gravitySpeed += this.gravity;
             this.x += this.speedX;
             this.y += this.speedY + this.gravitySpeed;
