@@ -64,6 +64,7 @@ const shoot = function() {
 //#region *** Reload 1 duck Function ***
 
 const reload = function() {
+  console.log("f");
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
