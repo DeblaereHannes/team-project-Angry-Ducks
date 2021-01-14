@@ -82,7 +82,7 @@ const listenToButtons = function(){
         background.classList.remove("current");
         switch(gamePicture){
             case 0:
-                document.body.style.backgroundImage = "url('../img/BGGamemode.png')";
+                document.body.style.backgroundImage = "url('./img/BGGamemode.png')";
                 document.querySelector(".js-gamemode1").classList.add("current");
                 loadGame();
                 break;
