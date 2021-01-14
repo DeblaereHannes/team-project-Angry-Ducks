@@ -170,7 +170,7 @@ const listenToButtons2 = function(){
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
         showPauseMenu = true;
-        document.querySelector(".bgGamemode").classList.add("bgGamemode--blur");
+        document.body.classList.add("bgGamemode--blur");
     });
 }
 
@@ -181,7 +181,7 @@ const init2 = function() {
 }
 const hidePauseMenu = function(){
     showPauseMenu = false; 
-    document.querySelector(".bgGamemode").classList.remove("bgGamemode--blur");
+    document.body.classList.remove("bgGamemode--blur");
 }
 
 document.addEventListener("DOMContentLoaded", init2);

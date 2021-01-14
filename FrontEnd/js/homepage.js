@@ -78,9 +78,13 @@ const listenToButtons = function(){
     })
 
     spelen.addEventListener("click", function(){
+        document.querySelector(".js-gameselection").style.display = "none";
+        background.classList.remove("current");
         switch(gamePicture){
             case 0:
-                window.location.href = "gamemode1.html";
+                document.body.style.backgroundImage = "url('../img/BGGamemode.png')";
+                document.querySelector(".js-gamemode1").classList.add("current");
+                loadGame();
                 break;
         }
     })

@@ -122,17 +122,22 @@ const updateGameArea = function() {
     lblCountdownTimer.update();
 
     if (score <= 0){
-        document.querySelector(".js-VictoryScreen").style.visibility = "visible";       //victory screen unhiden
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+        document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;    //tijd op de victory screen zetten
     }
-    else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};    //victory screen hidden houden
+    else if(showPauseMenu != true){
+        document.body.classList.remove("bgGamemode--blur");
+        document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    }    //victory screen hidden houden
     if(showPauseMenu == true)
     {
         //opens or closes pause menu
         document.querySelector(".js-PauseMenu").style.visibility = "visible";
     }
     else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
+
 }
 
 //#endregion
