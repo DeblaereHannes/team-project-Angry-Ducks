@@ -110,11 +110,11 @@ const characterSelection = function(Number){
         case 4: duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
         
     }
-    document.getElementById("0").src= characters[duckPlayer1];
-    document.getElementById("1").src= characters[duckPlayer1];
-    document.getElementById("2").src= characters[duckPlayer2];
     check = true;
   }
+  document.getElementById("0").src= characters[duckPlayer1];
+  document.getElementById("1").src= characters[duckPlayer1];
+  document.getElementById("2").src= characters[duckPlayer2];
 }
 
 //#endregion
