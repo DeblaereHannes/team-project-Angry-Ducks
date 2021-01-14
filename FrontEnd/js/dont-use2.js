@@ -49,11 +49,19 @@ const shoot = function() {
         }
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
-        duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+
+        if(player2plays == true){
+          duckP2.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+          duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
+          duckP2.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        }else{
+          duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+          duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+          duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        }
+
         duckHitbox.gravity = 0.05;
-        duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
         duckHitbox.speedX = speed;
-        duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
         duckHitbox.speedY = -2;
         checkSecondsPast = secondsPast;
     }
@@ -64,6 +72,7 @@ const shoot = function() {
 //#region *** Reload 1 duck Function ***
 
 const reload = function() {
+  console.log("yeet");
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
         if(player2enable == true){
@@ -72,6 +81,7 @@ const reload = function() {
             duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
             duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
             duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.01), (viewport * 0.4), "image");
+            //console.log(duckP2);
           }else{
             duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
             duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
