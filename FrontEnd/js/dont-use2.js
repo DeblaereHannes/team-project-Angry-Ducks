@@ -37,34 +37,55 @@ const start = function() {
 
 const shoot = function(wichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true && showPauseMenu == false && wichbutton == 1) {
-        canShoot = false;
-        if(HR != null){
-            ShootHR = (HR - CalmHR) / 5;
-            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
-            var speed = ShootHR;
-        }
-        else{
-            console.error("no HR");
-        }
-        var speed = parseFloat(document.getElementById("speedx").value , 10);
+    if (canShoot == true && showPauseMenu == false) {
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
-        if(player2plays == true){
+        if(player2plays == true && wichbutton == 2 && player2enable == true){
+
+          if(HR != null){
+            ShootHR = (HR - CalmHR) / 5;
+            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
+            var speed = ShootHR;
+          }else{
+            console.error("no HR");
+          }
+          canShoot = false;
           duckP2.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
           duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
           duckP2.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-        }else{
-          duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
-          duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-          duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-        }
 
-        duckHitbox.gravity = 0.05;
-        duckHitbox.speedX = speed;
-        duckHitbox.speedY = -2;
-        checkSecondsPast = secondsPast;
+          duckHitbox.gravity = 0.05;
+          duckHitbox.speedX = speed;
+          duckHitbox.speedY = -2;
+          checkSecondsPast = secondsPast;
+        }else{
+          if(player2plays == false && wichbutton == 1 && player2enable == true){
+            var speed = parseFloat(document.getElementById("speedx").value , 10);
+            canShoot = false;
+            duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.05;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -2;
+            checkSecondsPast = secondsPast;
+          }else{
+            if(player2enable == false && wichbutton == 1){
+              var speed = parseFloat(document.getElementById("speedx").value , 10);
+              canShoot = false;
+              duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+              duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+              duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+              duckHitbox.gravity = 0.05;
+              duckHitbox.speedX = speed;
+              duckHitbox.speedY = -2;
+              checkSecondsPast = secondsPast;
+            }
+          }
+        }
     }
 }
 
