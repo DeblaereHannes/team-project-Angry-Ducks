@@ -35,9 +35,9 @@ const start = function() {
 
 //#region *** Shoot Function ***
 
-const shoot = function() {
+const shoot = function(wichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true && showPauseMenu == false) {
+    if (canShoot == true && showPauseMenu == false && wichbutton == 1) {
         canShoot = false;
         if(HR != null){
             ShootHR = (HR - CalmHR) / 5;
@@ -45,8 +45,9 @@ const shoot = function() {
             var speed = ShootHR;
         }
         else{
-            var speed = parseFloat(document.getElementById("speedx").value , 10);
+            console.error("no HR");
         }
+        var speed = parseFloat(document.getElementById("speedx").value , 10);
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
