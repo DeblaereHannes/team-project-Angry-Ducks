@@ -53,8 +53,8 @@ const shoot = function() {
         duckHitbox.gravity = 0.05;
         duck.speedX = speed; //horizontale snelheid volgens de slider waarde
         duckHitbox.speedX = speed;
-        duck.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-        duckHitbox.speedY = -2;
+        duck.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        duckHitbox.speedY = -3;
         checkSecondsPast = secondsPast;
     }
 }
@@ -64,7 +64,6 @@ const shoot = function() {
 //#region *** Reload 1 duck Function ***
 
 const reload = function() {
-  console.log("f");
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
@@ -79,7 +78,7 @@ const reload = function() {
 
 const refresh = function() {
     timerOn = false;       //tijd terug uit zetten
-    canShoot = false;
+    canShoot = false;      //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display="block";
     myGameArea.stop();      //canvas freezen
     loadGame();             //volledige game terug aanmaken
@@ -90,7 +89,7 @@ const refresh = function() {
 //#region *** set rusthartslag function ***
 
 const rusthartslag = function() {
-    CalmHR = HR;
+    CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
 }
 
@@ -155,7 +154,7 @@ const BTconnection = function() {
     navigator.bluetooth.requestDevice({
         filters: [{
           services: ['heart_rate'],
-        }]                                                      //vanaf hier paar instellingen die ik niet versta
+        }]                                                      //vanaf hier paar instellingen die ik niet versta but it works :)
       }).then(device => device.gatt.connect())                  
       .then(server => server.getPrimaryService('heart_rate'))
       .then(service => {
@@ -175,7 +174,7 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
   });
 }
 
-function onHeartRateChanged(event) {
+function onHeartRateChanged(event) {  //wordt om de __ seconden uitgevoerd om HR aan te passen
   const characteristic = event.target;
   //console.log(parseHeartRate(characteristic.value));
   HR = parseHeartRate(characteristic.value).heartRate;
