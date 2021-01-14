@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR;
 var showPauseMenu = false, btnPause,btnExit;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3, gamePicture = 0;
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -170,7 +170,7 @@ const listenToButtons2 = function(){
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
         showPauseMenu = true;
-        document.querySelector(".bggameSelection").classList.add("bggameSelection-)blur");
+        document.querySelector(".bgGamemode").classList.add("bgGamemode--blur");
     });
 }
 
@@ -181,7 +181,7 @@ const init2 = function() {
 }
 const hidePauseMenu = function(){
     showPauseMenu = false; 
-    document.querySelector(".bggameSelection").classList.remove("bggameSelection-)blur");
+    document.querySelector(".bgGamemode").classList.remove("bgGamemode--blur");
 }
 
 document.addEventListener("DOMContentLoaded", init2);

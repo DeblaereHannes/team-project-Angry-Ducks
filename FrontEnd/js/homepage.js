@@ -1,5 +1,6 @@
 let startButton;
 let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect;
+let spname, mpname, p2name, spelen;
 
 // fade intro screen
 const showIntro = function(){
@@ -63,6 +64,9 @@ const listenToButtons = function(){
     });
 
     backtohome.addEventListener("click", function(){
+        spname.value = "";
+        mpname.value = "";
+        p2name.value = "";
         playerselection.classList.remove("current");
         homepage.classList.add("current");
         background.classList.remove("homescreen--blur");
@@ -71,6 +75,14 @@ const listenToButtons = function(){
     backtoplayerselection.addEventListener("click", function(){
         gameselection.classList.remove("current");
         playerselection.classList.add("current");
+    })
+
+    spelen.addEventListener("click", function(){
+        switch(gamePicture){
+            case 0:
+                window.location.href = "gamemode1.html";
+                break;
+        }
     })
 
     for(let player of players){
@@ -82,13 +94,20 @@ const listenToButtons = function(){
             player.classList.add("player--selected");
 
             if(player.innerHTML == "1 speler"){
-
+                spname.value = mpname.value;
+                p2name.value = "";
                 document.querySelector(".js-2spelers").classList.add("ishidden");
                 document.querySelector(".js-1speler").classList.remove("ishidden");
             }
             if(player.innerHTML == "2 spelers"){
+                mpname.value = spname.value;
                 document.querySelector(".js-1speler").classList.add("ishidden");
                 document.querySelector(".js-2spelers").classList.remove("ishidden");
+                if(duckPlayer1 == duckPlayer2){
+                    duckPlayer2++;
+                    duckPlayer2 = duckPlayer2%9;
+                    document.getElementById("2").src= characters[duckPlayer2];
+                };
             }
         })
 
@@ -115,6 +134,10 @@ const init = function() {
     players = document.querySelectorAll(".js-player");
     togamemodeselect = document.querySelector(".js-togamemodeselect");
     gameselection = document.querySelector(".js-gameselection");
+    spname = document.querySelector(".js-spName");
+    mpname = document.querySelector(".js-mpName");
+    p2name = document.querySelector(".js-player2name");
+    spelen = document.querySelector(".js-togame");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();
