@@ -98,25 +98,30 @@ const rusthartslag = function() {
 //#region *** characterSelection function ***
 
 const characterSelection = function(Number){
+  var check = false;
+  while (duckPlayer1 == duckPlayer2 || check == false)
+  {
     switch(Number)
     {
         
-        case 1: duckPlayer1--; if(duckPlayer1 == duckPlayer2) duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
-        case 2: duckPlayer1++; if(duckPlayer1 == duckPlayer2) duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
-        case 3: duckPlayer2--; if(duckPlayer1 == duckPlayer2) duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
-        case 4: duckPlayer2++; if(duckPlayer1 == duckPlayer2) duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
+        case 1: duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
+        case 2: duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
+        case 3: duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
+        case 4: duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
         
     }
     document.getElementById("0").src= characters[duckPlayer1];
     document.getElementById("1").src= characters[duckPlayer1];
     document.getElementById("2").src= characters[duckPlayer2];
+    check = true;
+  }
 }
 
 //#endregion
 
 //#region *** pause menu functions ***
 
-const listenToButtons = function(){
+const listenToButtons2 = function(){
     btnExit.addEventListener("click", function(){
         console.log("Exit Clicked");
         hidePauseMenu();
@@ -128,17 +133,17 @@ const listenToButtons = function(){
     });
 }
 
-const init = function() {
+const init2 = function() {
     btnPause = document.querySelector(".js-pause");
     btnExit = document.querySelector(".js-exit");
-    listenToButtons();
+    listenToButtons2();
 }
 const hidePauseMenu = function(){
     showPauseMenu = false; 
     document.querySelector(".bgGamemode").classList.remove("bgGamemode--blur");
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init2);
 
 //#endregion
 
