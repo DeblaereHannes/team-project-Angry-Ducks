@@ -3,8 +3,8 @@
 let chosenHeartRateService = null;
 var HR;
 var showPauseMenu = false, btnPause,btnExit;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3;
-var characters = ["", "", "","", "", "","", "", ""]
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3, gamePicture = 0;
+var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
     link = document.createElement('character');
@@ -18,6 +18,15 @@ characters[5] = "./img/characters/Duck_Female3.png";
 characters[6] = "./img/characters/Duck_White.png";
 characters[7] = "./img/characters/Duck_Yellow.png";
 characters[8] = "./img/characters/Duck_Gray.png";
+
+for(link of gameSelections)
+{
+    link = document.createElement('gameSelection');
+}
+gameSelections[0] = "./img/gameselection/imgGamemode1.png";
+gameSelections[1] = "./img/gameselection/imgGamemode2.png";
+gameSelections[2] = "./img/gameselection/imgGamemode3.png";
+gameSelections[3] = "./img/gameselection/imgGamemode4.png";
 
 //#endregion
 
@@ -131,16 +140,22 @@ const characterSelection = function(Number){
 
 //#endregion
 
-//#region *** gameModeSelection function ***
+//#region *** gameSelection function ***
 
-const gameModeSelection = function(Number){
+const gameSelection = function(Number){
+  console.log(Number);
   switch(Number)
   {
-      case 1: gameModePicture--; if(gameModePicture== -1) gameModePicture=3; break;//player 1 left
-      case 2: gameModePicture; if(gameModePicture == 4) gameModePicture=0; break;//player 1 right  
+      case 1: gamePicture--; if(gamePicture== -1) gamePicture=3; break;//player 1 left
+      case 2: gamePicture++; if(gamePicture == 4) gamePicture=0; break;//player 1 right  
   }
-  document.getElementById("js-gamepicture").src= "";
-
+  switch(gamePicture){
+    case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Snel Eendje"; break;
+    case 1: document.getElementById("gameMode").innerHTML = "Co-op"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen"; break;
+    case 2: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Brood Oorlog"; break;
+    case 3: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
+  }
+  document.getElementById("gamepicture").src= gameSelections[gamePicture];
 }
 
 //#endregion
@@ -155,7 +170,7 @@ const listenToButtons2 = function(){
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
         showPauseMenu = true;
-        document.querySelector(".bgGamemode").classList.add("bgGamemode--blur");
+        document.querySelector(".bggameSelection").classList.add("bggameSelection-)blur");
     });
 }
 
@@ -166,7 +181,7 @@ const init2 = function() {
 }
 const hidePauseMenu = function(){
     showPauseMenu = false; 
-    document.querySelector(".bgGamemode").classList.remove("bgGamemode--blur");
+    document.querySelector(".bggameSelection").classList.remove("bggameSelection-)blur");
 }
 
 document.addEventListener("DOMContentLoaded", init2);

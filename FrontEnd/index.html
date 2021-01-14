@@ -91,17 +91,17 @@
 
                     <div class="ishidden gamemodes-container js-gamemodes current">
                         <div class="game-selection__picture">
-                            <img class="js-gamepicture" src="img/gameselection/imgGamemode1.png" alt="Gamemode 1" draggable="false"/>
+                            <img id="gamepicture" src="img/gameselection/imgGamemode1.png" alt="Gamemode 1" draggable="false"/>
                         </div>
                         <div class="game-selection">
-                            <button class="o-hide-accessible btn-nav btn-back" onclick=""><svg  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(-4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+                            <button class="o-hide-accessible btn-nav btn-back" onclick="gameSelection(1);"><svg  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(-4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
                             <div class="game-selection__names">
-                                <span class="game-selection__mode">solo</span>
-                                <span class="game-selection__name">snel eendje</span>
+                                <span class="game-selection__mode" id="gameMode">solo</span>
+                                <span class="game-selection__name" id="gameTitle">snel eendje</span>
                             </div>
-                            <button class="o-hide-accessible btn-nav btn-next" onclick=""><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+                            <button class="o-hide-accessible btn-nav btn-next" onclick="gameSelection(2);"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" transform="scale(4,4)"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
                         </div>
-                        <div class="game-information">Lorem ipsum dolor sit amet consectetur </div>
+                        <div class="game-information" id="gameDescription">Lorem ipsum dolor sit amet consectetur </div>
 
                         <div class="next-container">
                             <div class="next-button play-button js-togame">spelen</div>
