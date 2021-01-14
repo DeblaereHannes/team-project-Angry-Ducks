@@ -1,7 +1,7 @@
 //#region ***  Variablen ***
 
 let chosenHeartRateService = null;
-var HR;
+var HR, player2enable = false, player2plays = false;
 var showPauseMenu = false, btnPause,btnExit;
 var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3;
 var characters = ["", "", "","", "", "","", "", ""]
@@ -66,9 +66,24 @@ const shoot = function() {
 const reload = function() {
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
+        if(player2enable == true){
+          player2plays = !player2plays;
+          if(player2plays == true){
+            duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+            duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+            duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.01), (viewport * 0.4), "image");
+          }else{
+            duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+            duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+            duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[1], (viewport * 0.01), (viewport * 0.4), "image");
+          }
+
+
+        } else{
+          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        }
         canShoot = true;
-        duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
     }
 }
 
@@ -208,5 +223,18 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
     }
     return result;
   }
+
+//#endregion
+
+//#region *** player 2 enable function ***
+
+const player2enabled = function() {
+  timerOn = false;       //tijd terug uit zetten
+  canShoot = false;
+  player2enable = true;
+  document.querySelector(".js-pause").style.display="block";
+  myGameArea.stop();      //canvas freezen
+  loadGame();             //volledige game terug aanmaken
+}
 
 //#endregion
