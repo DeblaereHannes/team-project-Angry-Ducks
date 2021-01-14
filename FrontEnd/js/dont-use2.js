@@ -1,7 +1,7 @@
 //#region ***  Variablen ***
 
 let chosenHeartRateService = null;
-var HR;
+var HR, player2enable = false, player2plays = false;
 var showPauseMenu = false, btnPause,btnExit;
 var canShoot, CalmHR, ShootHR,duckPlayer1 = 0; duckPlayer2 = 3;
 var characters = ["", "", "","", "", "","", "", ""]
@@ -49,11 +49,19 @@ const shoot = function() {
         }
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
-        duck.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+
+        if(player2plays == true){
+          duckP2.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+          duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
+          duckP2.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        }else{
+          duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
+          duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+          duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+        }
+
         duckHitbox.gravity = 0.05;
-        duck.speedX = speed; //horizontale snelheid volgens de slider waarde
         duckHitbox.speedX = speed;
-        duck.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
         duckHitbox.speedY = -2;
         checkSecondsPast = secondsPast;
     }
@@ -64,12 +72,28 @@ const shoot = function() {
 //#region *** Reload 1 duck Function ***
 
 const reload = function() {
-  console.log("f");
+  console.log("yeet");
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
+        if(player2enable == true){
+          player2plays = !player2plays;
+          if(player2plays == true){
+            duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+            duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+            duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.01), (viewport * 0.4), "image");
+            //console.log(duckP2);
+          }else{
+            duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+            duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+            duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[1], (viewport * 0.01), (viewport * 0.4), "image");
+          }
+
+
+        } else{
+          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        }
         canShoot = true;
-        duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
     }
 }
 
@@ -99,30 +123,25 @@ const rusthartslag = function() {
 //#region *** characterSelection function ***
 
 const characterSelection = function(Number){
-  var check = false;
-  while (duckPlayer1 == duckPlayer2 || check == false)
-  {
     switch(Number)
     {
         
-        case 1: duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
-        case 2: duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
-        case 3: duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
-        case 4: duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
+        case 1: duckPlayer1--; if(duckPlayer1 == duckPlayer2) duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
+        case 2: duckPlayer1++; if(duckPlayer1 == duckPlayer2) duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
+        case 3: duckPlayer2--; if(duckPlayer1 == duckPlayer2) duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
+        case 4: duckPlayer2++; if(duckPlayer1 == duckPlayer2) duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
         
     }
     document.getElementById("0").src= characters[duckPlayer1];
     document.getElementById("1").src= characters[duckPlayer1];
     document.getElementById("2").src= characters[duckPlayer2];
-    check = true;
-  }
 }
 
 //#endregion
 
 //#region *** pause menu functions ***
 
-const listenToButtons2 = function(){
+const listenToButtons = function(){
     btnExit.addEventListener("click", function(){
         console.log("Exit Clicked");
         hidePauseMenu();
@@ -134,17 +153,17 @@ const listenToButtons2 = function(){
     });
 }
 
-const init2 = function() {
+const init = function() {
     btnPause = document.querySelector(".js-pause");
     btnExit = document.querySelector(".js-exit");
-    listenToButtons2();
+    listenToButtons();
 }
 const hidePauseMenu = function(){
     showPauseMenu = false; 
     document.querySelector(".bgGamemode").classList.remove("bgGamemode--blur");
 }
 
-document.addEventListener("DOMContentLoaded", init2);
+document.addEventListener("DOMContentLoaded", init);
 
 //#endregion
 
@@ -214,5 +233,18 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
     }
     return result;
   }
+
+//#endregion
+
+//#region *** player 2 enable function ***
+
+const player2enabled = function() {
+  timerOn = false;       //tijd terug uit zetten
+  canShoot = false;
+  player2enable = true;
+  document.querySelector(".js-pause").style.display="block";
+  myGameArea.stop();      //canvas freezen
+  loadGame();             //volledige game terug aanmaken
+}
 
 //#endregion
