@@ -99,22 +99,48 @@ const rusthartslag = function() {
 
 const characterSelection = function(Number){
   var check = false;
-  while (duckPlayer1 == duckPlayer2 || check == false)
+  if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //als speler 2 niet hidden is
+  {
+    while (duckPlayer1 == duckPlayer2 || check == false)
+    {
+      switch(Number)
+      {
+          
+          case 1: duckPlayer1--; if(duckPlayer1 == -1) duckPlayer1=8; break;//player 1 left
+          case 2: duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
+          case 3: duckPlayer2--; if(duckPlayer2 == -1) duckPlayer2=8; break;//player 2 left
+          case 4: duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
+          
+      }
+      check = true;
+    }
+  }
+  else
   {
     switch(Number)
     {
-        
         case 1: duckPlayer1--; if(duckPlayer1== -1) duckPlayer1=8; break;//player 1 left
-        case 2: duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right
-        case 3: duckPlayer2--; if(duckPlayer2== -1) duckPlayer2=8; break;//player 2 left
-        case 4: duckPlayer2++; if(duckPlayer2 == 9) duckPlayer2=0; break; //player 2 right
-        
+        case 2: duckPlayer1++; if(duckPlayer1 == 9) duckPlayer1=0; break;//player 1 right   
     }
-    check = true;
   }
   document.getElementById("0").src= characters[duckPlayer1];
   document.getElementById("1").src= characters[duckPlayer1];
   document.getElementById("2").src= characters[duckPlayer2];
+}
+    
+
+//#endregion
+
+//#region *** gameModeSelection function ***
+
+const gameModeSelection = function(Number){
+  switch(Number)
+  {
+      case 1: gameModePicture--; if(gameModePicture== -1) gameModePicture=3; break;//player 1 left
+      case 2: gameModePicture; if(gameModePicture == 4) gameModePicture=0; break;//player 1 right  
+  }
+  document.getElementById("js-gamepicture").src= "";
+
 }
 
 //#endregion
