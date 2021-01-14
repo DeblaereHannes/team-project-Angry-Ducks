@@ -53,11 +53,11 @@ const shoot = function(wichbutton) {
           canShoot = false;
           duckP2.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
           duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
-          duckP2.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+          duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
 
           duckHitbox.gravity = 0.05;
           duckHitbox.speedX = speed;
-          duckHitbox.speedY = -2;
+          duckHitbox.speedY = -3;
           checkSecondsPast = secondsPast;
         }else{
           if(player2plays == false && wichbutton == 1 && player2enable == true){
@@ -65,11 +65,11 @@ const shoot = function(wichbutton) {
             canShoot = false;
             duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
             duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-            duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+            duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
 
             duckHitbox.gravity = 0.05;
             duckHitbox.speedX = speed;
-            duckHitbox.speedY = -2;
+            duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
           }else{
             if(player2enable == false && wichbutton == 1){
@@ -77,11 +77,11 @@ const shoot = function(wichbutton) {
               canShoot = false;
               duckP1.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
               duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-              duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+              duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
 
               duckHitbox.gravity = 0.05;
               duckHitbox.speedX = speed;
-              duckHitbox.speedY = -2;
+              duckHitbox.speedY = -3;
               checkSecondsPast = secondsPast;
             }
           }
@@ -91,7 +91,7 @@ const shoot = function(wichbutton) {
 
 //#endregion
 
-//#region *** Reload 1 duck Function ***
+//#region *** Reload duck(s) Function ***
 
 const reload = function() {
   console.log("yeet");

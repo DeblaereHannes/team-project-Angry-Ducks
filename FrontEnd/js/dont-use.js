@@ -10,7 +10,7 @@ for(link of links)
 {
     link = document.createElement('link');
 }
-links[0] = "./img/characters/Duck_Male3.png";
+links[0] = "./img/characters/Duck_Female1.png";
 links[1] = "./img/characters/Duck_Male1.png";
 links[2] = "target.png";
 //tijd standaard uit
@@ -99,7 +99,7 @@ const updateGameArea = function() {
         }
     }
 
-    if(secondsPast - checkSecondsPast > 5 && canShoot == false){ //auto reload 5sec na shoot
+    if(secondsPast - checkSecondsPast > 7 && canShoot == false){ //auto reload 5sec na shoot
         reload();
     }
 
