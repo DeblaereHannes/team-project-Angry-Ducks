@@ -10,7 +10,7 @@ const component = function(name, width, height, color, x, y, type) {
     //default instellingen van component
     this.name = name;
     this.type = type;
-    if (type == "image") {
+    if (type == "image") { //als type image is veranderen we de parameter in de image
         this.image = new Image();
         this.image.src = color;
     }
@@ -28,33 +28,33 @@ const component = function(name, width, height, color, x, y, type) {
     //herteken img of herschrijf text
     this.update = function() {
         ctx = myGameArea.context;
-        if (showPauseMenu == true){
+
+        if (showPauseMenu == true){ //blur effect toepassen
             ctx.filter = "blur(10px)";
         }else{
             ctx.filter = "blur(0px)";
         }
-        if (type == "text") {
+
+        if (type == "text") { //als type text is text instellingen maken
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(this.text, this.x, this.y);
         } else {
-            if (type == "image") {
-                ctx.drawImage(this.image,
-                    this.x,
-                    this.y,
-                    this.width, this.height);
-            } else {
+            if (type == "image") { //als type image is wordt de image getekent
+                ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+            } else {                    //als het geen image of text is wordt er een vierkant gemaakt
                 ctx.fillStyle = color;
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         }
     };
+
     //verandert de positie van het component
     this.newPos = function() {
-        if(showPauseMenu == true){
+
+        if(showPauseMenu == true){      //als er op pause gedrukt word moet de eend en de hitbox pauzeren
             if(this.name == "duck"){
-                if(testduck == false){
-                    //pausegrav = this.gravity;
+                if(testduck == false){          //controleren of de eend al gepauzeerd is of niet
                     pauseXduck = this.speedX;
                     pauseYduck = this.speedY;
                     testduck = true;
@@ -63,8 +63,7 @@ const component = function(name, width, height, color, x, y, type) {
                 this.speedY = 0;
             }
             if(this.name == "duckhitbox"){
-                if(testhitbox == false){
-                    //pausegrav = this.gravity;
+                if(testhitbox == false){        //controleren of de hitbox al gepauzeerd is of niet
                     pauseXhitbox = this.speedX;
                     pauseYhitbox = this.speedY;
                     testhitbox = true;
@@ -77,23 +76,20 @@ const component = function(name, width, height, color, x, y, type) {
         } else{
 
             if(this.name == "duck"){
-                if(testduck == true){
-                    //this.gravity = pausegrav;
+                if(testduck == true){           //controleren of de eend al ontpauzeerd is of niet
                     this.speedX = pauseXduck;
                     this.speedY = pauseYduck;
                     testduck = false;
                 }
             }
             if(this.name == "duckhitbox"){
-                if(testhitbox == true){
-                    //this.gravity = pausegrav;
+                if(testhitbox == true){         //controleren of de hitbox al ontpauzeerd is of niet
                     this.speedX = pauseXhitbox;
                     this.speedY = pauseYhitbox;
                     testhitbox = false;
                 }
             }
             
-            //console.log(`${this.name} .. ${this.speedX}`);
             this.gravitySpeed += this.gravity;
             this.x += this.speedX;
             this.y += this.speedY + this.gravitySpeed;
@@ -102,18 +98,18 @@ const component = function(name, width, height, color, x, y, type) {
     };
     //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
-        var rockbottom = myGameArea.canvas.height - this.height;
+        var rockbottom = myGameArea.canvas.height - this.height;        //de hoogte instellen van de landplaats
         if (this.y > rockbottom) {
-            if (this.name == "duck" || this.name == "duckhitbox") {
+            if (this.name == "duck" || this.name == "duckhitbox") {     //snelheid op 0 ztten zodat de eend niet verder skipt
                 this.speedX = 0;
             }
             this.y = rockbottom;
-            if (this.amounthitbottom > 0) {
+            if (this.amounthitbottom > 0) {     //als het component meer dan 1 keer de grond raakt stopt de bounce
                 this.gravity = 0;
             } else {
                 this.gravitySpeed = -(this.gravitySpeed * this.bounce);
             }
-            this.amounthitbottom += 1;
+            this.amounthitbottom += 1;          //aantal keren grond raken +1
         }
     };
     //checkt of het component de positie van ander object raakt
@@ -135,7 +131,7 @@ const component = function(name, width, height, color, x, y, type) {
         }
         return crash;
     };
-    //check if clicked
+    //check if clicked (wordt niet meer gebruikt normaal)
     this.clicked = function() {
         var myleft = this.x;
         var myright = this.x + (this.width);

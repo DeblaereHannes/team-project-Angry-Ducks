@@ -33,25 +33,24 @@ const loadGame = function() {
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Consolas", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    frames = 0; //aantal frames op 0 zetten
-    secondsPast = 0; //tijd in seconden op 0 zetten
-    score = 500;
-    countdownTimer = 3;
-    myGameArea.load(); //laad de canvas in
+    frames = 0;         //aantal frames op 0 zetten
+    secondsPast = 0;    //tijd in seconden op 0 zetten
+    score = 500;        //max score
+    countdownTimer = 3; //countdown van 3seconden
+    myGameArea.load();  //laad de canvas in
 }
 
 //#endregion
 
-//#region *** update game function (wat er gebeurt elke frame) ***
+//#region *** update game function (wat er gebeurt elke frame/ 50frames per seconde) ***
 const updateGameArea = function() {
 
     //score controleren op einde spel
     if (score <= 0) {
-        timerOn = false;
-        score = 0;
-        progressbarHealth.width = 0;
-        /*endOfGameMessage.text = "Gewonnen je tijd was " + secondsPast + " seconden";*/
-        myGameArea.stop();
+        timerOn = false;                //timer stoppen
+        score = 0;                      //score op 0 anders krijg je -....
+        progressbarHealth.width = 0;    //de breedte van rode bar op 0 anders krijg je -....
+        myGameArea.stop();              //freeze de game
     }
 
     //checken of de hitbox de targetDetection raakt
@@ -79,32 +78,30 @@ const updateGameArea = function() {
 
     //tijd aanpassen
     if (showPauseMenu == false) {
-        frames += 1; //aantal frames berekenen
-        if (frames == 50) { //game doet 50 frames per seconde
+        frames += 1;            //aantal frames berekenen
+        if (frames == 50) {     //game doet 50 frames per seconde
             //aantal seconden berekenen
             frames = 0;
             if(countdownTimer > 0) countdownTimer--;
             else{
-                start();
-                secondsPast++;
-                //console.log(`hitbox ${duckHitbox.speedX}`);
-                //console.log(duck.speedX);
+                start();        //Common actions functie
+                secondsPast++;  //seconds past +1
             }
         }
     }
 
-    if(secondsPast - checkSecondsPast > 5 && canShoot == false){ //auto reload 5sec na shoot
-        reload();
+    if(secondsPast - checkSecondsPast > 7 && canShoot == false){    //auto reload 7sec na shoot
+        reload();   //Common actions functie
     }
 
-    myGameArea.clear(); //canvas clearen
+    myGameArea.clear();     //canvas clearen voor nieuwe frame
 
-    duckHitbox.newPos(); //nieuwe positie van duck instellen
-    duck.newPos();
+    duckHitbox.newPos();    //nieuwe positie van duck instellen
+    duck.newPos();          //nieuwe positie van duck instellen
 
-    lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd en score
-    lblScore.text = "Score: " + score;
-    if(countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
+    lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
+    lblScore.text = "Score: " + score;              //text aanpassen van score
+    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
@@ -123,14 +120,13 @@ const updateGameArea = function() {
     progressbarBackground.update();
     progressbarHealth.update();
     lblCountdownTimer.update();
-    //duckP1.update();
 
     if (score <= 0){
-        document.querySelector(".js-VictoryScreen").style.visibility = "visible";
-        document.querySelector(".js-pause").style.display="none";
-        document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible";       //victory screen unhiden
+        document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
+        document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;    //tijd op de victory screen zetten
     }
-    else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};
+    else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};    //victory screen hidden houden
     if(showPauseMenu == true)
     {
         //opens or closes pause menu
