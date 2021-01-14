@@ -141,7 +141,12 @@ const updateGameArea = function() {
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
         document.querySelector(".js-pause").style.display="none";
-        document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+        if (player2enable == true){
+        document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
+        document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
+        }else{
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+        }
     }
     else {document.querySelector(".js-VictoryScreen").style.visibility = "hidden";};
     if(showPauseMenu == true)
