@@ -76,8 +76,16 @@ const reload = function() {
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
-        duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        duck.x = (viewport * 0.0732421875);
+        duck.y = (viewport * 0.1904296875);
+        duck.speedY = 0;
+        duck.gravitySpeed = 0;
+        duck.gravity = 0;
+        duckHitbox.x = (viewport * 0.09765625);
+        duckHitbox.y = (viewport * 0.238);
+        duckHitbox.speedY = 0;
+        duckHitbox.gravitySpeed = 0;
+        duckHitbox.gravity = 0;
     }
 }
 
