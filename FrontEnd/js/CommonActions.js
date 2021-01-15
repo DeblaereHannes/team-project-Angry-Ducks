@@ -1,8 +1,8 @@
 //#region ***  Variablen ***
 
 let chosenHeartRateService = null;
-var HR;
-var showPauseMenu = false, btnPause,btnExit;
+var HR, timeStampHR;
+var showPauseMenu = false, btnPause,btnExit, bluethoothConnected = false;
 var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", init2);
 //#region *** BT connection functions ***
 
 const BTconnection = function() {
+  bluethoothConnected = true;
     //opent de bluetooth interface van google waar je aparaten kan koppelen
     navigator.bluetooth.requestDevice({
         filters: [{
@@ -208,7 +209,7 @@ const BTconnection = function() {
   };
 
 function handleHeartRateMeasurementCharacteristic(characteristic) {
-    console.log(characteristic);
+    //console.log(characteristic);
   return characteristic.startNotifications()
   .then(char => {
     characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
@@ -217,7 +218,7 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 
 function onHeartRateChanged(event) {  //wordt om de __ seconden uitgevoerd om HR aan te passen
   const characteristic = event.target;
-  //console.log(parseHeartRate(characteristic.value));
+  timeStampHR = event.timeStamp;
   HR = parseHeartRate(characteristic.value).heartRate;
   document.querySelector('.js-liveHR').innerHTML = `live heart rate: ${HR}`;
 }
