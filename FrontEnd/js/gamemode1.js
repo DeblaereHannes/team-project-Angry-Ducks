@@ -88,15 +88,15 @@ const updateGameArea = function() {
                 secondsPast++;  //seconds past +1
 
                 if(bluethoothConnected == true){
-                    if(secondsPast % 2 == 0){
-                        if(previusTimestampHR == timeStampHR){
-                            alert("oeps, speler 1 is weggevlogen! 🦆");
-                            showPauseMenu = true;
-                            document.body.classList.add("bgGamemode--blur");
-                            document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
-                        }
-                        previusTimestampHR = timeStampHR;
-                    }    
+                    if(previusTimestampHR == timeStampHR){
+                        alert("oeps, speler 1 is weggevlogen! 🦆");
+                        document.querySelector(".js-connect").style.visibility = "visible"; 
+                        document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+                        // showPauseMenu = true;
+                        // document.body.classList.add("bgGamemode--blur");
+                        // document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
+                    }
+                    previusTimestampHR = timeStampHR;
                 }
 
             }
