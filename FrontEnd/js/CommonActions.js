@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR;
 var showPauseMenu = false, btnPause,btnExit;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture;
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -27,6 +27,7 @@ gameSelections[0] = "./img/gameselection/imgGamemode1.png";
 gameSelections[1] = "./img/gameselection/imgGamemode2.png";
 gameSelections[2] = "./img/gameselection/imgGamemode3.png";
 gameSelections[3] = "./img/gameselection/imgGamemode4.png";
+gameSelections[4] = "./img/gameselection/imgGamemode5.png";
 
 //#endregion
 
@@ -147,13 +148,13 @@ const gameSelection = function(Number){
   {
       switch(Number)
       {
-          case 1: gamePicture--; if(gamePicture== 1) gamePicture=3; break;//player 1 left
-          case 2: gamePicture++; if(gamePicture == 4) gamePicture=1; break;//player 1 right  
+          case 1: gamePicture--; if(gamePicture== 1) gamePicture=4; break;//player 1 left
+          case 2: gamePicture++; if(gamePicture == 5) gamePicture=2; break;//player 1 right  
       }
       switch(gamePicture){
-        case 1: document.getElementById("gameMode").innerHTML = "Co-op"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen"; break;
         case 2: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Brood Oorlog"; break;
         case 3: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
+        case 4: document.getElementById("gameMode").innerHTML = "Co-op"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen"; break;
       }
 
       document.getElementById("gamepicture").src= gameSelections[gamePicture];
@@ -162,11 +163,12 @@ const gameSelection = function(Number){
   {
     switch(Number)
     {
-        case 1: gamePicture--; if(gamePicture== -1) gamePicture=0; break;//player 1 left
-        case 2: gamePicture++; if(gamePicture == 1) gamePicture=0; break;//player 1 right  
+        case 1: gamePicture--; if(gamePicture == -1) gamePicture=1; break;//player 1 left
+        case 2: gamePicture++; if(gamePicture == 2) gamePicture=0; break;//player 1 right  
     }
     switch(gamePicture){
       case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Snel Eendje"; break;
+      case 1: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
     }
     document.getElementById("gamepicture").src= gameSelections[gamePicture];
   }

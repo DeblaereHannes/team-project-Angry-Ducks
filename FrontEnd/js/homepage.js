@@ -1,5 +1,5 @@
 let startButton;
-let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect;
+let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselects;
 let spname, mpname, p2name, spelen;
 
 // fade intro screen
@@ -99,7 +99,7 @@ const listenToButtons = function(){
 
             if(player.innerHTML == "1 speler"){
                 gamePicture = 0;
-                gameSelection(1);
+                //gameSelection(1);
                 spname.value = mpname.value;
                 p2name.value = "";
                 document.querySelector(".js-2spelers").classList.add("ishidden");
@@ -107,7 +107,7 @@ const listenToButtons = function(){
             }
             if(player.innerHTML == "2 spelers"){
                 gamePicture = 1;
-                gameSelection(1);
+                //gameSelection(1);
                 mpname.value = spname.value;
                 document.querySelector(".js-1speler").classList.add("ishidden");
                 document.querySelector(".js-2spelers").classList.remove("ishidden");
@@ -119,22 +119,30 @@ const listenToButtons = function(){
             }
         })
 
-        togamemodeselect.addEventListener("click", function(){
-            playerselection.classList.remove("current");
-            gameselection.classList.add("current");
-            if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+            for(let togamemodeselect of togamemodeselects)
             {
-                gameSelection(2);
-            }
-            else{ //1-speler
-                gameSelection(2);
-            }
-            let showmodesforplayer;
-            for(let player of players){
-                if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+                togamemodeselect.addEventListener("click", function()
+                {
+                    playerselection.classList.remove("current");
+                    gameselection.classList.add("current");
+                    if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+                    {
+                        //gameSelection(1);
+                        gameSelection(2);
+                    }
+                    else
+                    { //1-speler
+                        //gameSelection(1);
+                        gameSelection(2);
+                    }
+                    let showmodesforplayer;
+                    for(let player of players){
+                        if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
 
-            }
-        })
+                }
+                
+            })
+        }
     }
 }
 
@@ -147,7 +155,7 @@ const init = function() {
     backtohome = document.querySelector(".js-backtohome");
     backtoplayerselection = document.querySelector(".js-backtoplayerselection");
     players = document.querySelectorAll(".js-player");
-    togamemodeselect = document.querySelector(".js-togamemodeselect");
+    togamemodeselects = document.querySelectorAll(".js-togamemodeselect");
     gameselection = document.querySelector(".js-gameselection");
     spname = document.querySelector(".js-spName");
     mpname = document.querySelector(".js-mpName");
