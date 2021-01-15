@@ -2,7 +2,7 @@
 
 let chosenHeartRateService = null;
 var HR, timeStampHR;
-var showPauseMenu = false, btnPause,btnExit, bluethoothConnected = false;
+var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false;
 var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", init2);
 //#region *** BT connection functions ***
 
 const BTconnection = function() {
-  bluethoothConnected = true;
+  bluetoothConnected = true;
     //opent de bluetooth interface van google waar je aparaten kan koppelen
     navigator.bluetooth.requestDevice({
         filters: [{

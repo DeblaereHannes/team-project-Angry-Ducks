@@ -87,16 +87,14 @@ const updateGameArea = function() {
                 start();        //Common actions functie
                 secondsPast++;  //seconds past +1
 
-                if(bluethoothConnected == true){
-                    if(secondsPast % 2 == 0){
-                        if(previusTimestampHR == timeStampHR){
-                            alert("oeps, speler 1 is weggevlogen! 🦆");
-                            showPauseMenu = true;
-                            document.body.classList.add("bgGamemode--blur");
-                            document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
-                        }
-                        previusTimestampHR = timeStampHR;
-                    }    
+                if(bluetoothConnected == true){
+                    if(previusTimestampHR == timeStampHR){
+                        alert("oeps, speler 1 is weggevlogen! 🦆");
+                        showPauseMenu = true;
+                        document.body.classList.add("bgGamemode--blur");
+                        document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
+                    }
+                    previusTimestampHR = timeStampHR;  
                 }
 
             }
