@@ -90,6 +90,7 @@ const updateGameArea = function() {
                 if(bluethoothConnected == true){
                     if(secondsPast % 2 == 0){
                         if(previusTimestampHR == timeStampHR){
+                            alert("oeps, speler 1 is weggevlogen! 🦆").
                             showPauseMenu = true;
                             document.body.classList.add("bgGamemode--blur");
                             document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
