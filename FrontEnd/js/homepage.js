@@ -98,12 +98,16 @@ const listenToButtons = function(){
             player.classList.add("player--selected");
 
             if(player.innerHTML == "1 speler"){
+                gamePicture = 0;
+                gameSelection(1);
                 spname.value = mpname.value;
                 p2name.value = "";
                 document.querySelector(".js-2spelers").classList.add("ishidden");
                 document.querySelector(".js-1speler").classList.remove("ishidden");
             }
             if(player.innerHTML == "2 spelers"){
+                gamePicture = 1;
+                gameSelection(1);
                 mpname.value = spname.value;
                 document.querySelector(".js-1speler").classList.add("ishidden");
                 document.querySelector(".js-2spelers").classList.remove("ishidden");
@@ -118,6 +122,13 @@ const listenToButtons = function(){
         togamemodeselect.addEventListener("click", function(){
             playerselection.classList.remove("current");
             gameselection.classList.add("current");
+            if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+            {
+                gameSelection(2);
+            }
+            else{ //1-speler
+                gameSelection(2);
+            }
             let showmodesforplayer;
             for(let player of players){
                 if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;

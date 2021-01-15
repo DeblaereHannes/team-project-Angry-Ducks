@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR;
 var showPauseMenu = false, btnPause,btnExit;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0;
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -143,19 +143,33 @@ const characterSelection = function(Number){
 //#region *** gameSelection function ***
 
 const gameSelection = function(Number){
-  console.log(Number);
-  switch(Number)
+  if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
   {
-      case 1: gamePicture--; if(gamePicture== -1) gamePicture=3; break;//player 1 left
-      case 2: gamePicture++; if(gamePicture == 4) gamePicture=0; break;//player 1 right  
+      switch(Number)
+      {
+          case 1: gamePicture--; if(gamePicture== 1) gamePicture=3; break;//player 1 left
+          case 2: gamePicture++; if(gamePicture == 4) gamePicture=1; break;//player 1 right  
+      }
+      switch(gamePicture){
+        case 1: document.getElementById("gameMode").innerHTML = "Co-op"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen"; break;
+        case 2: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Brood Oorlog"; break;
+        case 3: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
+      }
+
+      document.getElementById("gamepicture").src= gameSelections[gamePicture];
   }
-  switch(gamePicture){
-    case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Snel Eendje"; break;
-    case 1: document.getElementById("gameMode").innerHTML = "Co-op"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen"; break;
-    case 2: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Brood Oorlog"; break;
-    case 3: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
+  else //1 speler
+  {
+    switch(Number)
+    {
+        case 1: gamePicture--; if(gamePicture== -1) gamePicture=0; break;//player 1 left
+        case 2: gamePicture++; if(gamePicture == 1) gamePicture=0; break;//player 1 right  
+    }
+    switch(gamePicture){
+      case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Snel Eendje"; break;
+    }
+    document.getElementById("gamepicture").src= gameSelections[gamePicture];
   }
-  document.getElementById("gamepicture").src= gameSelections[gamePicture];
 }
 
 //#endregion
