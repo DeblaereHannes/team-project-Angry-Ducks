@@ -265,3 +265,19 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
   }
 
 //#endregion
+
+//#region *** BT disconnect function ***
+
+const checkBTconnection = function(){
+  if(bluetoothConnected == true){
+    if(previusTimestampHR == timeStampHR){
+        alert("oeps, speler 1 is weggevlogen! 🦆");
+        showPauseMenu = true;
+        document.body.classList.add("bgGamemode--blur");
+        document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
+    }
+    previusTimestampHR = timeStampHR;  
+  }
+}
+
+//#endregion
