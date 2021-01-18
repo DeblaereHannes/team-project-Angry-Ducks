@@ -335,8 +335,9 @@ const BTconnection = function() {
       });
   };
 
-function handleHeartRateMeasurementCharacteristic(characteristic) {
+const handleHeartRateMeasurementCharacteristic = function(characteristic) {
   document.querySelector(".js-brothistestm8").style.fill = "#EE1C25";
+  document.querySelector(".js-heartrateP1").classList.remove("ishidden");
   bluetoothConnected = true;
   return characteristic.startNotifications()
   .then(char => {
@@ -344,7 +345,7 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
   });
 }
 
-function onHeartRateChanged(event) {  //wordt om de __ seconden uitgevoerd om HR aan te passen
+const onHeartRateChanged = function(event) {  //wordt om de __ seconden uitgevoerd om HR aan te passen
   const characteristic = event.target;
   timeStampHR = event.timeStamp;
   HR = parseHeartRate(characteristic.value).heartRate;
@@ -368,7 +369,7 @@ const BTconnection2 = function() {
     });
 };
 
-function handleHeartRateMeasurementCharacteristic2(characteristic) {
+const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
 document.querySelector(".js-brothistestm9").style.fill = "#EE1C25";
 bluetoothConnected2 = true;
 return characteristic.startNotifications()
@@ -427,6 +428,7 @@ const checkBTconnection = function(){
       canAlert = false;
       alert("oeps, speler 1 is weggevlogen! 🦆");
       document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
+      document.querySelector(".js-heartrateP1").classList.add("ishidden");
       ShowReconnectionWindow();
     }
   }

@@ -101,12 +101,18 @@ const listenToButtons = function(){
         background.classList.add("homescreen--blur");
     });
     BTConnectionP1.addEventListener("click", function(){
-        if(document.querySelector(".js-brothistestm8").style.fill == "#EE1C25")//hartje rood
+        if(document.querySelector(".js-brothistestm8").style.fill == "#EE1C25"){//hartje rood
+            console.log(rood);
             rusthartslag();
-        else BTconnection();
+        }
+        else 
+        {
+            console.log(grijs);
+            BTconnection();
+        }
     });
     BTConnectionP2.addEventListener("click", function(){
-        BTconnection2();
+        BTconnection();
     });
 
     for(let player of players){
