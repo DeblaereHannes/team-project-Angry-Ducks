@@ -104,6 +104,7 @@ const component = function(name, width, height, color, x, y, type) {
                 this.speedX = 0;
             }
             this.y = rockbottom;
+            //console.log(`tester ${this.amounthitbottom}`);
             if (this.amounthitbottom > 0) {     //als het component meer dan 1 keer de grond raakt stopt de bounce
                 this.gravity = 0;
             } else {
