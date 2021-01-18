@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
 var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
-var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isheart1Red = false;
+var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -337,7 +337,7 @@ const BTconnection = function() {
 
 const handleHeartRateMeasurementCharacteristic = function(characteristic) {
   document.querySelector(".js-brothistestm8").style.fill = "#EE1C25";
-  isheart1Red = true;
+  isHeart1Red = true;
   document.querySelector(".js-heartrateP1").classList.remove("ishidden");
   bluetoothConnected = true;
   return characteristic.startNotifications()
@@ -429,7 +429,7 @@ const checkBTconnection = function(){
       canAlert = false;
       alert("oeps, speler 1 is weggevlogen! 🦆");
       document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
-      isheart1Red = false
+      isHeart1Red = false
       document.querySelector(".js-heartrateP1").classList.add("ishidden");
       ShowReconnectionWindow();
     }
