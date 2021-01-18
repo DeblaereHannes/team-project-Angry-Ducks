@@ -113,7 +113,7 @@ const shoot = function(wichbutton) {
 
 //#endregion
 
-//#region *** Reload 1 duck Function ***
+//#region *** Reload 2 duck Function ***
 
 const reload = function() {
     //locatie eend resetten
@@ -121,20 +121,51 @@ const reload = function() {
       if(player2enable == true){
         player2plays = !player2plays;
         if(player2plays == true){
-          duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
-          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.01), (viewport * 0.4), "image");
-          //console.log(duckP2);
+          duckP2.x = (viewport * 0.0732421875);
+          duckP2.y = (viewport * 0.1904296875);
+          duckP2.speedY = 0;
+          duckP2.gravitySpeed = 0;
+          duckP2.gravity = 0;
+          duckHitbox.x = (viewport * 0.09765625);
+          duckHitbox.y = (viewport * 0.238);
+          duckHitbox.speedY = 0;
+          duckHitbox.gravitySpeed = 0;
+          duckHitbox.gravity = 0;
+          duckP1.x = (viewport * 0.01)
+          duckP1.y = (viewport * 1)
+          duckP1.speedY = 0;
+          duckP1.gravitySpeed = 0;
+          duckP1.gravity = 0;
         }else{
-          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
-          duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
+          duckP1.x = (viewport * 0.0732421875);
+          duckP1.y = (viewport * 0.1904296875);
+          duckP1.speedY = 0;
+          duckP1.gravitySpeed = 0;
+          duckP1.gravity = 0;
+          duckHitbox.x = (viewport * 0.09765625);
+          duckHitbox.y = (viewport * 0.238);
+          duckHitbox.speedY = 0;
+          duckHitbox.gravitySpeed = 0;
+          duckHitbox.gravity = 0;
+          duckP2.x = (viewport * 0.01)
+          duckP2.y = (viewport * 1)
+          duckP2.speedY = 0;
+          duckP2.gravitySpeed = 0;
+          duckP2.gravity = 0;
         }
 
 
       } else{
-        duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        duckP1.x = (viewport * 0.0732421875);
+        duckP1.y = (viewport * 0.1904296875);
+        duckP1.speedY = 0;
+        duckP1.gravitySpeed = 0;
+        duckP1.gravity = 0;
+        duckHitbox.x = (viewport * 0.09765625);
+        duckHitbox.y = (viewport * 0.238);
+        duckHitbox.speedY = 0;
+        duckHitbox.gravitySpeed = 0;
+        duckHitbox.gravity = 0;
       }
       canShoot = true;
   }
