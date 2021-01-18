@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
 var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
-var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false, isHeart2red = false;
+var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false, isHeart2Red = false;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -198,6 +198,7 @@ const rusthartslag = function() {
 const rusthartslag2 = function() {
   CalmHR2 = HR2;
   document.querySelector('.js-rusthartslag2').innerHTML = `rusthartslag: ${CalmHR2}`;
+  document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
 }
 
 //#endregion
@@ -341,12 +342,12 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
 
   if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
   {
-    if(isHeart1Red = isHeart2red = true)
+    if(isHeart1Red == true && isHeart2Red == true)
       document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
     else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
   }
   else {
-    if(isHeart1Red = true)
+    if(isHeart1Red == true)
       document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
     else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter."
   }
@@ -389,12 +390,12 @@ isHeart2Red = true;
 
 if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
 {
-  if(isHeart1Red = isHeart2red = true)
+  if(isHeart1Red == true && isHeart2Red == true)
     document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
   else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
 }
 else {
-  if(isHeart1Red = true)
+  if(isHeart1Red == true)
     document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
   else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter."
 }
@@ -468,7 +469,7 @@ const checkBTconnection = function(){
       canAlert = false;
       alert("oeps, speler 2 is weggevlogen! 🦆");
       document.querySelector(".js-brothistestm9").style.fill = "#4A4A4A";
-      isHeart2red = false;
+      isHeart2Red = false;
       ShowReconnectionWindow();
     }
   }
