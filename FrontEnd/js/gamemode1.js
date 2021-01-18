@@ -1,7 +1,7 @@
 //#region *** variablen definieren ***
 
 var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0, previousTimestampHR2 = 0;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3"]
