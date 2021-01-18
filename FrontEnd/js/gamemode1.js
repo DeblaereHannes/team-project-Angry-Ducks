@@ -88,7 +88,8 @@ const updateGameArea = function() {
                 secondsPast++;  //seconds past +1
 
                 if(bluethoothConnected == true){
-                    if(previusTimestampHR == timeStampHR){
+                    if(previusTimestampHR == timeStampHR && canAlert == true){
+                        canAlert = false;
                         alert("oeps, speler 1 is weggevlogen! 🦆");
                         document.querySelector(".js-connect").style.visibility = "visible"; 
                         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden

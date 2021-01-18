@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR, timeStampHR;
 var showPauseMenu = false, btnPause,btnExit, bluethoothConnected = false;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0;
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0, canAlert = true;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -182,6 +182,12 @@ const init2 = function() {
 const hidePauseMenu = function(){
     showPauseMenu = false; 
     document.body.classList.remove("bgGamemode--blur");
+}
+
+const hideReconnectionWindow = function(){
+  canAlert = true;                      
+  document.querySelector(".js-connect").style.visibility = "hidden"; 
+  document.body.classList.remove("bgGamemode--blur");
 }
 
 document.addEventListener("DOMContentLoaded", init2);
