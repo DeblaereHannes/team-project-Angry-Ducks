@@ -2,7 +2,7 @@
 
 let chosenHeartRateService = null;
 var HR, timeStampHR;
-var showPauseMenu = false, btnPause,btnExit, bluethoothConnected = false;
+var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false;
 var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0, canAlert = true;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)

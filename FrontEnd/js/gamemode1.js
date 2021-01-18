@@ -87,7 +87,7 @@ const updateGameArea = function() {
                 start();        //Common actions functie
                 secondsPast++;  //seconds past +1
 
-                if(bluethoothConnected == true){
+                if(bluetoothConnected == true){
                     if(previousTimestampHR == timeStampHR && canAlert == true){
                         canAlert = false;
                         alert("oeps, speler 1 is weggevlogen! 🦆");
