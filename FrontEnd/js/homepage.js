@@ -102,12 +102,12 @@ const listenToButtons = function(){
     });
     BTConnectionP1.addEventListener("click", function(){
         if(document.querySelector(".js-brothistestm8").style.fill == "#EE1C25"){//hartje rood
-            console.log(rood);
+            console.log("rood");
             rusthartslag();
         }
         else 
         {
-            console.log(grijs);
+            console.log("grijs");
             BTconnection();
         }
     });
