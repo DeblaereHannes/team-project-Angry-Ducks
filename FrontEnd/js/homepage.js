@@ -106,7 +106,7 @@ const listenToButtons = function(){
         else BTconnection();
     });
     BTConnectionP2.addEventListener("click", function(){
-        BTconnection();
+        BTconnection2();
     });
 
     for(let player of players){
