@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", init2);
 
 
 const BTconnection = function() {
-  bluetoothConnected = true;
+
     //opent de bluetooth interface van google waar je aparaten kan koppelen
     navigator.bluetooth.requestDevice({
         filters: [{
@@ -231,7 +231,8 @@ const BTconnection = function() {
   };
 
 function handleHeartRateMeasurementCharacteristic(characteristic) {
-    //console.log(characteristic);
+  document.querySelector(".js-brothistestm8").style.fill = "#EE1C25";
+  bluetoothConnected = true;
   return characteristic.startNotifications()
   .then(char => {
     characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
@@ -287,6 +288,7 @@ const checkBTconnection = function(){
     if(previousTimestampHR == timeStampHR && canAlert == true){
       canAlert = false;
       alert("oeps, speler 1 is weggevlogen! 🦆");
+      document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
       ShowReconnectionWindow();
     }
   }
