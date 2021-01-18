@@ -101,15 +101,10 @@ const listenToButtons = function(){
         background.classList.add("homescreen--blur");
     });
     BTConnectionP1.addEventListener("click", function(){
-        if(document.querySelector(".js-brothistestm8").style.fill == "#EE1C25"){//hartje rood
-            console.log("rood");
+        if(isHeart1Red == true)//hartje rood
             rusthartslag();
-        }
-        else 
-        {
-            console.log("grijs");
-            BTconnection();
-        }
+        else BTconnection();
+
     });
     BTConnectionP2.addEventListener("click", function(){
         BTconnection();
