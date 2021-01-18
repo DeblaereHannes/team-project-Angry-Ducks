@@ -86,6 +86,12 @@ const listenToButtons = function(){
                 document.querySelector(".js-gamemode1").classList.add("current");
                 loadGame();
                 break;
+            case 4:
+                document.body.style.backgroundImage = "url('./img/BGGamemode.png')";
+                document.querySelector(".js-gamemode1").classList.add("current");
+                player2enabled();
+                loadGame();
+                break;
         }
     })
 

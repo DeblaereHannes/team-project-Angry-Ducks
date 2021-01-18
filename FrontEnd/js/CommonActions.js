@@ -1,9 +1,9 @@
 //#region ***  Variablen ***
 
 let chosenHeartRateService = null;
-var HR;
+var HR, HR2, player2enable = false, player2plays = false;
 var showPauseMenu = false, btnPause,btnExit;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1;
+var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -45,28 +45,70 @@ const start = function() {
 
 //#region *** Shoot Function ***
 
-const shoot = function() {
+const shoot = function(wichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
     if (canShoot == true && showPauseMenu == false) {
+      //console.log(speed);
+      checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
+
+      if(player2plays == true && wichbutton == 2 && player2enable == true){
+
+        if(HR2 != null){
+          ShootHR = (HR2 - CalmHR2) / 5;
+          document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
+          var speed = ShootHR;
+        }else{
+          console.error("no HR");
+        }
         canShoot = false;
-        if(HR != null){
+        duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+        duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
+        duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+        duckHitbox.gravity = 0.075;
+        duckHitbox.speedX = speed;
+        duckHitbox.speedY = -3;
+        checkSecondsPast = secondsPast;
+      }else{
+        if(player2plays == false && wichbutton == 1 && player2enable == true){
+          if(HR != null){
             ShootHR = (HR - CalmHR) / 5;
             document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
             var speed = ShootHR;
+          }else{
+            console.error("no HR");
+          }
+          canShoot = false;
+          duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+          duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+          duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+          duckHitbox.gravity = 0.075;
+          duckHitbox.speedX = speed;
+          duckHitbox.speedY = -3;
+          checkSecondsPast = secondsPast;
+        }else{
+          if(player2enable == false && wichbutton == 1){
+            if(HR != null){
+              ShootHR = (HR - CalmHR) / 5;
+              document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
+              var speed = ShootHR;
+            }else{
+              console.error("no HR");
+            }
+            canShoot = false;
+            duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.075;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -3;
+            checkSecondsPast = secondsPast;
+          }
         }
-        else{
-            var speed = parseFloat(document.getElementById("speedx").value , 10);
-        }
-        //console.log(speed);
-        checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
-        duck.gravity = 0.05; //zwaartekracht aanmaken zodat de eend valt
-        duckHitbox.gravity = 0.05;
-        duck.speedX = speed; //horizontale snelheid volgens de slider waarde
-        duckHitbox.speedX = speed;
-        duck.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-        duckHitbox.speedY = -3;
-        checkSecondsPast = secondsPast;
-    }
+      }
+  }
 }
 
 //#endregion
@@ -76,10 +118,26 @@ const shoot = function() {
 const reload = function() {
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
-        canShoot = true;
-        duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+      if(player2enable == true){
+        player2plays = !player2plays;
+        if(player2plays == true){
+          duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.01), (viewport * 0.4), "image");
+          //console.log(duckP2);
+        }else{
+          duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+          duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+          duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
+        }
+
+
+      } else{
+        duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
         duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
-    }
+      }
+      canShoot = true;
+  }
 }
 
 //#endregion 
@@ -101,6 +159,11 @@ const refresh = function() {
 const rusthartslag = function() {
     CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
+}
+
+const rusthartslag2 = function() {
+  CalmHR2 = HR2;
+  document.querySelector('.js-rusthartslag2').innerHTML = `rusthartslag: ${CalmHR2}`;
 }
 
 //#endregion
@@ -238,6 +301,37 @@ function onHeartRateChanged(event) {  //wordt om de __ seconden uitgevoerd om HR
   document.querySelector('.js-liveHR').innerHTML = `live heart rate: ${HR}`;
 }
 
+const BTconnection2 = function() {
+  //opent de bluetooth interface van google waar je aparaten kan koppelen
+  navigator.bluetooth.requestDevice({
+      filters: [{
+        services: ['heart_rate'],
+      }]
+    }).then(device => device.gatt.connect())                  //vanaf hier paar instellingen die ik niet versta
+    .then(server => server.getPrimaryService('heart_rate'))
+    .then(service => {
+      chosenHeartRateService = service;
+      return Promise.all([
+        service.getCharacteristic('heart_rate_measurement')
+          .then(handleHeartRateMeasurementCharacteristic2),
+      ]);
+    });
+};
+
+function handleHeartRateMeasurementCharacteristic2(characteristic) {
+return characteristic.startNotifications()
+.then(char => {
+  characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged2);
+});
+}
+
+function onHeartRateChanged2(event) {
+const characteristic = event.target;
+//console.log(parseHeartRate(characteristic.value));
+HR2 = parseHeartRate(characteristic.value).heartRate;
+document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR2}`;
+}
+
 function parseHeartRate(data) {         //functie die de heartrate leesbaar maakt
     const flags = data.getUint8(0);
     const rate16Bits = flags & 0x1;
@@ -272,3 +366,12 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
   }
 
 //#endregion
+
+//#region *** player 2 enable function ***
+
+const player2enabled = function() {
+  player2enable = true;
+}
+
+//#endregion
+

@@ -1,6 +1,6 @@
 //#region *** variablen definieren ***
 
-var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
+var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
 var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast, countdownTimer, lblCountdownTimer, checkSecondsPast;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
@@ -20,9 +20,9 @@ timerOn = false;
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGame = function() {
     //alle componenten aanmaken
-    duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-    lblScore = new component("score", "30px", "Consolas", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
-    lblSecondsPast = new component("timer", "30px", "30px", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
+    duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
+    lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 1, "red", (viewport * 0.634765625), (viewport * 0.4241));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "white", (viewport * 0.6103515625), (viewport * 0.4241));
@@ -32,7 +32,12 @@ const loadGame = function() {
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
-    lblCountdownTimer = new component("score", "300px", "Consolas", "orange", (viewport * 0.45), (viewport * 0.3), "text");
+    lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
+
+    if(player2enable == true){
+        duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
+    }
+
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = 500;        //max score
@@ -97,7 +102,10 @@ const updateGameArea = function() {
     myGameArea.clear();     //canvas clearen voor nieuwe frame
 
     duckHitbox.newPos();    //nieuwe positie van duck instellen
-    duck.newPos();          //nieuwe positie van duck instellen
+    duckP1.newPos();          //nieuwe positie van duck instellen
+    if(player2enable == true){
+        duckP2.newPos();
+    }
 
     lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
     lblScore.text = "Score: " + score;              //text aanpassen van score
@@ -114,7 +122,10 @@ const updateGameArea = function() {
     targetDetection4.update();
     targetDetection5.update();
     target.update();
-    duck.update();
+    duckP1.update();
+    if(player2enable == true){
+        duckP2.update();
+    }
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
@@ -125,7 +136,12 @@ const updateGameArea = function() {
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
-        document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;    //tijd op de victory screen zetten
+        if (player2enable == true){
+            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
+        }else{
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+        }
     }
     else if(showPauseMenu != true){
         document.body.classList.remove("bgGamemode--blur");
