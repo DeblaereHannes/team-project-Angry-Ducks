@@ -299,9 +299,24 @@ const hidePauseMenu = function(){
 }
 
 const hideReconnectionWindow = function(){
-  canAlert = true;                      
-  document.querySelector(".js-connect").style.visibility = "hidden"; 
-  document.body.classList.remove("bgGamemode--blur");
+  
+  if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+  {
+    if(isHeart1Red == true && isHeart2Red == true) //kan alleen klikken als alle hartslagmeters zijn aangesloten
+    {
+      canAlert = true;                      
+      document.querySelector(".js-connect").style.visibility = "hidden"; 
+      document.body.classList.remove("bgGamemode--blur");
+    }
+  }
+  else {
+    if(isHeart1Red == true) //kan alleen klikken als alle hartslagmeters zijn aangesloten
+    {
+      canAlert = true;                      
+      document.querySelector(".js-connect").style.visibility = "hidden"; 
+      document.body.classList.remove("bgGamemode--blur");
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init2);
@@ -391,13 +406,18 @@ isHeart2Red = true;
 if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
 {
   if(isHeart1Red == true && isHeart2Red == true)
-    document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
-  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
+  {
+    document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
+    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+  }
+  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters.";
 }
 else {
-  if(isHeart1Red == true)
-    document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
-  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter."
+  if(isHeart1Red == true){
+    document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
+    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+  }
+  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter.";
 }
 
 document.querySelector(".js-heartrateP2").classList.remove("ishidden");
