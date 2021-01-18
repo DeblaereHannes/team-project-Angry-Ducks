@@ -107,7 +107,9 @@ const listenToButtons = function(){
 
     });
     BTConnectionP2.addEventListener("click", function(){
-        BTconnection();
+        if(isHeart2Red == true)//hartje rood
+            rusthartslag2();
+        else BTconnection2();
     });
 
     for(let player of players){
