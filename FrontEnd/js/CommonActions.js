@@ -2,7 +2,7 @@
 
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
-var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false;
+var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
 var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
@@ -368,6 +368,8 @@ const BTconnection2 = function() {
 };
 
 function handleHeartRateMeasurementCharacteristic2(characteristic) {
+document.querySelector(".js-brothistestm9").style.fill = "#EE1C25";
+bluetoothConnected2 = true;
 return characteristic.startNotifications()
 .then(char => {
   characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged2);
@@ -376,7 +378,7 @@ return characteristic.startNotifications()
 
 function onHeartRateChanged2(event) {
 const characteristic = event.target;
-//console.log(parseHeartRate(characteristic.value));
+timeStampHR2 = event.timeStamp;
 HR2 = parseHeartRate(characteristic.value).heartRate;
 document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR2}`;
 }
@@ -428,6 +430,15 @@ const checkBTconnection = function(){
     }
   }
   previousTimestampHR = timeStampHR;
+  if(bluetoothConnected2 == true){
+    if(previousTimestampHR2 == timeStampHR2 && canAlert == true){
+      canAlert = false;
+      alert("oeps, speler 2 is weggevlogen! 🦆");
+      document.querySelector(".js-brothistestm9").style.fill = "#4A4A4A";
+      ShowReconnectionWindow();
+    }
+  }
+  previousTimestampHR2 = timeStampHR2;
 }
 
 const ShowReconnectionWindow = function(){
