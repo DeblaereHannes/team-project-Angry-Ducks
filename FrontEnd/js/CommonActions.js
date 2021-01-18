@@ -192,6 +192,7 @@ const refresh = function() {
 const rusthartslag = function() {
     CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
+    document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
 }
 
 const rusthartslag2 = function() {
