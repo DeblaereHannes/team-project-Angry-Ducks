@@ -3,7 +3,7 @@
 let chosenHeartRateService = null;
 var HR, timeStampHR;
 var showPauseMenu = false, btnPause,btnExit, bluetoothConnected = false;
-var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0, canAlert = true;
+var canShoot, CalmHR, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 0, canAlert = true, hearts;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -203,6 +203,14 @@ document.addEventListener("DOMContentLoaded", init2);
 //#endregion
 
 //#region *** BT connection functions ***
+// hearts = document.querySelectorAll('.js-BTConnection');
+
+// for(let heart of hearts){
+//   heart.addEventListener("click", function(){
+//   BTconnection();
+//   })
+// }
+
 
 const BTconnection = function() {
   bluetoothConnected = true;
@@ -276,14 +284,19 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
 
 const checkBTconnection = function(){
   if(bluetoothConnected == true){
-    if(previusTimestampHR == timeStampHR){
-        alert("oeps, speler 1 is weggevlogen! 🦆");
-        showPauseMenu = true;
-        document.body.classList.add("bgGamemode--blur");
-        document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
+    if(previousTimestampHR == timeStampHR && canAlert == true){
+      canAlert = false;
+      alert("oeps, speler 1 is weggevlogen! 🦆");
+      ShowReconnectionWindow();
     }
-    previusTimestampHR = timeStampHR;  
   }
+  previousTimestampHR = timeStampHR;
+}
+
+const ShowReconnectionWindow = function(){
+  console.log("Hallokes!");
+  document.querySelector(".js-connect").style.visibility = "visible"; 
+  document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
 }
 
 //#endregion

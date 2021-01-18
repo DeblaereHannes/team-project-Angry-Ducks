@@ -87,24 +87,12 @@ const updateGameArea = function() {
                 start();        //Common actions functie
                 secondsPast++;  //seconds past +1
 
-                if(bluetoothConnected == true){
-                    if(previousTimestampHR == timeStampHR && canAlert == true){
-                        canAlert = false;
-                        alert("oeps, speler 1 is weggevlogen! 🦆");
-                        document.querySelector(".js-connect").style.visibility = "visible"; 
-                        document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
-                        // showPauseMenu = true;
-                        // document.body.classList.add("bgGamemode--blur");
-                        // document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
-                    }
-                    previousTimestampHR = timeStampHR;
-                }
-
+                checkBTconnection();
             }
         }
     }
 
-    console.log(`${previousTimestampHR} .. ${timeStampHR}`);
+    //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
    
     if(secondsPast - checkSecondsPast > 7 && canShoot == false){    //auto reload 7sec na shoot
         reload();   //Common actions functie

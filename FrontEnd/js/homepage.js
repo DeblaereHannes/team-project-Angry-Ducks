@@ -1,5 +1,5 @@
 let startButton;
-let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect;
+let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect, connectionWindow, BTConnectionP1, BTConnectionP2;
 let spname, mpname, p2name, spelen;
 
 // fade intro screen
@@ -89,6 +89,18 @@ const listenToButtons = function(){
         }
     })
 
+    connectionWindow.addEventListener("click", function(){
+        console.log("click");
+        ShowReconnectionWindow();
+        background.classList.add("homescreen--blur");
+    });
+    BTConnectionP1.addEventListener("click", function(){
+        BTconnection();
+    });
+    BTConnectionP2.addEventListener("click", function(){
+        BTconnection();
+    });
+
     for(let player of players){
         player.addEventListener("click", function(){
             for(let remove of players){
@@ -101,11 +113,13 @@ const listenToButtons = function(){
                 spname.value = mpname.value;
                 p2name.value = "";
                 document.querySelector(".js-2spelers").classList.add("ishidden");
+                document.querySelector(".js-heartbeatP2").classList.add("ishidden");
                 document.querySelector(".js-1speler").classList.remove("ishidden");
             }
             if(player.innerHTML == "2 spelers"){
                 mpname.value = spname.value;
                 document.querySelector(".js-1speler").classList.add("ishidden");
+                document.querySelector(".js-heartbeatP2").classList.remove("ishidden");
                 document.querySelector(".js-2spelers").classList.remove("ishidden");
                 if(duckPlayer1 == duckPlayer2){
                     duckPlayer2++;
@@ -142,6 +156,9 @@ const init = function() {
     mpname = document.querySelector(".js-mpName");
     p2name = document.querySelector(".js-player2name");
     spelen = document.querySelector(".js-togame");
+    connectionWindow = document.querySelector(".js-ShowConnectionWindow");
+    BTConnectionP1 = document.querySelector(".js-BTConnectionP1");
+    BTConnectionP2 = document.querySelector(".js-BTConnectionP2");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();
