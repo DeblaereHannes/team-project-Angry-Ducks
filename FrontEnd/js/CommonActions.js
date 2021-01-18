@@ -76,8 +76,16 @@ const reload = function() {
     //locatie eend resetten
     if(secondsPast != 0 && showPauseMenu == false){
         canShoot = true;
-        duck = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), links[0], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-        duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238));
+        duck.x = (viewport * 0.0732421875);
+        duck.y = (viewport * 0.1904296875);
+        duck.speedY = 0;
+        duck.gravitySpeed = 0;
+        duck.gravity = 0;
+        duckHitbox.x = (viewport * 0.09765625);
+        duckHitbox.y = (viewport * 0.238);
+        duckHitbox.speedY = 0;
+        duckHitbox.gravitySpeed = 0;
+        duckHitbox.gravity = 0;
     }
 }
 
@@ -197,7 +205,7 @@ document.addEventListener("DOMContentLoaded", init2);
 //#region *** BT connection functions ***
 
 const BTconnection = function() {
-  bluethoothConnected = true;
+  bluetoothConnected = true;
     //opent de bluetooth interface van google waar je aparaten kan koppelen
     navigator.bluetooth.requestDevice({
         filters: [{
@@ -261,5 +269,21 @@ function parseHeartRate(data) {         //functie die de heartrate leesbaar maak
     }
     return result;
   }
+
+//#endregion
+
+//#region *** BT disconnect function ***
+
+const checkBTconnection = function(){
+  if(bluetoothConnected == true){
+    if(previusTimestampHR == timeStampHR){
+        alert("oeps, speler 1 is weggevlogen! 🦆");
+        showPauseMenu = true;
+        document.body.classList.add("bgGamemode--blur");
+        document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
+    }
+    previusTimestampHR = timeStampHR;  
+  }
+}
 
 //#endregion
