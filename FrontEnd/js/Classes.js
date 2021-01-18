@@ -153,13 +153,18 @@ const component = function(name, width, height, color, x, y, type) {
 var myGameArea = {
     canvas: document.createElement("canvas"),
     //canvas inladen
-    load: function() {
+    load: function(gamemode) {
         //console.log(this.canvas);
         this.canvas.width = viewport;
         this.canvas.height = (viewport * 0.4248046875);
         this.context = this.canvas.getContext("2d");
         document.querySelector(".js-canvas-div").appendChild(this.canvas);
-        this.interval = setInterval(updateGameArea, 20);
+        if(gamemode == 1){
+            this.interval = setInterval(updateGameArea, 20);
+        } else {
+            this.interval = setInterval(updateGameArea3, 20);
+        }
+        
     },
     //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {

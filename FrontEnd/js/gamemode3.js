@@ -7,15 +7,15 @@ const loadGamemode3 = function() {
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
-    score = 0;        //max score
+    score = 1;          //max score
     countdownTimer = 3; //countdown van 3seconden
-    myGameArea.load();  //laad de canvas in
+    myGameArea.load(3);  //laad de canvas in
 }
 
 //#endregion
 
 //#region *** update game function (wat er gebeurt elke frame/ 50frames per seconde) ***
-const updateGameArea = function() {
+const updateGameArea3 = function() {
 
     //score controleren op einde spel
     if (score == -1) {
@@ -53,7 +53,7 @@ const updateGameArea = function() {
     duckHitbox.newPos();    //nieuwe positie van duck instellen
     duckP1.newPos();          //nieuwe positie van duck instellen
 
-    lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
+    //lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
     lblScore.text = "Score: " + score;              //text aanpassen van score
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
@@ -64,7 +64,7 @@ const updateGameArea = function() {
     duckHitbox.update();
     duckP1.update();
     lblScore.update();
-    lblSecondsPast.update();
+    //lblSecondsPast.update();
     lblCountdownTimer.update();
 
     if (score == -1){

@@ -42,7 +42,7 @@ const loadGame = function() {
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = 500;        //max score
     countdownTimer = 3; //countdown van 3seconden
-    myGameArea.load();  //laad de canvas in
+    myGameArea.load(1);  //laad de canvas in
 }
 
 //#endregion
