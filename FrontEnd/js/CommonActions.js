@@ -234,6 +234,8 @@ const characterSelection = function(Number){
   document.getElementById("0").src= characters[duckPlayer1];
   document.getElementById("1").src= characters[duckPlayer1];
   document.getElementById("2").src= characters[duckPlayer2];
+  document.getElementById("DuckP1Connect").src= characters[duckPlayer1];
+  document.getElementById("DuckP2Connect").src= characters[duckPlayer2];
 }
     
 
@@ -308,7 +310,9 @@ const hideReconnectionWindow = function(){
   {
     if(isHeart1Red == true && isHeart2Red == true) //kan alleen klikken als alle hartslagmeters zijn aangesloten
     {
-      canAlert = true;                      
+      canAlert = true;
+      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
+      document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                   
       document.querySelector(".js-connect").style.visibility = "hidden"; 
       document.body.classList.remove("bgGamemode--blur");
     }
@@ -362,12 +366,18 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
   if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
   {
     if(isHeart1Red == true && isHeart2Red == true)
+    {
+      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
       document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
+    }
     else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
   }
   else {
     if(isHeart1Red == true)
+    {
+      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
       document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
+    }
     else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter."
   }
 
@@ -411,6 +421,7 @@ if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 s
 {
   if(isHeart1Red == true && isHeart2Red == true)
   {
+    document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
     document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
   }
@@ -418,6 +429,7 @@ if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 s
 }
 else {
   if(isHeart1Red == true){
+    document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
     document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
   }

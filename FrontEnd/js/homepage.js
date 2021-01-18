@@ -97,6 +97,7 @@ const listenToButtons = function(){
 
     connectionWindow.addEventListener("click", function(){
         console.log("click");
+        //namen uitlezen
         ShowReconnectionWindow();
         background.classList.add("homescreen--blur");
     });
@@ -145,23 +146,37 @@ const listenToButtons = function(){
         })
         togamemodeselect.addEventListener("click", function()
             {
-                playerselection.classList.remove("current");
-                gameselection.classList.add("current");
-                gameselection.style.display = "block";
+
                 if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                     {
-                        //gameSelection(1);
-                        gameSelection(2);
+                        if(isHeart1Red == true && isHeart2Red == true)
+                        {
+                            playerselection.classList.remove("current");
+                            gameselection.classList.add("current");
+                            gameselection.style.display = "block";
+                            gameSelection(2);
+            
+                            let showmodesforplayer;
+                            for(let player of players){
+                                if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+                            }  
+                        }
                     }
-                else
-                    { //1-speler
-                        //gameSelection(1);
+                else{
+                    if(isHeart1Red == true)
+                    {
+                        playerselection.classList.remove("current");
+                        gameselection.classList.add("current");
+                        gameselection.style.display = "block";
                         gameSelection(2);
+        
+                        let showmodesforplayer;
+                        for(let player of players){
+                            if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+                        }  
                     }
-                let showmodesforplayer;
-                for(let player of players){
-                    if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
-                }  
+                }
+
             })
         }
 
