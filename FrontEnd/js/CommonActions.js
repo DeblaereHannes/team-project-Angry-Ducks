@@ -304,11 +304,11 @@ const hidePauseMenu = function(){
     document.body.classList.remove("bgGamemode--blur");
 }
 
-const hideReconnectionWindow = function(){
+const hideReconnectionWindow = function(){//hier
   
   if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
   {
-    if(isHeart1Red == true && isHeart2Red == true) //kan alleen klikken als alle hartslagmeters zijn aangesloten
+    if(document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) //kan alleen klikken als alle rusthartslagen geweten zijn
     {
       canAlert = true;
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
@@ -318,9 +318,11 @@ const hideReconnectionWindow = function(){
     }
   }
   else {
-    if(isHeart1Red == true) //kan alleen klikken als alle hartslagmeters zijn aangesloten
+    if(document.querySelector(".js-heartrateP1").innerHTML > 0) //kan alleen klikken als rusthartslag geweten is
     {
-      canAlert = true;                      
+      canAlert = true;  
+      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
+      document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                      
       document.querySelector(".js-connect").style.visibility = "hidden"; 
       document.body.classList.remove("bgGamemode--blur");
     }

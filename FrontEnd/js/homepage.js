@@ -149,7 +149,7 @@ const listenToButtons = function(){
 
                 if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                     {
-                        if(isHeart1Red == true && isHeart2Red == true)
+                        if(document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0)
                         {
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
@@ -163,7 +163,7 @@ const listenToButtons = function(){
                         }
                     }
                 else{
-                    if(isHeart1Red == true)
+                    if(document.querySelector(".js-heartrateP1").innerHTML > 0)
                     {
                         playerselection.classList.remove("current");
                         gameselection.classList.add("current");
