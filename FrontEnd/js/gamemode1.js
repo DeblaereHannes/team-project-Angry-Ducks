@@ -1,7 +1,7 @@
 //#region *** variablen definieren ***
 
 var duck, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previusTimestampHR = 0;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3"]
@@ -88,7 +88,7 @@ const updateGameArea = function() {
                 secondsPast++;  //seconds past +1
 
                 if(bluethoothConnected == true){
-                    if(previusTimestampHR == timeStampHR && canAlert == true){
+                    if(previousTimestampHR == timeStampHR && canAlert == true){
                         canAlert = false;
                         alert("oeps, speler 1 is weggevlogen! 🦆");
                         document.querySelector(".js-connect").style.visibility = "visible"; 
@@ -97,14 +97,14 @@ const updateGameArea = function() {
                         // document.body.classList.add("bgGamemode--blur");
                         // document.querySelector(".js-PauseMenu").style.visibility = "visible"; 
                     }
-                    previusTimestampHR = timeStampHR;
+                    previousTimestampHR = timeStampHR;
                 }
 
             }
         }
     }
 
-    console.log(`${previusTimestampHR} .. ${timeStampHR}`);
+    console.log(`${previousTimestampHR} .. ${timeStampHR}`);
    
     if(secondsPast - checkSecondsPast > 7 && canShoot == false){    //auto reload 7sec na shoot
         reload();   //Common actions functie
