@@ -182,7 +182,7 @@ const refresh = function() {
     canShoot = false;      //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display="block";
     myGameArea.stop();      //canvas freezen
-    loadGame();             //volledige game terug aanmaken
+              //volledige game terug aanmaken
 }
 
 //#endregion

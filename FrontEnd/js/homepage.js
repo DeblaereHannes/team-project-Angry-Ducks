@@ -1,6 +1,6 @@
 let startButton;
 let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect, connectionWindow, BTConnectionP1, BTConnectionP2;
-let spname, mpname, p2name, spelen;
+let spname, mpname, p2name, spelen, tohomescreen;
 
 // fade intro screen
 const showIntro = function(){
@@ -143,33 +143,47 @@ const listenToButtons = function(){
                 };
             }
         })
-
-            for(let togamemodeselect of togamemodeselects)
+        togamemodeselect.addEventListener("click", function()
             {
-                togamemodeselect.addEventListener("click", function()
-                {
-                    playerselection.classList.remove("current");
-                    gameselection.classList.add("current");
-                    if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+                playerselection.classList.remove("current");
+                gameselection.classList.add("current");
+                gameselection.style.display = "block";
+                if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                     {
                         //gameSelection(1);
                         gameSelection(2);
                     }
-                    else
+                else
                     { //1-speler
                         //gameSelection(1);
                         gameSelection(2);
                     }
-                    let showmodesforplayer;
-                    for(let player of players){
-                        if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
-
-                }
-                
+                let showmodesforplayer;
+                for(let player of players){
+                    if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+                }  
             })
         }
+
+        backtoplayerselection.addEventListener("click", function(){
+            gameselection.style.display = "none";
+            gameselection.classList.remove("current");
+            playerselection.classList.add("current");
+        })
+
+        for(let btnhome of tohomescreen){
+            btnhome.addEventListener("click", function(){
+                refresh();
+                showPauseMenu = false;
+                document.body.style.backgroundImage = "";
+                document.querySelector(".js-gamemode1").classList.remove("current");
+                gameselection.style.display = "block";
+                background.classList.add("current");
+            })
+        }
+
+
     }
-}
 
 
 const init = function() {
@@ -180,7 +194,7 @@ const init = function() {
     backtohome = document.querySelector(".js-backtohome");
     backtoplayerselection = document.querySelector(".js-backtoplayerselection");
     players = document.querySelectorAll(".js-player");
-    togamemodeselects = document.querySelectorAll(".js-togamemodeselect");
+    togamemodeselect = document.querySelector(".js-togamemodeselect");
     gameselection = document.querySelector(".js-gameselection");
     spname = document.querySelector(".js-spName");
     mpname = document.querySelector(".js-mpName");
@@ -189,6 +203,7 @@ const init = function() {
     connectionWindow = document.querySelector(".js-ShowConnectionWindow");
     BTConnectionP1 = document.querySelector(".js-BTConnectionP1");
     BTConnectionP2 = document.querySelector(".js-BTConnectionP2");
+    tohomescreen = document.querySelectorAll(".js-tohomemenu");
 
     setTimeout(function(){ showIntro(); }, 2000);
     listenToButtons();
