@@ -31,14 +31,14 @@ const loadGame = function() {
     targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999));
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
-    duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     mybackground = new component("bg", viewport, (viewportHeight), links[0], 0,0 , "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
     if(player2enable == true){
-        duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
+        duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
     }
 
     frames = 0;         //aantal frames op 0 zetten
@@ -129,7 +129,7 @@ const updateGameArea = function() {
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-    duckHitbox.update();
+    
     
     targetDetection.update();
     targetDetection2.update();
@@ -144,6 +144,8 @@ const updateGameArea = function() {
         duckP2.update();
         lblDeltaHR2.update();
     }
+    duckHitbox.update();
+
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
