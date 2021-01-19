@@ -10,7 +10,7 @@ for(link of links)
     link = document.createElement('link');
 }
 links[0] = "./img/gamemodes/gamemode1.png";
-links[1] = "bg.png";
+links[1] = "./img/gamemodes/gamemode3.png";
 links[2] = "target.png";
 //tijd standaard uit
 timerOn = false;
@@ -45,7 +45,7 @@ const loadGame = function() {
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = 500;        //max score
     countdownTimer = 3; //countdown van 3seconden
-    myGameArea.load();  //laad de canvas in
+    myGameArea.load(1);  //laad de canvas in
 }
 
 //#endregion
