@@ -193,12 +193,22 @@ const rusthartslag = function() {
     CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
     document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
     document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
+    if((document.querySelector(".js-1speler").classList.contains("ishidden"))){
+      if(CalmHR2 > 0){
+        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+      }
+    }else{
+      document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+    }
 }
 
 const rusthartslag2 = function() {
   CalmHR2 = HR2;
   document.querySelector('.js-rusthartslag2').innerHTML = `rusthartslag: ${CalmHR2}`;
   document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
+  if(CalmHR > 0){
+    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+  }
 }
 
 //#endregion
@@ -370,7 +380,10 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
     if(isHeart1Red == true && isHeart2Red == true)
     {
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
-      document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
+      document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
+      if(CalmHR2 > 0 && CalmHR > 0){
+        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+      }
     }
     else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
   }
@@ -378,9 +391,12 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
     if(isHeart1Red == true)
     {
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
-      document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten."
+      document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
+      if(CalmHR > 0){
+        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+      }
     }
-    else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter."
+    else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter.";
   }
 
   document.querySelector(".js-heartrateP1").classList.remove("ishidden");
@@ -425,17 +441,8 @@ if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 s
   {
     document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
     document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
-    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
   }
   else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters.";
-}
-else {
-  if(isHeart1Red == true){
-    document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
-    document.querySelector(".js-text").innerHTML = "Druk op het hartje om je rusthartslag te meten.";
-    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
-  }
-  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter.";
 }
 
 document.querySelector(".js-heartrateP2").classList.remove("ishidden");
@@ -515,7 +522,10 @@ const checkBTconnection = function(){
 }
 
 const ShowReconnectionWindow = function(){
-  document.querySelector(".js-connect").style.visibility = "visible"; 
+  document.querySelector(".js-connect").style.visibility = "visible";
+  if(isHeart2Red == false || isHeart1Red == false){
+    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#4A4A4A";
+  }
   document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
 }
 
