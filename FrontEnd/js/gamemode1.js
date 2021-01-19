@@ -9,7 +9,7 @@ for(link of links)
 {
     link = document.createElement('link');
 }
-links[0] = "./img/characters/Duck_Male3.png";
+links[0] = "./img/gamemodes/gamemode1.png";
 links[1] = "bg.png";
 links[2] = "target.png";
 //tijd standaard uit
@@ -33,6 +33,7 @@ const loadGame = function() {
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
+    mybackground = new component("bg", viewport, (viewport * 0.4248046875), links[0], 0,0 , "image");
 
     if(player2enable == true){
         duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
@@ -125,6 +126,7 @@ const updateGameArea = function() {
     targetDetection3.update();
     targetDetection4.update();
     targetDetection5.update();
+    mybackground.update();
     target.update();
     duckP1.update();
     if(player2enable == true){
