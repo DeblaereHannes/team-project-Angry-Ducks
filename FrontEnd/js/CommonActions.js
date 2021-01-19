@@ -175,6 +175,10 @@ const reload = function() {
 //#region *** restart game function ***
 
 const refresh = function() {
+    pauseXduck = 0;
+    pauseYduck = 0;
+    pauseXhitbox = 0;
+    pauseYhitbox = 0;
     timerOn = false;       //tijd terug uit zetten
     canShoot = false;      //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display="block";
