@@ -155,8 +155,8 @@ const reload = function() {
 
 
       } else{
-        duckP1.x = (viewport * 0.0732421875);
-        duckP1.y = (viewport * 0.1904296875);
+        duckP1.x = (viewport * 0.07);
+        duckP1.y = (viewportHeight * 0.425);
         duckP1.speedY = 0;
         duckP1.gravitySpeed = 0;
         duckP1.amounthitbottom = 0;
