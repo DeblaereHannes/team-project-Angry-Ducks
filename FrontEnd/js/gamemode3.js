@@ -7,7 +7,7 @@ const loadGamemode3 = function() {
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
-    score = 1;          //max score
+    score = "unknown";          //max score
     countdownTimer = 3; //countdown van 3seconden
     myGameArea.load(3);  //laad de canvas in
 }
@@ -18,7 +18,7 @@ const loadGamemode3 = function() {
 const updateGameArea3 = function() {
 
     //score controleren op einde spel
-    if (score == -1) {
+    if (duckP1.amounthitbottom >= 2) {
         timerOn = false;                //timer stoppen
         myGameArea.stop();              //freeze de game
     }
@@ -44,9 +44,6 @@ const updateGameArea3 = function() {
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
    
-    if(secondsPast - checkSecondsPast > 7 && canShoot == false){    //auto reload 7sec na shoot
-        reload();   //Common actions functie
-    }
 
     myGameArea.clear();     //canvas clearen voor nieuwe frame
 
@@ -67,7 +64,7 @@ const updateGameArea3 = function() {
     //lblSecondsPast.update();
     lblCountdownTimer.update();
 
-    if (score == -1){
+    if (duckP1.amounthitbottom >= 2){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
