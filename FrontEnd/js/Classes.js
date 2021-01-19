@@ -156,7 +156,7 @@ var myGameArea = {
     load: function() {
         //console.log(this.canvas);
         this.canvas.width = viewport;
-        this.canvas.height = (viewport * 0.4248046875);
+        this.canvas.height = (viewportHeight);
         this.context = this.canvas.getContext("2d");
         document.querySelector(".js-canvas-div").appendChild(this.canvas);
         this.interval = setInterval(updateGameArea, 20);

@@ -2,7 +2,7 @@
 
 var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
 var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0, previousTimestampHR2 = 0, lblDeltaHR, lblDeltaHR2;
-var viewport = document.documentElement.clientWidth;
+var viewport = document.documentElement.clientWidth, viewportHeight = document.documentElement.clientHeight;
 //img ophalen
 var links = ["link1", "link2", "link3"]
 for(link of links)
@@ -20,25 +20,25 @@ timerOn = false;
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGame = function() {
     //alle componenten aanmaken
-    duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
+    duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
     lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
     lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.025), "text");
-    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
-    targetDetection = new component("target", (viewport * 0.048828125), 1, "red", (viewport * 0.634765625), (viewport * 0.4241));
-    targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "white", (viewport * 0.6103515625), (viewport * 0.4241));
-    targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "white", (viewport * 0.68359375), (viewport * 0.4241));
-    targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "red", (viewport * 0.5859375), (viewport * 0.4241));
-    targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "red", (viewport * 0.7080078125), (viewport * 0.4241));
+    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95), "image");
+    targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999));
+    targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.6103515625), (viewportHeight * 0.999));
+    targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.68359375), (viewportHeight * 0.999));
+    targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.5859375), (viewportHeight * 0.999));
+    targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999));
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    mybackground = new component("bg", viewport, (viewport * 0.4248046875), links[0], 0,0 , "image");
+    mybackground = new component("bg", viewport, (viewportHeight), links[0], 0,0 , "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
     if(player2enable == true){
-        duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
+        duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
     }
 
     frames = 0;         //aantal frames op 0 zetten
@@ -130,6 +130,7 @@ const updateGameArea = function() {
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
     duckHitbox.update();
+    
     targetDetection.update();
     targetDetection2.update();
     targetDetection3.update();
@@ -137,6 +138,7 @@ const updateGameArea = function() {
     targetDetection5.update();
     mybackground.update();
     target.update();
+    
     duckP1.update();
     if(player2enable == true){
         duckP2.update();
