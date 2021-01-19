@@ -1,7 +1,7 @@
 //#region *** variablen definieren ***
 
 var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0, previousTimestampHR2 = 0;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0, previousTimestampHR2 = 0, lblDeltaHR, lblDeltaHR2;
 var viewport = document.documentElement.clientWidth;
 //img ophalen
 var links = ["link1", "link2", "link3"]
@@ -21,8 +21,8 @@ timerOn = false;
 const loadGame = function() {
     //alle componenten aanmaken
     duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
-    lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.0390625), "text");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
+    lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.025), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewport * 0.400390625), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 1, "red", (viewport * 0.634765625), (viewport * 0.4241));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "white", (viewport * 0.6103515625), (viewport * 0.4241));
@@ -34,6 +34,8 @@ const loadGame = function() {
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     mybackground = new component("bg", viewport, (viewport * 0.4248046875), links[0], 0,0 , "image");
+    lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
+    lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
     if(player2enable == true){
         duckP2 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer2], (viewport * 0.01), (viewport * 0.4), "image");
@@ -104,14 +106,21 @@ const updateGameArea = function() {
         reload();   //Common actions functie
     }
 
+    if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}
+    if(player2enable == true){
+        if (myGameArea.keys && myGameArea.keys[40]) {shoot(2)}
+    }
+
     myGameArea.clear();     //canvas clearen voor nieuwe frame
 
     duckHitbox.newPos();    //nieuwe positie van duck instellen
     duckP1.newPos();          //nieuwe positie van duck instellen
     if(player2enable == true){
         duckP2.newPos();
+        lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
+    lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
     lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
     lblScore.text = "Score: " + score;              //text aanpassen van score
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
@@ -131,12 +140,14 @@ const updateGameArea = function() {
     duckP1.update();
     if(player2enable == true){
         duckP2.update();
+        lblDeltaHR2.update();
     }
     lblScore.update();
     lblSecondsPast.update();
     progressbarBackground.update();
     progressbarHealth.update();
     lblCountdownTimer.update();
+    lblDeltaHR.update();
 
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 

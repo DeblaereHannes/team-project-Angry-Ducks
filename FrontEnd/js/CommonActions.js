@@ -55,7 +55,6 @@ const shoot = function(wichbutton) {
 
         if(HR2 != null){
           ShootHR = (HR2 - CalmHR2) / 5;
-          document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
           var speed = ShootHR;
         }else{
           console.error("no HR");
@@ -73,7 +72,6 @@ const shoot = function(wichbutton) {
         if(player2plays == false && wichbutton == 1 && player2enable == true){
           if(HR != null){
             ShootHR = (HR - CalmHR) / 5;
-            document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
             var speed = ShootHR;
           }else{
             console.error("no HR");
@@ -91,7 +89,6 @@ const shoot = function(wichbutton) {
           if(player2enable == false && wichbutton == 1){
             if(HR != null){
               ShootHR = (HR - CalmHR) / 5;
-              document.querySelector('.js-shootwaarde').innerHTML = `shootwaarde: ${ShootHR}`;
               var speed = ShootHR;
             }else{
               console.error("no HR");
@@ -191,7 +188,6 @@ const refresh = function() {
 
 const rusthartslag = function() {
     CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
-    document.querySelector('.js-rusthartslag').innerHTML = `rusthartslag: ${CalmHR}`;
     document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
     if((document.querySelector(".js-1speler").classList.contains("ishidden"))){
       if(CalmHR2 > 0){
@@ -208,7 +204,6 @@ const rusthartslag = function() {
 
 const rusthartslag2 = function() {
   CalmHR2 = HR2;
-  document.querySelector('.js-rusthartslag2').innerHTML = `rusthartslag: ${CalmHR2}`;
   document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
   if(CalmHR > 0){
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
@@ -419,7 +414,6 @@ const onHeartRateChanged = function(event) {  //wordt om de __ seconden uitgevoe
   const characteristic = event.target;
   timeStampHR = event.timeStamp;
   HR = parseHeartRate(characteristic.value).heartRate;
-  document.querySelector('.js-liveHR').innerHTML = `live heart rate: ${HR}`;
 }
 
 const BTconnection2 = function() {
@@ -465,7 +459,6 @@ function onHeartRateChanged2(event) {
 const characteristic = event.target;
 timeStampHR2 = event.timeStamp;
 HR2 = parseHeartRate(characteristic.value).heartRate;
-document.querySelector('.js-liveHR2').innerHTML = `live heart rate: ${HR2}`;
 }
 
 function parseHeartRate(data) {         //functie die de heartrate leesbaar maakt

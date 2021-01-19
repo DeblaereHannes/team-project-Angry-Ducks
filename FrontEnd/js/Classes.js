@@ -160,6 +160,13 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.querySelector(".js-canvas-div").appendChild(this.canvas);
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = true;
+          })
+          window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = false;
+          })
     },
     //canvas clearen (alles wissen zodat je kan "hertekenen")
     clear: function() {
