@@ -117,7 +117,7 @@ const shoot = function(wichbutton) {
 
 const reload = function() {
     //locatie eend resetten
-    if(secondsPast != 0 && showPauseMenu == false ShowReconnectionScreen == false){
+    if(secondsPast != 0 && showPauseMenu == false && ShowReconnectionScreen == false){
       if(player2enable == true){
         player2plays = !player2plays;
         if(player2plays == true){
@@ -196,10 +196,12 @@ const rusthartslag = function() {
     if((document.querySelector(".js-1speler").classList.contains("ishidden"))){
       if(CalmHR2 > 0){
         document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+        document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
       }
     }else{
       if(CalmHR > 0){
         document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+        document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
       }
     }
 }
@@ -210,6 +212,7 @@ const rusthartslag2 = function() {
   document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
   if(CalmHR > 0){
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
+    document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
   }
 }
 
@@ -390,7 +393,7 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
         document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
       }
     }
-    else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters."
+    else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeters."
   }
   else {
     if(isHeart1Red == true)
@@ -401,7 +404,7 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
         document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
       }
     }
-    else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeter.";
+    else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeter.";
   }
 
   document.querySelector(".js-heartrateP1").classList.remove("ishidden");
@@ -447,7 +450,7 @@ if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 s
     document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
     document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
   }
-  else document.querySelector(".js-text").innerHTML = "Verbind de hartslagmeters.";
+  else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeters.";
 }
 
 document.querySelector(".js-heartrateP2").classList.remove("ishidden");
@@ -527,6 +530,7 @@ const checkBTconnection = function(){
 }
 
 const ShowReconnectionWindow = function(){
+  //timerOn = false;
   ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
   if(isHeart2Red == false || isHeart1Red == false){

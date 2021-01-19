@@ -82,7 +82,7 @@ const updateGameArea = function() {
     
 
     //tijd aanpassen
-    if (showPauseMenu == false || ShowReconnectionScreen == false) {
+    if (showPauseMenu == false && ShowReconnectionScreen == false) {
         frames += 1;            //aantal frames berekenen
         if (frames == 50) {     //game doet 50 frames per seconde
             //aantal seconden berekenen
