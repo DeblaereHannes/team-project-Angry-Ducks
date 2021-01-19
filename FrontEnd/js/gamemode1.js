@@ -130,7 +130,7 @@ const updateGameArea = function() {
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
     
-    
+    duckHitbox.update();
     targetDetection.update();
     targetDetection2.update();
     targetDetection3.update();
@@ -144,7 +144,6 @@ const updateGameArea = function() {
         duckP2.update();
         lblDeltaHR2.update();
     }
-    duckHitbox.update();
 
     lblScore.update();
     lblSecondsPast.update();
