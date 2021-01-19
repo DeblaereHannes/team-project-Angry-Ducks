@@ -5,6 +5,7 @@ const loadGamemode3 = function() {
     lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
+    mybackground = new component("bg", viewport, (viewport * 0.4248046875), links[1], 0, 0, "image");
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = "unknown";          //max score
@@ -23,9 +24,6 @@ const updateGameArea3 = function() {
         myGameArea.stop();              //freeze de game
     }
 
-    
-    
-
     //tijd aanpassen
     if (showPauseMenu == false) {
         frames += 1;            //aantal frames berekenen
@@ -42,7 +40,11 @@ const updateGameArea3 = function() {
         }
     }
 
-    //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
+    if(duckP1.amounthitbottom >= 1){
+        console.log("yeee");
+        score = duckP1.x;
+    }
+
    
 
     myGameArea.clear();     //canvas clearen voor nieuwe frame
@@ -58,6 +60,7 @@ const updateGameArea3 = function() {
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
+    mybackground.update();
     duckHitbox.update();
     duckP1.update();
     lblScore.update();
@@ -70,9 +73,9 @@ const updateGameArea3 = function() {
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         if (player2enable == true){
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${score}`;
         }else{
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
         }
     }
     else if(showPauseMenu != true){
