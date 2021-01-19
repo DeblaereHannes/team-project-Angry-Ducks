@@ -2,7 +2,7 @@
 
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
-var showPauseMenu = false, btnPause,btnExits, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
+var showPauseMenu = false, ShowReconnectionScreen = false, btnPause,btnExits, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
 var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false, isHeart2Red = false;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
@@ -35,7 +35,7 @@ gameSelections[4] = "./img/gameselection/imgGamemode5.png";
 
 const start = function() {
     //tijd aanleggen
-    if (secondsPast == 0 && showPauseMenu == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
+    if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
     }
@@ -47,7 +47,7 @@ const start = function() {
 
 const shoot = function(wichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true && showPauseMenu == false) {
+    if (canShoot == true && showPauseMenu == false && ShowReconnectionScreen == false) {
       //console.log(speed);
       checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
@@ -117,7 +117,7 @@ const shoot = function(wichbutton) {
 
 const reload = function() {
     //locatie eend resetten
-    if(secondsPast != 0 && showPauseMenu == false){
+    if(secondsPast != 0 && showPauseMenu == false ShowReconnectionScreen == false){
       if(player2enable == true){
         player2plays = !player2plays;
         if(player2plays == true){
@@ -295,7 +295,8 @@ const listenToButtons2 = function(){
       btnExit.addEventListener("click", function(){
           console.log("Exit Clicked");
           hidePauseMenu();
-          document.querySelector(".js-connect").style.visibility = "hidden"; 
+          document.querySelector(".js-connect").style.visibility = "hidden";
+          ShowReconnectionScreen = false;
 
       });
     }
@@ -326,6 +327,7 @@ const hideReconnectionWindow = function(){//hier
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
       document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                   
       document.querySelector(".js-connect").style.visibility = "hidden"; 
+      ShowReconnectionScreen = false;
       document.body.classList.remove("bgGamemode--blur");
     }
   }
@@ -336,6 +338,7 @@ const hideReconnectionWindow = function(){//hier
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
       document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                      
       document.querySelector(".js-connect").style.visibility = "hidden"; 
+      ShowReconnectionScreen = false;
       document.body.classList.remove("bgGamemode--blur");
     }
   }
@@ -524,6 +527,7 @@ const checkBTconnection = function(){
 }
 
 const ShowReconnectionWindow = function(){
+  ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
   if(isHeart2Red == false || isHeart1Red == false){
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#4A4A4A";
