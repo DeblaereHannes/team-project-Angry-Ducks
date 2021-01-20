@@ -2,8 +2,9 @@
 
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
-var showPauseMenu = false, ShowReconnectionScreen = false, btnPause,btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
+var showPauseMenu = false, ShowReconnectionScreen = false, btnPause, btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR, timeStampHR2;
 var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false, isHeart2Red = false;
+
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
 {
@@ -290,9 +291,9 @@ const gameSelection = function(Number){
 //#region *** pause menu functions ***
 
 const listenToButtons2 = function(){
-      btnExit.addEventListener("click", function(){
-          console.log("Exit Clicked");
-          hidePauseMenu();
+    btnExit.addEventListener("click", function(){
+        console.log("Exit Clicked");
+        hidePauseMenu();
       });
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
@@ -303,7 +304,7 @@ const listenToButtons2 = function(){
 
 const init2 = function() {
     btnPause = document.querySelector(".js-pause");
-    btnExit = document.querySelectorAll(".js-exit");
+    btnExit = document.querySelector(".js-exit");
     listenToButtons2();
 }
 const hidePauseMenu = function(){
