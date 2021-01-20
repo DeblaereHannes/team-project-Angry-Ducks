@@ -29,7 +29,7 @@ const component = function(name, width, height, color, x, y, type) {
     this.update = function() {
         ctx = myGameArea.context;
 
-        if (showPauseMenu == true || score == 0){ //blur effect toepassen
+        if (showPauseMenu == true){ //blur effect toepassen
             ctx.filter = "blur(10px)";
         }else{
             ctx.filter = "blur(0px)";

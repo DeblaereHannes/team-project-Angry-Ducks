@@ -14,10 +14,10 @@ const loadGamemode3 = function() {
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    for (let index = 0; index < 10; index++) {
-        distancedetection.push(new component("target", (viewport * 0.065), 1, "yellow", (viewport * 0.38) + (index * (viewport * 0.065)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
+    // for (let index = 0; index < 10; index++) {
+    //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
         
-    }
+    // }
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = "unknown";          //max score
@@ -34,6 +34,8 @@ const updateGameArea3 = function() {
     //score controleren op einde spel
     if (duckP1.amounthitbottom >= 2) {
         timerOn = false;                //timer stoppen
+        console.log(duckHitbox.x);
+        console.log(duckHitbox.y);
         myGameArea.stop();              //freeze de game
     }
 
@@ -54,13 +56,9 @@ const updateGameArea3 = function() {
     }
     
 
-    if(duckHitbox.amounthitbottom >= 1){
-        for (let index = 0; index < distancedetection.length; index++) {
-            if (duckHitbox.crashWith(distancedetection[index])){
-                score = (index + 1);
-            }
-        }
-    }
+    score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    if (score < 0) {score = 0}
+
 
     if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
     if(player2enable == true){
@@ -83,10 +81,6 @@ const updateGameArea3 = function() {
     //alles updaten: terug visueel maken na clearen
     mybackground.update();
     duckHitbox.update();
-    for (let index = 0; index < distancedetection.length; index++) {
-        distancedetection[index].update();
-        
-    }
     duckP1.update();
     lblScore.update();
     lblCountdownTimer.update();
