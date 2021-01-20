@@ -102,7 +102,7 @@ const updateGameArea = function() {
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
    
-    if(secondsPast - checkSecondsPast > 7 && canShoot == false){    //auto reload 7sec na shoot
+    if(secondsPast - checkSecondsPast > 5 && canShoot == false){    //auto reload 5sec na shoot
         reload();   //Common actions functie
     }
 

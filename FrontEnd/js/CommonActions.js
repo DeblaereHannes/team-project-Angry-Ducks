@@ -56,7 +56,7 @@ const shoot = function(wichbutton) {
 
         if(HR2 != null){
           ShootHR = (HR2 - CalmHR2) / 5;
-          var speed = ShootHR;
+          var speed = ShootHR;//6.7
         }else{
           console.error("no HR");
         }
@@ -73,7 +73,7 @@ const shoot = function(wichbutton) {
         if(player2plays == false && wichbutton == 1 && player2enable == true){
           if(HR != null){
             ShootHR = (HR - CalmHR) / 5;
-            var speed = ShootHR;
+            var speed = ShootHR;//6.7
           }else{
             console.error("no HR");
           }
@@ -90,7 +90,7 @@ const shoot = function(wichbutton) {
           if(player2enable == false && wichbutton == 1){
             if(HR != null){
               ShootHR = (HR - CalmHR) / 5;
-              var speed = ShootHR;
+              var speed = ShootHR;//6.7
             }else{
               console.error("no HR");
             }
@@ -175,7 +175,8 @@ const reload = function() {
 
 //#region *** restart game function ***
 
-const refresh = function() {
+const refresh = function(number = 0) {
+    
     pauseXduck = 0;
     pauseYduck = 0;
     pauseXhitbox = 0;
@@ -184,6 +185,7 @@ const refresh = function() {
     canShoot = false;      //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display="block";
     myGameArea.stop();      //canvas freezen
+    if(number == 0) loadGame();
               //volledige game terug aanmaken
 }
 

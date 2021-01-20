@@ -190,7 +190,7 @@ const listenToButtons = function(){
 
         for(let btnhome of tohomescreen){
             btnhome.addEventListener("click", function(){
-                refresh();
+                refresh(1);
                 showPauseMenu = false;
                 document.body.style.backgroundImage = "";
                 document.querySelector(".js-gamemode1").classList.remove("current");
