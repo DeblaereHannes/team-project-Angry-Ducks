@@ -64,12 +64,14 @@ const listenToButtons = function(){
     });
 
     backtohome.addEventListener("click", function(){
-        spname.value = "";
-        mpname.value = "";
-        p2name.value = "";
-        playerselection.classList.remove("current");
-        homepage.classList.add("current");
-        background.classList.remove("homescreen--blur");
+        if(ShowReconnectionScreen == false){
+            spname.value = "";
+            mpname.value = "";
+            p2name.value = "";
+            playerselection.classList.remove("current");
+            homepage.classList.add("current");
+            background.classList.remove("homescreen--blur");
+        }
     })
 
     backtoplayerselection.addEventListener("click", function(){
@@ -126,41 +128,59 @@ const listenToButtons = function(){
 
     for(let player of players){
         player.addEventListener("click", function(){
-            for(let remove of players){
-                remove.classList.remove("player--selected");
-            }
+            if(ShowReconnectionScreen == false){
+                for(let remove of players){
+                    remove.classList.remove("player--selected");
+                }
 
-            player.classList.add("player--selected");
+                player.classList.add("player--selected");
 
-            if(player.innerHTML == "1 speler"){
-                gamePicture = 0;
-                //gameSelection(1);
-                spname.value = mpname.value;
-                p2name.value = "";
-                document.querySelector(".js-2spelers").classList.add("ishidden");
-                document.querySelector(".js-heartbeatP2").classList.add("ishidden");
-                document.querySelector(".js-1speler").classList.remove("ishidden");
-            }
-            if(player.innerHTML == "2 spelers"){
-                gamePicture = 1;
-                //gameSelection(1);
-                mpname.value = spname.value;
-                document.querySelector(".js-1speler").classList.add("ishidden");
-                document.querySelector(".js-heartbeatP2").classList.remove("ishidden");
-                document.querySelector(".js-2spelers").classList.remove("ishidden");
-                if(duckPlayer1 == duckPlayer2){
-                    duckPlayer2++;
-                    duckPlayer2 = duckPlayer2%9;
-                    document.getElementById("2").src= characters[duckPlayer2];
-                };
+                if(player.innerHTML == "1 speler"){
+                    gamePicture = 0;
+                    //gameSelection(1);
+                    spname.value = mpname.value;
+                    p2name.value = "";
+                    document.querySelector(".js-2spelers").classList.add("ishidden");
+                    document.querySelector(".js-heartbeatP2").classList.add("ishidden");
+                    document.querySelector(".js-1speler").classList.remove("ishidden");
+                }
+                if(player.innerHTML == "2 spelers"){
+                    gamePicture = 1;
+                    //gameSelection(1);
+                    mpname.value = spname.value;
+                    document.querySelector(".js-1speler").classList.add("ishidden");
+                    document.querySelector(".js-heartbeatP2").classList.remove("ishidden");
+                    document.querySelector(".js-2spelers").classList.remove("ishidden");
+                    if(duckPlayer1 == duckPlayer2){
+                        duckPlayer2++;
+                        duckPlayer2 = duckPlayer2%9;
+                        document.getElementById("2").src= characters[duckPlayer2];
+                    };
+                }
             }
         })
         togamemodeselect.addEventListener("click", function()
             {
-
-                if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
-                    {
-                        if(document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0)
+                if(ShowReconnectionScreen == false){
+                    if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+                        {
+                            if(document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0)
+                            {
+                                
+                                    playerselection.classList.remove("current");
+                                    gameselection.classList.add("current");
+                                    gameselection.style.display = "block";
+                                    gameSelection(2);
+                    
+                                    let showmodesforplayer;
+                                    for(let player of players){
+                                        if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
+                                    }
+                                
+                            }
+                        }
+                    else{
+                        if(document.querySelector(".js-heartrateP1").innerHTML > 0)
                         {
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
@@ -173,21 +193,7 @@ const listenToButtons = function(){
                             }  
                         }
                     }
-                else{
-                    if(document.querySelector(".js-heartrateP1").innerHTML > 0)
-                    {
-                        playerselection.classList.remove("current");
-                        gameselection.classList.add("current");
-                        gameselection.style.display = "block";
-                        gameSelection(2);
-        
-                        let showmodesforplayer;
-                        for(let player of players){
-                            if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
-                        }  
-                    }
                 }
-
             })
         }
 

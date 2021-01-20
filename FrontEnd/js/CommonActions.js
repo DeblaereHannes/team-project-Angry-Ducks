@@ -56,7 +56,7 @@ const shoot = function(wichbutton) {
 
         if(HR2 != null){
           ShootHR = (HR2 - CalmHR2) / 5;
-          var speed = ShootHR;//6.7;
+          var speed = ShootHR;6.//7;
         }else{
           console.error("no HR");
         }
@@ -294,13 +294,13 @@ const gameSelection = function(Number){
 
 const listenToButtons2 = function(){
     btnExit.addEventListener("click", function(){
-        console.log("Exit Clicked");
         hidePauseMenu();
       });
     btnPause.addEventListener("click", function(){
-        console.log("Pause Clicked");
-        showPauseMenu = true;
-        document.body.classList.add("bgGamemode--blur");
+        if(ShowReconnectionScreen == false){
+          showPauseMenu = true;
+          document.body.classList.add("bgGamemode--blur");
+        }
     });
 }
 
