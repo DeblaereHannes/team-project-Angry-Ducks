@@ -83,15 +83,22 @@ const listenToButtons = function(){
         switch(gamePicture){
             case 0:
                 document.querySelector(".js-gamemode1").classList.add("current");
+                player2enable = false;
                 loadGame();
                 break;
             case 1:
                 document.querySelector(".js-gamemode1").classList.add("current");
+                player2enable = false;
                 loadGamemode3();
                 break;
             case 4:
                 document.querySelector(".js-gamemode1").classList.add("current");
-                player2enabled();
+                player2enable = true;
+                loadGame();
+                break;
+            default: // no more crashes <3
+                document.querySelector(".js-gamemode1").classList.add("current");
+                player2enable = false;
                 loadGame();
                 break;
         }
