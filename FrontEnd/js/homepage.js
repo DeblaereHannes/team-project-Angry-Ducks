@@ -80,25 +80,27 @@ const listenToButtons = function(){
     spelen.addEventListener("click", function(){
         document.querySelector(".js-gameselection").style.display = "none";
         background.classList.remove("current");
+        document.querySelector(".js-gamemode1").classList.add("current");
         switch(gamePicture){
             case 0:
-                document.querySelector(".js-gamemode1").classList.add("current");
                 player2enable = false;
                 loadGame();
                 break;
             case 1:
-                document.querySelector(".js-gamemode1").classList.add("current");
                 player2enable = false;
                 loadGamemode3();
                 break;
+            case 2:
+                player2enable = true
+                loadGame();
+            case 3:
+                player2enable = true;
+                loadGame();
             case 4:
-                document.querySelector(".js-gamemode1").classList.add("current");
                 player2enable = true;
                 loadGame();
                 break;
-            default: // no more crashes <3
-                document.querySelector(".js-gamemode1").classList.add("current");
-                player2enable = false;
+            default: 
                 loadGame();
                 break;
         }
