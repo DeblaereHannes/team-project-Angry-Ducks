@@ -72,7 +72,7 @@ const component = function(name, width, height, color, x, y, type) {
                 this.speedY = 0;
             }
             
-  
+
         } else{
 
             if(this.name == "duck"){
@@ -98,7 +98,7 @@ const component = function(name, width, height, color, x, y, type) {
     };
     //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
-        var rockbottom = myGameArea.canvas.height - this.height;        //de hoogte instellen van de landplaats
+        var rockbottom = myGameArea.canvas.height - this.height - (viewportHeight * 0.05);        //de hoogte instellen van de landplaats
         if (this.y > rockbottom) {
             if (this.name == "duck" || this.name == "duckhitbox") {     //snelheid op 0 ztten zodat de eend niet verder skipt
                 this.speedX = 0;
