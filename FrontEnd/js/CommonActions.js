@@ -2,7 +2,7 @@
 
 let chosenHeartRateService = null;
 var HR, HR2, player2enable = false, player2plays = false;
-var showPauseMenu = false, ShowReconnectionScreen = false, btnPause,btnExits, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
+var showPauseMenu = false, ShowReconnectionScreen = false, btnPause,btnExit, bluetoothConnected = false, bluetoothConnected2 = false, timeStampHR2;
 var canShoot, CalmHR, CalmHR2, ShootHR,duckPlayer1 = 0, duckPlayer2 = 3, gamePicture = 1, canAlert = true, hearts, isHeart1Red = false, isHeart2Red = false;
 var characters = ["", "", "","", "", "","", "", ""], gameSelections = ["", "", "", ""];
 for(link of characters)
@@ -195,12 +195,10 @@ const rusthartslag = function() {
     document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
     if((document.querySelector(".js-1speler").classList.contains("ishidden"))){
       if(CalmHR2 > 0){
-        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
         document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
       }
     }else{
       if(CalmHR > 0){
-        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
         document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
       }
     }
@@ -210,7 +208,6 @@ const rusthartslag2 = function() {
   CalmHR2 = HR2;
   document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
   if(CalmHR > 0){
-    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
     document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
   }
 }
@@ -293,15 +290,10 @@ const gameSelection = function(Number){
 //#region *** pause menu functions ***
 
 const listenToButtons2 = function(){
-    for(btnExit of btnExits){
       btnExit.addEventListener("click", function(){
           console.log("Exit Clicked");
           hidePauseMenu();
-          document.querySelector(".js-connect").style.visibility = "hidden";
-          ShowReconnectionScreen = false;
-
       });
-    }
     btnPause.addEventListener("click", function(){
         console.log("Pause Clicked");
         showPauseMenu = true;
@@ -311,7 +303,7 @@ const listenToButtons2 = function(){
 
 const init2 = function() {
     btnPause = document.querySelector(".js-pause");
-    btnExits = document.querySelectorAll(".js-exit");
+    btnExit = document.querySelectorAll(".js-exit");
     listenToButtons2();
 }
 const hidePauseMenu = function(){
@@ -319,31 +311,13 @@ const hidePauseMenu = function(){
     document.body.classList.remove("bgGamemode--blur");
 }
 
-const hideReconnectionWindow = function(){//hier
-  
-  if((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
-  {
-    if(CalmHR > 0 && CalmHR2 > 0) //kan alleen klikken als alle rusthartslagen geweten zijn
-    {
-      canAlert = true;
-      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
-      document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                   
-      document.querySelector(".js-connect").style.visibility = "hidden"; 
-      ShowReconnectionScreen = false;
-      document.body.classList.remove("bgGamemode--blur");
-    }
-  }
-  else {
-    if(CalmHR > 0) //kan alleen klikken als rusthartslag geweten is
-    {
-      canAlert = true;  
-      document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
-      document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                      
-      document.querySelector(".js-connect").style.visibility = "hidden"; 
-      ShowReconnectionScreen = false;
-      document.body.classList.remove("bgGamemode--blur");
-    }
-  }
+const hideReconnectionWindow = function(){
+    canAlert = true;
+    document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
+    document.querySelector(".js-togamemodeselect").style.fill = "#F88F3E";                   
+    document.querySelector(".js-connect").style.visibility = "hidden"; 
+    ShowReconnectionScreen = false;
+    document.body.classList.remove("bgGamemode--blur");
 }
 
 document.addEventListener("DOMContentLoaded", init2);
@@ -388,9 +362,6 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
     {
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
       document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
-      if(CalmHR2 > 0 && CalmHR > 0){
-        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
-      }
     }
     else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeters."
   }
@@ -399,9 +370,6 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
     {
       document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25"; 
       document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
-      if(CalmHR > 0){
-        document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#F88F3E";
-      }
     }
     else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeter.";
   }
@@ -527,12 +495,8 @@ const checkBTconnection = function(){
 }
 
 const ShowReconnectionWindow = function(){
-  //timerOn = false;
   ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
-  if(isHeart2Red == false || isHeart1Red == false){
-    document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#4A4A4A";
-  }
   document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
 }
 
