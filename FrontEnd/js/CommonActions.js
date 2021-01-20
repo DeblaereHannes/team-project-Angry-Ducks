@@ -102,6 +102,24 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
+          }else{
+            if(player2enable == false && wichbutton == 3){
+              if(HR != null){
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR;
+              }else{
+                console.error("no HR");
+              }
+              canShoot = false;
+              duckP1.gravity = 0.1; //zwaartekracht aanmaken zodat de eend valt
+              duckP1.speedX = 60 / 5; //horizontale snelheid volgens de slider waarde
+              duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+  
+              duckHitbox.gravity = 0.1;
+              duckHitbox.speedX = 60 / 5;
+              duckHitbox.speedY = -2;
+              checkSecondsPast = secondsPast;
+            }
           }
         }
       }

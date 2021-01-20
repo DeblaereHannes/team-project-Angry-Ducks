@@ -13,7 +13,8 @@ const loadGamemode3 = function() {
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
-    for (let index = 0; index < 11; index++) {
+    lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
+    for (let index = 0; index < 10; index++) {
         distancedetection.push(new component("target", (viewport * 0.065), 1, "yellow", (viewport * 0.38) + (index * (viewport * 0.065)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
         
     }
@@ -53,14 +54,17 @@ const updateGameArea3 = function() {
     }
     
 
-    if(duckP1.amounthitbottom >= 1){
-        console.log("yeee");
-        //score = duckHitbox.x;
+    if(duckHitbox.amounthitbottom >= 1){
+        for (let index = 0; index < distancedetection.length; index++) {
+            if (duckHitbox.crashWith(distancedetection[index])){
+                score = (index + 1);
+            }
+        }
     }
 
-    if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}
+    if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
     if(player2enable == true){
-        if (myGameArea.keys && myGameArea.keys[40]) {shoot(2)}
+        if (myGameArea.keys && myGameArea.keys[40]) {shoot(3)}
     }
    
 
@@ -71,17 +75,21 @@ const updateGameArea3 = function() {
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
     lblScore.text = "Score: " + score;              //text aanpassen van score
+    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
+        lblCountdownTimer.text = countdownTimer;
+    else lblCountdownTimer.text = "";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
     mybackground.update();
     duckHitbox.update();
-    for (let index = 0; index < 11; index++) {
+    for (let index = 0; index < distancedetection.length; index++) {
         distancedetection[index].update();
         
     }
     duckP1.update();
     lblScore.update();
+    lblCountdownTimer.update();
     lblDeltaHR.update();
 
     if (duckP1.amounthitbottom >= 2){
