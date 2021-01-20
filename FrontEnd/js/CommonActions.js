@@ -56,7 +56,7 @@ const shoot = function(wichbutton) {
 
         if(HR2 != null){
           ShootHR = (HR2 - CalmHR2) / 5;
-          var speed = ShootHR;6.//7;
+          var speed = ShootHR;//6.7;
         }else{
           console.error("no HR");
         }
@@ -281,7 +281,7 @@ const gameSelection = function(Number){
         case 2: gamePicture++; if(gamePicture == 2) gamePicture=0; break;//player 1 right  
     }
     switch(gamePicture){
-      case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Snel Eendje"; break;
+      case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquackelen"; break;
       case 1: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Ver Vliegen"; break;
     }
     document.getElementById("gamepicture").src= gameSelections[gamePicture];
