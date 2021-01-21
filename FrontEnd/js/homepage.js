@@ -93,11 +93,13 @@ const listenToButtons = function(){
                 loadGamemode3();
                 break;
             case 2:
-                player2enable = true
-                loadGame();
-            case 3:
                 player2enable = true;
                 loadGame();
+                break;
+            case 3:
+                player2enable = true;
+                loadGamemode3();
+                break;
             case 4:
                 player2enable = true;
                 loadGame();
