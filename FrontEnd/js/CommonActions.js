@@ -381,7 +381,7 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
   bluetoothConnected = true;
   return characteristic.startNotifications()
   .then(char => {
-    characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
+    characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged); //live heart rate
   });
 }
 
@@ -389,6 +389,7 @@ const onHeartRateChanged = function(event) {  //wordt om de __ seconden uitgevoe
   const characteristic = event.target;
   timeStampHR = event.timeStamp;
   HR = parseHeartRate(characteristic.value).heartRate;
+  updateHeartRateColor();
 }
 
 const BTconnection2 = function() {
@@ -434,6 +435,7 @@ function onHeartRateChanged2(event) {
 const characteristic = event.target;
 timeStampHR2 = event.timeStamp;
 HR2 = parseHeartRate(characteristic.value).heartRate;
+updateHeartRateColor();
 }
 
 function parseHeartRate(data) {         //functie die de heartrate leesbaar maakt
@@ -504,7 +506,31 @@ const ShowReconnectionWindow = function(){
 }
 
 //#endregion
-//#region *** player 2 enable function ***
+//#region *** heartrate color ***
+const updateHeartRateColor = function(){
+  switch((HR - CalmHR) / 5)
+  {
+    case 5.8: case 5.9: case 6.0: case 7.2: case 7.3: case 7.4: //oranje
+      document.querySelector(".js-GMheartrateP1").style.color = "orange"; break;
+    case 6.1: case 6.2: case 6.3: case 7.0: case 7.1: //geel
+      document.querySelector(".js-GMheartrateP1").style.color = "yellow"; break;
+    case 6.4: case 6.5: case 6.6: case 6.7: case 6.8: case 6.9: //groen
+      document.querySelector(".js-GMheartrateP1").style.color = "green"; break;
+    default: //rood
+      document.querySelector(".js-GMheartrateP1").style.color = "red"; break;
+  }
 
+  switch((HR2 - CalmHR2) / 5)
+  {
+    case 5.8: case 5.9: case 6.0: case 7.2: case 7.3: case 7.4: //oranje
+      document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E"; break;
+    case 6.1: case 6.2: case 6.3: case 7.0: case 7.1: //geel
+      document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00"; break;
+    case 6.4: case 6.5: case 6.6: case 6.7: case 6.8: case 6.9: //groen
+      document.querySelector(".js-GMheartrateP2").style.color = "#00FF00"; break;
+    default: //rood
+      document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25"; break;
+  }
+}
 //#endregion
 
