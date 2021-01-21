@@ -54,12 +54,12 @@ const shoot = function(wichbutton) {
 
       if(player2plays == true && wichbutton == 2 && player2enable == true){
 
-        if(HR2 != null){
-          ShootHR = (HR2 - CalmHR2) / 5;
-          var speed = ShootHR;//6.7;
-        }else{
+        /*if(HR2 != null){
+          ShootHR = (HR2 - CalmHR2) / 5;*/
+          var speed = /*ShootHR;*/6.7;
+        /*}else{
           console.error("no HR");
-        }
+        }*/
         canShoot = false;
         duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
         duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
@@ -108,7 +108,7 @@ const shoot = function(wichbutton) {
             if(player2enable == false && wichbutton == 3){
               if(HR != null){
                 ShootHR = (HR - CalmHR) / 5;
-                var speed = ShootHR;
+                var speed = ShootHR;//6.7
               }else{
                 console.error("no HR");
               }

@@ -83,6 +83,7 @@ const listenToButtons = function(){
         document.querySelector(".js-gameselection").style.display = "none";
         background.classList.remove("current");
         document.querySelector(".js-gamemode1").classList.add("current");
+        CanvasBlur = false;
         switch(gamePicture){
             case 0:
                 player2enable = false;
@@ -149,6 +150,7 @@ const listenToButtons = function(){
                     //gameSelection(1);
                     spname.value = mpname.value;
                     p2name.value = "";
+                    document.querySelector(".js-liveheartbeatP2").classList.add("ishidden");
                     document.querySelector(".js-2spelers").classList.add("ishidden");
                     document.querySelector(".js-heartbeatP2").classList.add("ishidden");
                     document.querySelector(".js-1speler").classList.remove("ishidden");
@@ -158,6 +160,7 @@ const listenToButtons = function(){
                     gamePicture = 1;
                     //gameSelection(1);
                     mpname.value = spname.value;
+                    document.querySelector(".js-liveheartbeatP2").classList.remove("ishidden");
                     document.querySelector(".js-1speler").classList.add("ishidden");
                     document.querySelector(".js-heartbeatP2").classList.remove("ishidden");
                     document.querySelector(".js-2spelers").classList.remove("ishidden");
