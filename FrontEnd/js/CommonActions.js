@@ -221,6 +221,7 @@ const refresh = function(number = 0) {
     timerOn = false; //tijd terug uit zetten
     canShoot = false; //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display = "block";
+    document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
     myGameArea.stop(); //canvas freezen
     if (number == 0) loadCorrectGame();
     //volledige game terug aanmaken
@@ -667,7 +668,7 @@ const checkBTconnection = function() {
         }
     }
     previousTimestampHR = timeStampHR;
-    if (bluetoothConnected2 == true) {
+    if (bluetoothConnected2 == true && player2enable == true) {
         if (previousTimestampHR2 == timeStampHR2 && canAlert == true) {
             canAlert = false;
             alert(`Oeps, ${p2name.value} is weggevlogen! 🦆`);

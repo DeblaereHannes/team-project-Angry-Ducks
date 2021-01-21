@@ -25,6 +25,7 @@ const loadGamemode3 = function() {
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = "unknown";          //max score
+    score1 = 0;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
     player2plays == false;
@@ -135,6 +136,7 @@ const updateGameArea3 = function() {
             document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
             CanvasBlur = true;
             document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
+            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
         }
     }else{
@@ -144,7 +146,7 @@ const updateGameArea3 = function() {
             CanvasBlur = true;
             document.querySelector(".js-pause").style.display = "none";    
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${score1 + score}`;
+            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
         }else{
             if(showPauseMenu != true){
                 document.body.classList.remove("bgGamemode--blur");
