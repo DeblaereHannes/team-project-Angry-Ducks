@@ -12,6 +12,7 @@ for(link of links)
 links[0] = "./img/gamemodes/gamemode1.png";
 links[1] = "./img/gamemodes/gamemode3.png";
 links[2] = "target.png";
+links[3] = "./img/gamemodes/gamemode5.png";
 //tijd standaard uit
 timerOn = false;
 

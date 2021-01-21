@@ -764,7 +764,7 @@ const loadCorrectGame = function() {
                 break;
             case 2:
                 player2enable = true;
-                loadGame();
+                loadGamemode5();
                 break;
             case 3:
                 player2enable = true;
