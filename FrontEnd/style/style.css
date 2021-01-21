@@ -14,18 +14,15 @@
     src: url("../fonts/Roboto-Bold.ttf");
 }
 
-
-
-
-:root{
+:root {
     --global-sky-color: #87ceeb;
 }
 
-html{
+html {
     font-family: "Roboto", sans-serif;
 }
 
-body{
+body {
     background: black;
     margin: 0;
     padding: 0;
@@ -35,33 +32,37 @@ body{
     user-select: none;
 }
 
+
 /* canvas{
     border: 1px solid black;
 } */
 
-.bgGamemode{
+.bgGamemode {
     background-image: url("../img/BGGamemode.png");
 }
 
-.bgGamemode--blur{
+.bgGamemode--blur {
     backdrop-filter: blur(10px);
 }
 
-.game--blur, .homescreen--blur{
+.game--blur,
+.homescreen--blur {
     filter: blur(10px);
 }
 
-.texty{
+.texty {
     color: wheat;
 }
 
-.intro, .homepage, .background{
+.intro,
+.homepage,
+.background {
     opacity: 0;
 }
-.c-live-heart-rates{
+
+.c-live-heart-rates {
     display: flex;
     flex-direction: column;
-    
     align-items: center;
     position: absolute;
     top: 50%;
@@ -71,21 +72,24 @@ body{
     flex-direction: column;*/
     justify-content: center;
 }
-.c-pause-menu{
+
+.c-pause-menu {
     position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     visibility: hidden;
 }
-.c-pause-button{
+
+.c-pause-button {
     position: absolute;
     font-size: 3em;
     top: 10px;
     left: 10px;
     cursor: pointer;
 }
-.c-exit-button{
+
+.c-exit-button {
     position: absolute;
     font-size: 4em;
     top: 0px;
@@ -93,74 +97,73 @@ body{
     cursor: pointer;
 }
 
-.c-victory-screen{
+.c-victory-screen {
     /*position: fixed;*/
     display: flex;
     justify-content: center;
 }
-.c-character-selection{
+
+.c-character-selection {
     /*position: fixed;*/
     display: flex;
     justify-content: space-between;
     width: 17rem;
     align-items: center;
-    
 }
-.reconnect{
-    display:flex;
+
+.reconnect {
+    display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     margin-top: -1.5em;
 }
 
-.game-selection{
+.game-selection {
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
 }
 
-.o-hide-accessible{
+.o-hide-accessible {
     border: none;
     margin: 0;
     padding: 0;
     width: auto;
     overflow: visible;
     background: transparent;
-
     /* inherit font & color from ancestor */
     color: inherit;
     font: inherit;
-
     /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
     line-height: normal;
-
     /* Corrects font smoothing for webkit */
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
-
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
     outline: none;
 }
-.c-button{
-        /*styling button*/
-        font-family: Roboto;
-        /*padding: 0px 2em 0px 2em;*/
-        font-size: 38px;
-        color: white;
-        font-weight: 700;
-        background-color: #F88F3E;
-        border-radius: 0.5em;
-        margin: 0.5em;
-        height: 80px;
-        width: 500px;
-        cursor: pointer;
+
+.c-button {
+    /*styling button*/
+    font-family: Roboto;
+    /*padding: 0px 2em 0px 2em;*/
+    font-size: 38px;
+    color: white;
+    font-weight: 700;
+    background-color: #F88F3E;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    height: 80px;
+    width: 500px;
+    cursor: pointer;
 }
+
 .c-card {
     background-color: white;
     border-radius: 25px;
-    box-shadow: 0 0 0 1px rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, .075);
     overflow: hidden;
     padding: 6em 5em 6em 5em;
     filter: blur(-10px);
@@ -169,14 +172,14 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .c-card2 {
     background-color: #4A4A4A;
     /*opacity: .5;*/
     border-radius: 0.8rem;
     margin-bottom: 2rem;
-    border:0.3rem solid black;
+    border: 0.3rem solid black;
     margin-right: 2rem;
-
     /*box-shadow: 0 0 0 1px rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);*/
     overflow: hidden;
     /*padding: 6em 5em 6em 5em;*/
@@ -186,7 +189,8 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.c-button--option{
+
+.c-button--option {
     /*styling button*/
     width: 400px;
     margin-top: 3em;
@@ -195,27 +199,29 @@ body{
     cursor: pointer;
 }
 
-.c-label{
+.c-label {
     margin-top: 0em;
     font-family: Roboto;
     font-weight: 700;
     line-height: 4.5rem;
-    font-size:3.75rem ;
+    font-size: 3.75rem;
     text-align: center;
 }
-.c-label--title{
+
+.c-label--title {
     color: red;
     margin-top: -0.7em;
     margin-bottom: 1em;
     line-height: 6.25rem;
     font-size: 6rem;
 }
-.c-label--positie{
+
+.c-label--positie {
     padding-left: 1rem;
     font-size: 2rem;
 }
 
-.menu-container{
+.menu-container {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -229,11 +235,16 @@ body{
 }
 
 @keyframes fade {
-    0%,70% {opacity: 0%;}
-    100% {opacity: 100%}
+    0%,
+    70% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%
+    }
 }
 
-.logo{
+.logo {
     width: 400px;
     height: 200px;
     margin: auto;
@@ -241,17 +252,22 @@ body{
     z-index: 1;
 }
 
-.logo img{
+.logo img {
     width: 95%;
     margin: auto;
 }
 
 @keyframes logo {
-    0%,100% {transform: translateY(0px);}
-    50% {transform: translateY(20px);}
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
 }
 
-.menu-items{
+.menu-items {
     margin: auto;
     position: relative;
     text-align: center;
@@ -259,7 +275,7 @@ body{
     width: 40%;
 }
 
-.menu-item{
+.menu-item {
     cursor: pointer;
     margin-bottom: 34px;
     font-size: 48px;
@@ -269,12 +285,12 @@ body{
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     border: 1px solid #F88F3E;
-    background: #F88F3E ;
+    background: #F88F3E;
     border-radius: 8px;
     color: white;
 }
 
-.back-container{
+.back-container {
     display: flex;
     position: absolute;
     top: 31px;
@@ -282,7 +298,51 @@ body{
     cursor: pointer;
 }
 
-.selection-container, .gamemodes-container{
+.game-selection-score {
+    width: 550px;
+    margin: auto;
+}
+
+.scoreboard-container {
+    height: 695px;
+    margin-top: 20px;
+}
+
+.score-container {
+    display: flex;
+    width: 1000px;
+    height: auto;
+    background-color: rgba(100, 100, 100, 0.55);
+    margin-top: 20px;
+    font-size: 2.25rem;
+    line-height: 2.688rem;
+    font-weight: 700;
+    color: white;
+    padding: 40px;
+    border-radius: 39px;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.score-position {
+    grid-area: 1 / 1 / 2 / 2;
+    padding-right: 20px;
+}
+
+.score-name {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.score-points {
+    grid-area: 1 / 3 / 2 / 4;
+    text-align: end;
+}
+
+.selection-container,
+.gamemodes-container {
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -294,14 +354,14 @@ body{
     align-items: center;
 }
 
-.selection-title{
+.selection-title {
     font-weight: 700;
     font-family: "Roboto", sans-serif;
     font-size: 5rem;
     color: #B44700;
 }
 
-.selection-players{
+.selection-players {
     width: 75%;
     display: flex;
     margin: auto;
@@ -309,7 +369,7 @@ body{
     justify-content: space-between;
 }
 
-.player{
+.player {
     cursor: pointer;
     font-weight: 700;
     font-size: 2.5rem;
@@ -318,54 +378,56 @@ body{
 }
 
 .player:hover,
-.player--selected{
+.player--selected {
     font-size: 2.813rem;
     color: #E95E03;
     text-shadow: 0 0 6px #B44700;
 }
 
-.avatar-container{
+.avatar-container {
     margin-top: 2.75rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.avatar-container1{
+.avatar-container1 {
     margin-top: 2.75rem;
     display: flex;
     justify-content: space-between;
 }
 
-.avatar{
+.avatar {
     display: flex;
     flex-direction: column;
 }
 
-.avatar img{
+.avatar img {
     margin-bottom: 1.563rem;
 }
 
-.btn-nav{
+.btn-nav {
     cursor: pointer;
 }
 
-.name{
+.name {
     text-align: center;
     font-weight: 700;
 }
-.heartbeat-container{
+
+.heartbeat-container {
     display: flex;
     align-items: center;
     margin: auto;
 }
-.heartbeat{
+
+.heartbeat {
     width: 75%;
     margin: auto;
     cursor: pointer;
 }
 
-.next-button{
+.next-button {
     cursor: pointer;
     background: #F88F3E;
     border: 1px solid #F88F3E;
@@ -378,36 +440,37 @@ body{
     border: 0;
 }
 
-.play-button{
+.play-button {
     margin: auto;
     width: 333.33px;
     padding: 1rem 0px;
 }
 
-.btn-next, .btn-back{
+.btn-next,
+.btn-back {
     width: 96px;
     height: 96px;
 }
 
-.game-selection__names{
+.game-selection__names {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.game-selection__mode{
+.game-selection__mode {
     font-size: 1.75rem;
     line-height: 2.125rem;
     font-weight: 700;
 }
 
-.game-selection__name{
+.game-selection__name {
     font-size: 2.25rem;
     line-height: 2.688rem;
     font-weight: 700;
 }
 
-.game-information{
+.game-information {
     width: 565px;
     height: 239px;
     overflow-y: auto;
@@ -417,14 +480,13 @@ body{
     font-size: 1.5rem;
 }
 
-.ishidden{
+.ishidden {
     display: none;
 }
 
-.current{
+.current {
     display: block;
 }
-
 
 video {
     object-fit: cover;
@@ -433,8 +495,8 @@ video {
     position: fixed;
     top: 0;
     left: 0;
-  }
+}
 
-  .js-canvas-div{
-      background: transparent;
-  }
+.js-canvas-div {
+    background: transparent;
+}
