@@ -45,6 +45,7 @@ const loadGame = function() {
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = 500;        //max score
     countdownTimer = 3; //countdown van 3seconden
+    player2plays == false;
     myGameArea.load(1);  //laad de canvas in
 }
 
