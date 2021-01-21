@@ -91,7 +91,7 @@ const shoot = function(wichbutton) {
           if(player2enable == false && wichbutton == 1){
             if(HR != null){
               ShootHR = (HR - CalmHR) / 5;
-              var speed = ShootHR;6.7;
+              var speed = ShootHR;//6.7;
             }else{
               console.error("no HR");
             }
