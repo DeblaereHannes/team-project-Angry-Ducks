@@ -83,30 +83,7 @@ const listenToButtons = function(){
         document.querySelector(".js-gameselection").style.display = "none";
         background.classList.remove("current");
         document.querySelector(".js-gamemode1").classList.add("current");
-        CanvasBlur = false;
-        switch(gamePicture){
-            case 0:
-                player2enable = false;
-                loadGame();
-                break;
-            case 1:
-                player2enable = false;
-                loadGamemode3();
-                break;
-            case 2:
-                player2enable = true
-                loadGame();
-            case 3:
-                player2enable = true;
-                loadGame();
-            case 4:
-                player2enable = true;
-                loadGame();
-                break;
-            default: 
-                loadGame();
-                break;
-        }
+        loadCorrectGame();
     })
 
     connectionWindow.addEventListener("click", function(){

@@ -53,13 +53,12 @@ const shoot = function(wichbutton) {
       checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
       if(player2plays == true && wichbutton == 2 && player2enable == true){
-
-        /*if(HR2 != null){
-          ShootHR = (HR2 - CalmHR2) / 5;*/
-          var speed = /*ShootHR;*/6.7;
-        /*}else{
+        if(HR2 != null){
+          ShootHR = (HR2 - CalmHR2) / 5;
+          var speed = ShootHR;//6.7;
+        }else{
           console.error("no HR");
-        }*/
+        }
         canShoot = false;
         duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
         duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
@@ -199,11 +198,12 @@ const refresh = function(number = 0) {
     pauseYduck = 0;
     pauseXhitbox = 0;
     pauseYhitbox = 0;
+    CanvasBlur = false;
     timerOn = false;       //tijd terug uit zetten
     canShoot = false;      //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display="block";
     myGameArea.stop();      //canvas freezen
-    if(number == 0) loadGame();
+    if(number == 0) loadCorrectGame();
               //volledige game terug aanmaken
 }
 
@@ -563,4 +563,30 @@ const updateHeartRateColor = function(){
   }
 }
 //#endregion
-
+//#region *** load correct game***
+const loadCorrectGame = function(){
+  switch(gamePicture){
+    case 0:
+        player2enable = false;
+        loadGame();
+        break;
+    case 1:
+        player2enable = false;
+        loadGamemode3();
+        break;
+    case 2:
+        player2enable = true
+        loadGame();
+    case 3:
+        player2enable = true;
+        loadGame();
+    case 4:
+        player2enable = true;
+        loadGame();
+        break;
+    default: 
+        loadGame();
+        break;
+  }
+}
+//#endregion
