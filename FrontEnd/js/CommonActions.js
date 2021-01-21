@@ -280,8 +280,8 @@ const gameSelection = function(Number){
   {
       switch(Number)
       {
-          case 1: gamePicture--; if(gamePicture== 1) gamePicture=4; break;//player 1 left
-          case 2: gamePicture++; if(gamePicture == 5) gamePicture=2; break;//player 1 right  
+          case 1: gamePicture--; if(gamePicture== 1) gamePicture=4; break;//left
+          case 2: gamePicture++; if(gamePicture == 5) gamePicture=2; break;//right
       }
       switch(gamePicture){
         case 2: document.getElementById("gameMode").innerHTML = "Versus"; document.getElementById("gameTitle").innerHTML = "Brood Oorlog"; break;
@@ -295,8 +295,8 @@ const gameSelection = function(Number){
   {
     switch(Number)
     {
-        case 1: gamePicture--; if(gamePicture == -1) gamePicture=1; break;//player 1 left
-        case 2: gamePicture++; if(gamePicture == 2) gamePicture=0; break;//player 1 right  
+        case 1: gamePicture--; if(gamePicture == -1) gamePicture=1; break;//left
+        case 2: gamePicture++; if(gamePicture == 2) gamePicture=0; break;//right
     }
     switch(gamePicture){
       case 0: document.getElementById("gameMode").innerHTML = "Solo"; document.getElementById("gameTitle").innerHTML = "Doelwit Verquackelen"; break;
@@ -527,6 +527,7 @@ const checkBTconnection = function(){
 }
 
 const ShowReconnectionWindow = function(){
+  showPauseMenu = false;
   ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
   backtohome.classList.add("homescreen--blur");
