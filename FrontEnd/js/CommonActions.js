@@ -324,6 +324,7 @@ const listenToButtons2 = function(){
         console.log("Pause Clicked");
         showPauseMenu = true;
         document.body.classList.add("bgGamemode--blur");
+        CanvasBlur = true;
     });
 }
 
@@ -335,6 +336,7 @@ const init2 = function() {
 const hidePauseMenu = function(){
     showPauseMenu = false; 
     document.body.classList.remove("bgGamemode--blur");
+    CanvasBlur = false;
 }
 
 const hideReconnectionWindow = function(){//hier
@@ -349,6 +351,7 @@ const hideReconnectionWindow = function(){//hier
       document.querySelector(".js-connect").style.visibility = "hidden"; 
       ShowReconnectionScreen = false;
       document.body.classList.remove("bgGamemode--blur");
+      CanvasBlur = false;
     }
   }
   else {
@@ -360,6 +363,7 @@ const hideReconnectionWindow = function(){//hier
       document.querySelector(".js-connect").style.visibility = "hidden"; 
       ShowReconnectionScreen = false;
       document.body.classList.remove("bgGamemode--blur");
+      CanvasBlur = false;
     }
   }
 }
@@ -525,6 +529,7 @@ const checkBTconnection = function(){
     if(previousTimestampHR == timeStampHR && canAlert == true){
       canAlert = false;
       alert("oeps, speler 1 is weggevlogen! 🦆");
+      CanvasBlur = true;
       document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
       isHeart1Red = false;
       document.querySelector(".js-heartrateP1").classList.add("ishidden");
@@ -536,6 +541,7 @@ const checkBTconnection = function(){
     if(previousTimestampHR2 == timeStampHR2 && canAlert == true){
       canAlert = false;
       alert("oeps, speler 2 is weggevlogen! 🦆");
+      CanvasBlur = true;
       document.querySelector(".js-brothistestm9").style.fill = "#4A4A4A";
       isHeart2Red = false;
       ShowReconnectionWindow();
@@ -552,6 +558,7 @@ const ShowReconnectionWindow = function(){
     document.querySelector(".js-connectionWindowContinue").style.backgroundColor = "#4A4A4A";
   }
   document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+  
 }
 
 //#endregion

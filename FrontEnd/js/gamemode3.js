@@ -89,6 +89,7 @@ const updateGameArea3 = function() {
     if (duckP1.amounthitbottom >= 2){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+        CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         if (player2enable == true){
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;

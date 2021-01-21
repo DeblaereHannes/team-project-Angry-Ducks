@@ -1,6 +1,6 @@
 //#region *** variablen ***
 
-var testhitbox = false, testduck = false, pauseXduck, pauseYduck, pauseXhitbox, pauseYhitbox;
+var testhitbox = false, testduck = false, pauseXduck, pauseYduck, pauseXhitbox, pauseYhitbox, CanvasBlur;
 
 //#endregion
 
@@ -29,7 +29,7 @@ const component = function(name, width, height, color, x, y, type) {
     this.update = function() {
         ctx = myGameArea.context;
 
-        if (showPauseMenu == true){ //blur effect toepassen
+        if (CanvasBlur == true){ //blur effect toepassen
             ctx.filter = "blur(10px)";
         }else{
             ctx.filter = "blur(0px)";
@@ -52,7 +52,7 @@ const component = function(name, width, height, color, x, y, type) {
     //verandert de positie van het component
     this.newPos = function() {
 
-        if(showPauseMenu == true){      //als er op pause gedrukt word moet de eend en de hitbox pauzeren
+        if(CanvasBlur == true){      //als er op pause gedrukt word moet de eend en de hitbox pauzeren
             if(this.name == "duck"){
                 if(testduck == false){          //controleren of de eend al gepauzeerd is of niet
                     pauseXduck = this.speedX;
