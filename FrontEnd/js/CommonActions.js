@@ -341,6 +341,8 @@ const hideReconnectionWindow = function(){
     document.querySelector(".js-connect").style.visibility = "hidden"; 
     ShowReconnectionScreen = false;
     document.body.classList.remove("bgGamemode--blur");
+    backtohome.classList.remove("homescreen--blur");
+    document.querySelector(".js-selectioncontainer").classList.remove("homescreen--blur");
 	CanvasBlur = false;
 }
 
@@ -527,6 +529,8 @@ const checkBTconnection = function(){
 const ShowReconnectionWindow = function(){
   ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
+  backtohome.classList.add("homescreen--blur");
+  document.querySelector(".js-selectioncontainer").classList.add("homescreen--blur");
   document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
   
 }
