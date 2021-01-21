@@ -542,23 +542,23 @@ const ShowReconnectionWindow = function(){
 const updateHeartRateColor = function(){
   switch((HR - CalmHR) / 5)
   {
-    case 5.8: case 5.9: case 6.0: case 7.2: case 7.3: case 7.4: //oranje
-      document.querySelector(".js-GMheartrateP1").style.color = "orange"; break;
-    case 6.1: case 6.2: case 6.3: case 7.0: case 7.1: //geel
-      document.querySelector(".js-GMheartrateP1").style.color = "yellow"; break;
-    case 6.4: case 6.5: case 6.6: case 6.7: case 6.8: case 6.9: //groen
-      document.querySelector(".js-GMheartrateP1").style.color = "green"; break;
+    case 6.0: case 6.1: case 6.2: case 7.5: case 7.6: case 7.7: //oranje
+      document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E"; break;
+    case 6.3: case 7.2: case 7.3: case 7.4: //geel
+      document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00"; break;
+    case 6.6: case 6.7: case 6.8: case 6.9: case 7.0: case 7.1: //groen
+      document.querySelector(".js-GMheartrateP1").style.color = "#00FF00"; break;
     default: //rood
-      document.querySelector(".js-GMheartrateP1").style.color = "red"; break;
+      document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25"; break;
   }
 
   switch((HR2 - CalmHR2) / 5)
   {
-    case 5.8: case 5.9: case 6.0: case 7.2: case 7.3: case 7.4: //oranje
+    case 6.0: case 6.1: case 6.2: case 7.5: case 7.6: case 7.7: //oranje
       document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E"; break;
-    case 6.1: case 6.2: case 6.3: case 7.0: case 7.1: //geel
+    case 6.3: case 7.2: case 7.3: case 7.4: //geel
       document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00"; break;
-    case 6.4: case 6.5: case 6.6: case 6.7: case 6.8: case 6.9: //groen
+    case 6.6: case 6.7: case 6.8: case 6.9: case 7.0: case 7.1: //groen
       document.querySelector(".js-GMheartrateP2").style.color = "#00FF00"; break;
     default: //rood
       document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25"; break;
