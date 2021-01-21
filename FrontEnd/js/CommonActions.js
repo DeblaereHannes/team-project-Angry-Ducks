@@ -504,7 +504,8 @@ const checkBTconnection = function(){
   if(bluetoothConnected == true){
     if(previousTimestampHR == timeStampHR && canAlert == true){
       canAlert = false;
-      alert("oeps, speler 1 is weggevlogen! 🦆");
+      if(bluetoothConnected2 == true) alert(`Oeps, ${mpname.value} is weggevlogen! 🦆`);
+      else alert(`Oeps, ${spname.value} is weggevlogen! 🦆`);
       CanvasBlur = true;
       document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
       isHeart1Red = false;
@@ -516,7 +517,7 @@ const checkBTconnection = function(){
   if(bluetoothConnected2 == true){
     if(previousTimestampHR2 == timeStampHR2 && canAlert == true){
       canAlert = false;
-      alert("oeps, speler 2 is weggevlogen! 🦆");
+      alert(`Oeps, ${p2name.value} is weggevlogen! 🦆`);
       CanvasBlur = true;
       document.querySelector(".js-brothistestm9").style.fill = "#4A4A4A";
       isHeart2Red = false;

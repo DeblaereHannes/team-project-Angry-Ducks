@@ -154,12 +154,14 @@ const updateGameArea = function() {
 
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+        document.querySelector(".js-VictoryScreen-spelers").innerHTML = spname.value;
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
         CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         if (player2enable == true){
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
+            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} & ${p2name.value}`;
         }else{
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
         }
