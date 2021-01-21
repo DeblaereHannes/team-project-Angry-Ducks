@@ -113,13 +113,13 @@ const shoot = function(wichbutton) {
                 console.error("no HR");
               }
               canShoot = false;
-              duckP1.gravity = 0.1; //zwaartekracht aanmaken zodat de eend valt
+              duckP1.gravity = 0.14; //zwaartekracht aanmaken zodat de eend valt
               duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-              duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+              duckP1.speedY = -1; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
   
-              duckHitbox.gravity = 0.1;
+              duckHitbox.gravity = 0.14;
               duckHitbox.speedX = speed;
-              duckHitbox.speedY = -2;
+              duckHitbox.speedY = -1;
               checkSecondsPast = secondsPast;
             }
           }
