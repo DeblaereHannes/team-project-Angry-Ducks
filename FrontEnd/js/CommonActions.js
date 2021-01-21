@@ -91,7 +91,7 @@ const shoot = function(wichbutton) {
           if(player2enable == false && wichbutton == 1){
             if(HR != null){
               ShootHR = (HR - CalmHR) / 5;
-              var speed = ShootHR;//6.7;
+              var speed = ShootHR;6.7;
             }else{
               console.error("no HR");
             }
@@ -389,6 +389,7 @@ const onHeartRateChanged = function(event) {  //wordt om de __ seconden uitgevoe
   const characteristic = event.target;
   timeStampHR = event.timeStamp;
   HR = parseHeartRate(characteristic.value).heartRate;
+  document.querySelector(".js-GMheartrateP1").innerHTML = HR;
   updateHeartRateColor();
 }
 
@@ -435,6 +436,7 @@ function onHeartRateChanged2(event) {
 const characteristic = event.target;
 timeStampHR2 = event.timeStamp;
 HR2 = parseHeartRate(characteristic.value).heartRate;
+document.querySelector(".js-GMheartrateP2").innerHTML = HR2;
 updateHeartRateColor();
 }
 
