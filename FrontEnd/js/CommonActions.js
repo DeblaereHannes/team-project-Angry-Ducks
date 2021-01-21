@@ -104,6 +104,24 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
+          }else{
+            if(player2enable == false && wichbutton == 3){
+              if(HR != null){
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR;
+              }else{
+                console.error("no HR");
+              }
+              canShoot = false;
+              duckP1.gravity = 0.1; //zwaartekracht aanmaken zodat de eend valt
+              duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+              duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+  
+              duckHitbox.gravity = 0.1;
+              duckHitbox.speedX = speed;
+              duckHitbox.speedY = -2;
+              checkSecondsPast = secondsPast;
+            }
           }
         }
       }
@@ -300,6 +318,7 @@ const listenToButtons2 = function(){
         if(ShowReconnectionScreen == false){
           showPauseMenu = true;
           document.body.classList.add("bgGamemode--blur");
+          CanvasBlur = true;
         }
     });
 }
@@ -312,6 +331,7 @@ const init2 = function() {
 const hidePauseMenu = function(){
     showPauseMenu = false; 
     document.body.classList.remove("bgGamemode--blur");
+    CanvasBlur = false;
 }
 
 const hideReconnectionWindow = function(){
@@ -321,6 +341,7 @@ const hideReconnectionWindow = function(){
     document.querySelector(".js-connect").style.visibility = "hidden"; 
     ShowReconnectionScreen = false;
     document.body.classList.remove("bgGamemode--blur");
+	CanvasBlur = false;
 }
 
 document.addEventListener("DOMContentLoaded", init2);
@@ -482,6 +503,7 @@ const checkBTconnection = function(){
     if(previousTimestampHR == timeStampHR && canAlert == true){
       canAlert = false;
       alert("oeps, speler 1 is weggevlogen! 🦆");
+      CanvasBlur = true;
       document.querySelector(".js-brothistestm8").style.fill = "#4A4A4A";
       isHeart1Red = false;
       document.querySelector(".js-heartrateP1").classList.add("ishidden");
@@ -493,6 +515,7 @@ const checkBTconnection = function(){
     if(previousTimestampHR2 == timeStampHR2 && canAlert == true){
       canAlert = false;
       alert("oeps, speler 2 is weggevlogen! 🦆");
+      CanvasBlur = true;
       document.querySelector(".js-brothistestm9").style.fill = "#4A4A4A";
       isHeart2Red = false;
       ShowReconnectionWindow();
@@ -505,6 +528,7 @@ const ShowReconnectionWindow = function(){
   ShowReconnectionScreen = true;
   document.querySelector(".js-connect").style.visibility = "visible";
   document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+  
 }
 
 //#endregion

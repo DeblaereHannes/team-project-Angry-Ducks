@@ -1,6 +1,6 @@
 //#region *** variablen ***
 
-var testhitbox = false, testduck = false, pauseXduck, pauseYduck, pauseXhitbox, pauseYhitbox;
+var testhitbox = false, testduck = false, pauseXduck, pauseYduck, pauseXhitbox, pauseYhitbox, CanvasBlur;
 
 //#endregion
 
@@ -29,7 +29,7 @@ const component = function(name, width, height, color, x, y, type) {
     this.update = function() {
         ctx = myGameArea.context;
 
-        if (showPauseMenu == true || score == 0){ //blur effect toepassen
+        if (CanvasBlur == true){ //blur effect toepassen
             ctx.filter = "blur(10px)";
         }else{
             ctx.filter = "blur(0px)";
@@ -52,7 +52,7 @@ const component = function(name, width, height, color, x, y, type) {
     //verandert de positie van het component
     this.newPos = function() {
 
-        if(showPauseMenu == true){      //als er op pause gedrukt word moet de eend en de hitbox pauzeren
+        if(CanvasBlur == true){      //als er op pause gedrukt word moet de eend en de hitbox pauzeren
             if(this.name == "duck"){
                 if(testduck == false){          //controleren of de eend al gepauzeerd is of niet
                     pauseXduck = this.speedX;
@@ -72,7 +72,7 @@ const component = function(name, width, height, color, x, y, type) {
                 this.speedY = 0;
             }
             
-  
+
         } else{
 
             if(this.name == "duck"){
@@ -98,7 +98,7 @@ const component = function(name, width, height, color, x, y, type) {
     };
     //checkt of het component de onderste lijn van de gamearea/canvas raakt
     this.hitBottom = function() {
-        var rockbottom = myGameArea.canvas.height - this.height;        //de hoogte instellen van de landplaats
+        var rockbottom = myGameArea.canvas.height - this.height - (viewportHeight * 0.05);        //de hoogte instellen van de landplaats
         if (this.y > rockbottom) {
             if (this.name == "duck" || this.name == "duckhitbox") {     //snelheid op 0 ztten zodat de eend niet verder skipt
                 this.speedX = 0;

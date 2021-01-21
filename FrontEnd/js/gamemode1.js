@@ -23,12 +23,12 @@ const loadGame = function() {
     duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
     lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
     lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.025), "text");
-    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95), "image");
-    targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999));
-    targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.6103515625), (viewportHeight * 0.999));
-    targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.68359375), (viewportHeight * 0.999));
-    targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.5859375), (viewportHeight * 0.999));
-    targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999));
+    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
+    targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.6103515625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.68359375), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.5859375), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
@@ -155,6 +155,7 @@ const updateGameArea = function() {
     if (score <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+        CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         if (player2enable == true){
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;

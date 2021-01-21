@@ -1,15 +1,28 @@
+//#region *** variablen ***
+
+var distancedetection = [], loadAlldetection;
+
+//#endregion
+
+
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode3 = function() {
     //alle componenten aanmaken
-    duckP1 = new component("duck", (viewport * 0.048828125), (viewport * 0.048828125), characters[duckPlayer1], (viewport * 0.0732421875), (viewport * 0.1904296875), "image");
-    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.078125), "text");
-    duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.09765625), (viewport * 0.238)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
+    duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
+    lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    mybackground = new component("bg", viewport, (viewport * 0.4248046875), links[1], 0, 0, "image");
+    // for (let index = 0; index < 10; index++) {
+    //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
+        
+    // }
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = "unknown";          //max score
     countdownTimer = 3; //countdown van 3seconden
+    loadAlldetection = false;
     myGameArea.load(3);  //laad de canvas in
 }
 
@@ -21,6 +34,8 @@ const updateGameArea3 = function() {
     //score controleren op einde spel
     if (duckP1.amounthitbottom >= 2) {
         timerOn = false;                //timer stoppen
+        console.log(duckHitbox.x);
+        console.log(duckHitbox.y);
         myGameArea.stop();              //freeze de game
     }
 
@@ -39,12 +54,16 @@ const updateGameArea3 = function() {
             }
         }
     }
+    
 
-    if(duckP1.amounthitbottom >= 1){
-        console.log("yeee");
-        score = duckP1.x;
+    score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    if (score < 0) {score = 0}
+
+
+    if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
+    if(player2enable == true){
+        if (myGameArea.keys && myGameArea.keys[40]) {shoot(3)}
     }
-
    
 
     myGameArea.clear();     //canvas clearen voor nieuwe frame
@@ -52,7 +71,7 @@ const updateGameArea3 = function() {
     duckHitbox.newPos();    //nieuwe positie van duck instellen
     duckP1.newPos();          //nieuwe positie van duck instellen
 
-    //lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
+    lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
     lblScore.text = "Score: " + score;              //text aanpassen van score
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
@@ -64,12 +83,13 @@ const updateGameArea3 = function() {
     duckHitbox.update();
     duckP1.update();
     lblScore.update();
-    //lblSecondsPast.update();
     lblCountdownTimer.update();
+    lblDeltaHR.update();
 
     if (duckP1.amounthitbottom >= 2){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+        CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         if (player2enable == true){
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;

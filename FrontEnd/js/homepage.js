@@ -219,6 +219,8 @@ const listenToButtons = function(){
 
 
 const init = function() {
+    console.log(viewport);
+    console.log(viewportHeight);
     startButton = document.querySelector(".js-play");
     homepage = document.querySelector(".js-homepage");
     background = document.querySelector(".js-background");
