@@ -1,6 +1,6 @@
 let startButton;
 let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect, connectionWindow, BTConnectionP1, BTConnectionP2;
-let spname, mpname, p2name, spelen, tohomescreen;
+let spname, mpname, p2name, spelen, tohomescreen, toconnectionscreen;
 
 // fade intro screen
 const showIntro = function(){
@@ -111,6 +111,13 @@ const listenToButtons = function(){
     connectionWindow.addEventListener("click", function(){
         console.log("click");
         //namen uitlezen
+        if(connectionWindow.classList.contains("ellendig_lange_naam_om_te_zeggen_dat_er_maar_1_speler_speelt")){
+                document.querySelector(".js-player1nameconnection").innerHTML = spname.value;
+        }
+        else{
+                document.querySelector(".js-player1nameconnection").innerHTML = mpname.value;
+                document.querySelector(".js-player2nameconnection").innerHTML = p2name.value;
+        }
         ShowReconnectionWindow();
         background.classList.add("homescreen--blur");
     });
@@ -128,6 +135,8 @@ const listenToButtons = function(){
 
     for(let player of players){
         player.addEventListener("click", function(){
+            document.querySelector(".js-player1nameconnection").innerHTML = "";
+            document.querySelector(".js-player2nameconnection").innerHTML = "";
             if(ShowReconnectionScreen == false){
                 for(let remove of players){
                     remove.classList.remove("player--selected");
@@ -143,6 +152,7 @@ const listenToButtons = function(){
                     document.querySelector(".js-2spelers").classList.add("ishidden");
                     document.querySelector(".js-heartbeatP2").classList.add("ishidden");
                     document.querySelector(".js-1speler").classList.remove("ishidden");
+                    connectionWindow.classList.add("ellendig_lange_naam_om_te_zeggen_dat_er_maar_1_speler_speelt");
                 }
                 if(player.innerHTML == "2 spelers"){
                     gamePicture = 1;
@@ -156,6 +166,8 @@ const listenToButtons = function(){
                         duckPlayer2 = duckPlayer2%9;
                         document.getElementById("2").src= characters[duckPlayer2];
                     };
+
+                    connectionWindow.classList.remove("ellendig_lange_naam_om_te_zeggen_dat_er_maar_1_speler_speelt");
                 }
             }
         })
@@ -213,8 +225,6 @@ const listenToButtons = function(){
                 background.classList.add("current");
             })
         }
-
-
     }
 
 
