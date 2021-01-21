@@ -78,63 +78,73 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        } else {
-            if (player2plays == false && wichbutton == 1 && player2enable == true) {
-                if (HR != null) {
-                    ShootHR = (HR - CalmHR) / 5;
-                    var speed = ShootHR; //6.7;
-                } else {
-                    console.error("no HR");
-                }
-                canShoot = false;
-                duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
-                duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-                duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-
-                duckHitbox.gravity = 0.075;
-                duckHitbox.speedX = speed;
-                duckHitbox.speedY = -3;
-                checkSecondsPast = secondsPast;
+        } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
+            if (HR != null) {
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR; //6.7;
             } else {
-                if (player2enable == false && wichbutton == 1) {
-                    if (HR != null) {
-                        ShootHR = (HR - CalmHR) / 5;
-                        var speed = ShootHR; //6.7;
-                    } else {
-                        console.error("no HR");
-                    }
-                    canShoot = false;
-                    duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
-                    duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-                    duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-
-                    duckHitbox.gravity = 0.075;
-                    duckHitbox.speedX = speed;
-                    duckHitbox.speedY = -3;
-                    checkSecondsPast = secondsPast;
-                } else {
-                    if (player2enable == false && wichbutton == 3) {
-                        if (HR != null) {
-                            ShootHR = (HR - CalmHR) / 5;
-                            var speed = ShootHR; //6.7
-                        } else {
-                            console.error("no HR");
-                        }
-                        canShoot = false;
-                        duckP1.gravity = 0.1; //zwaartekracht aanmaken zodat de eend valt
-                        duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
-                        duckP1.speedY = -2; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
-
-                        duckHitbox.gravity = 0.1;
-                        duckHitbox.speedX = speed;
-                        duckHitbox.speedY = -2;
-                        checkSecondsPast = secondsPast;
-                    }
-                }
+                console.error("no HR");
             }
-        }
-    }
-}
+            canShoot = false;
+            duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.075;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -3;
+            checkSecondsPast = secondsPast;
+        } else if (player2enable == false && wichbutton == 1) {
+            if (HR != null) {
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR; //6.7;
+            } else {
+                console.error("no HR");
+            }
+            canShoot = false;
+            duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.075;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -3;
+            checkSecondsPast = secondsPast;
+        } else if ( wichbutton == 3) {
+            if (HR != null) {
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR; //6.7
+            } else {
+                console.error("no HR");
+            }
+            canShoot = false;
+            duckP1.gravity = 0.14; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -1; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.14;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -1;
+            checkSecondsPast = secondsPast;
+        }else if(wichbutton == 4){
+            if (HR2 != null) {
+              ShootHR = (HR2 - CalmHR2) / 5;
+              var speed = ShootHR; //6.7
+            } else {
+                console.error("no HR");
+            }
+            canShoot = false;
+            duckP2.gravity = 0.14; //zwaartekracht aanmaken zodat de eend valt
+            duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP2.speedY = -1; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.14;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -1;
+            checkSecondsPast = secondsPast;
+            }
+      }
+  }
 
 //#endregion
 
@@ -752,11 +762,13 @@ const loadCorrectGame = function() {
                 loadGamemode3();
                 break;
             case 2:
-                player2enable = true
-                loadGame();
-            case 3:
                 player2enable = true;
                 loadGame();
+                break;
+            case 3:
+                player2enable = true;
+                loadGamemode3();
+                break;
             case 4:
                 player2enable = true;
                 loadGame();
