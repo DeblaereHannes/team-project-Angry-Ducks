@@ -154,7 +154,6 @@ const shoot = function(wichbutton) {
             } else {
                 console.error("no HR");
             }
-            canShoot = false;
             duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
             duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
             duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
@@ -170,7 +169,6 @@ const shoot = function(wichbutton) {
             } else {
                 console.error("no HR");
             }
-            canShoot = false;
             duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
             duckP2.speedX = -speed; //horizontale snelheid volgens de slider waarde
             duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)

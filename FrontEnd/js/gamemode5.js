@@ -70,6 +70,11 @@ const updateGameArea5 = function() {
 
     if (myGameArea.keys && myGameArea.keys[38]) {console.log("upsy"); shoot(5)}
     if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(6)}
+
+
+    if(duckP1.amounthitbottom >= 2){
+        
+    }
    
 
     myGameArea.clear();     //canvas clearen voor nieuwe frame
