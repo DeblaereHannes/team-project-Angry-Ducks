@@ -47,6 +47,10 @@ const component = function(name, width, height, color, x, y, type) {
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         }
+        if (name == "duck2"){
+            console.log("test");
+            ctx.transform = "scaleX(-1)";
+        }
     };
 
     //verandert de positie van het component

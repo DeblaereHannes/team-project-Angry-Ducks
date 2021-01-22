@@ -28,7 +28,9 @@ const loadGamemode3 = function() {
     score1 = 0;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
-    player2plays == false;
+    player2plays = false;
+    duckP1.amounthitbottom = 0;
+    duckP2.amounthitbottom = 0;
     myGameArea.load(3);  //laad de canvas in
 }
 
@@ -53,6 +55,9 @@ const updateGameArea3 = function() {
             myGameArea.stop();  
         }
     }
+
+    //console.log(`${duckP1.amounthitbottom} ..... ${duckP2.amounthitbottom}`);
+    //console.log(`player2 ${player2plays}`);
 
     if(duckP1.amounthitbottom >= 2 && player2plays == false){
         score1 = score;
