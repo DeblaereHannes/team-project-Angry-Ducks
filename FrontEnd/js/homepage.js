@@ -118,15 +118,17 @@ const listenToButtons = function() {
         background.classList.add("homescreen--blur");
     });
     BTConnectionP1.addEventListener("click", function() {
-        if (isHeart1Red == true) //hartje rood
-            rusthartslag();
-        else BTconnection();
+        //if (isHeart1Red == true) //hartje rood
+        //else 
+        BTconnection();
+        //rusthartslag();
 
     });
     BTConnectionP2.addEventListener("click", function() {
-        if (isHeart2Red == true) //hartje rood
-            rusthartslag2();
-        else BTconnection2();
+        //if (isHeart2Red == true) //hartje rood
+        //else 
+        BTconnection2();
+        //rusthartslag2();
     });
 
     for (let player of players) {

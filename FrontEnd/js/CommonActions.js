@@ -8,7 +8,7 @@ var showPauseMenu = false,
     btnPause, btnExit, bluetoothConnected = false,
     bluetoothConnected2 = false,
     timeStampHR, timeStampHR2;
-var canShoot, CalmHR, CalmHR2, ShootHR, duckPlayer1 = 0,
+var canShoot, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
     gameScore = 4,
@@ -237,8 +237,10 @@ const refresh = function(number = 0) {
 //#region *** set rusthartslag function ***
 
 const rusthartslag = function() {
-    CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
-    document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
+    if(HR > 30 && CalmHR > HR){ 
+        CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
+        document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
+    }
     if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) {
         if (CalmHR2 > 0) {
             document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
@@ -251,8 +253,10 @@ const rusthartslag = function() {
 }
 
 const rusthartslag2 = function() {
-    CalmHR2 = HR2;
-    document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
+    if(HR2 > 30 && CalmHR2 > HR2){
+        CalmHR2 = HR2;
+        document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
+    }
     if (CalmHR > 0) {
         document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
     }
@@ -570,6 +574,9 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
 }
 
 const onHeartRateChanged = function(event) { //wordt om de __ seconden uitgevoerd om HR aan te passen
+    console.log('Hey lekker beest');
+    console.log(ShowReconnectionScreen);
+    if(ShowReconnectionScreen == true) rusthartslag();
     const characteristic = event.target;
     timeStampHR = event.timeStamp;
     HR = parseHeartRate(characteristic.value).heartRate;
@@ -615,6 +622,8 @@ const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
 }
 
 function onHeartRateChanged2(event) {
+    console.log('Hey lekker beest');
+    if(ShowReconnectionScreen == true) rusthartslag2();
     const characteristic = event.target;
     timeStampHR2 = event.timeStamp;
     HR2 = parseHeartRate(characteristic.value).heartRate;
