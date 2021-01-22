@@ -673,7 +673,7 @@ const checkBTconnection = function() {
         }
     }
     previousTimestampHR = timeStampHR;
-    if (bluetoothConnected2 == true) {
+    if (bluetoothConnected2 == true && player2enable == true) {
         if (previousTimestampHR2 == timeStampHR2 && canAlert == true) {
             canAlert = false;
             alert(`Oeps, ${p2name.value} is weggevlogen! 🦆`);
@@ -769,7 +769,7 @@ const loadCorrectGame = function() {
                 break;
             case 2:
                 player2enable = true;
-                loadGame();
+                loadGamemode5();
                 break;
             case 3:
                 player2enable = true;
