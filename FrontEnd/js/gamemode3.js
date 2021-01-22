@@ -1,6 +1,6 @@
 //#region *** variablen ***
 
-var loadAlldetection, score1;
+var loadAlldetection, score1, rounds = 3;
 
 //#endregion
 
@@ -130,25 +130,35 @@ const updateGameArea3 = function() {
     lblDeltaHR.update();
 
 
-    if(player2enable != true){
-        if (duckP1.amounthitbottom >= 2){
-            document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-            document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
-            CanvasBlur = true;
-            document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
-            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
+    if(player2enable == false){
+        if (duckP1.amounthitbottom >= 2){//alst ie gebounced heeft
+            rounds--;
+            if(rounds == 0){
+                document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+                document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+                CanvasBlur = true;
+                document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
+                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
+                document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
+                rounds = 3;
+            }
+            else reload();
         }
     }else{
-        if(duckP2.amounthitbottom >= 2){
-            document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-            document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
-            CanvasBlur = true;
-            document.querySelector(".js-pause").style.display = "none";    
-            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
+        if(duckP2.amounthitbottom >= 2){//alst ie gebounced heeft
+            rounds--;
+            if(rounds == 0){
+                document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+                document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+                CanvasBlur = true;
+                document.querySelector(".js-pause").style.display = "none";    
+                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
+                document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
+                rounds = 3;
+            }
+            else reload();
         }else{
-            if(showPauseMenu != true){
+            if(showPauseMenu == false){
                 document.body.classList.remove("bgGamemode--blur");
                 document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
             }
