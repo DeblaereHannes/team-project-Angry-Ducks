@@ -1,4 +1,4 @@
-let startButton, scoreboardButton;
+let startButton, scoreboardButtons;
 let homepage, background, backtohome, backtoplayerselection, playerselection, gameselection, players, togamemodeselect, connectionWindow, BTConnectionP1, BTConnectionP2;
 let spname, mpname, p2name, spelen, tohomescreen, toconnectionscreen;
 
@@ -63,15 +63,18 @@ const listenToButtons = function() {
         background.classList.add("homescreen--blur");
     });
 
-    scoreboardButton.addEventListener("click", function() {
-        scoreSelection(2);
-    }, { once: true });
-
-    scoreboardButton.addEventListener("click", function() {
-        homepage.classList.remove("current");
-        scoreboard.classList.add("current");
-        background.classList.add("homescreen--blur");
-    });
+    for(scoreboardButton of scoreboardButtons){
+        scoreboardButton.addEventListener("click", function() {
+            scoreSelection(2);
+        }, { once: true });
+            scoreboardButton.addEventListener("click", function() {
+                homepage.classList.remove("current");
+                document.querySelector(".js-gamemode1").classList.remove("current");
+                scoreboard.classList.add("current");
+                background.classList.add("current");
+                background.classList.add("homescreen--blur");
+            });
+        }
 
     backtohomescore.addEventListener("click", function() {
         scoreboard.classList.remove("current");
@@ -168,7 +171,7 @@ const listenToButtons = function() {
         })
         togamemodeselect.addEventListener("click", function() {
             if (ShowReconnectionScreen == false) {
-                if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+            if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                 {
                     if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) {
 
@@ -223,7 +226,7 @@ const init = function() {
     console.log(viewport);
     console.log(viewportHeight);
     startButton = document.querySelector(".js-play");
-    scoreboardButton = document.querySelector(".js-score");
+    scoreboardButtons = document.querySelectorAll(".js-score");
     homepage = document.querySelector(".js-homepage");
     background = document.querySelector(".js-background");
     playerselection = document.querySelector(".js-playerselection");

@@ -63,7 +63,8 @@ const shoot = function(wichbutton) {
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
         if (player2plays == true && wichbutton == 2 && player2enable == true) {
-            if (HR2 != null) {
+          //var speed = 6.7;  
+          if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -79,6 +80,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
+          //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -95,7 +97,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2enable == false && wichbutton == 1) {
-            if (HR != null) {
+          //var speed = 6.7; 
+          if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -111,6 +114,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if ( wichbutton == 3) {
+          //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7
@@ -127,7 +131,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 4){
-            if (HR2 != null) {
+          var speed = 6.7;  
+          if (HR2 != null) {
               ShootHR = (HR2 - CalmHR2) / 5;
               var speed = ShootHR; //6.7
             } else {
@@ -221,6 +226,7 @@ const refresh = function(number = 0) {
     timerOn = false; //tijd terug uit zetten
     canShoot = false; //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display = "block";
+    document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
     myGameArea.stop(); //canvas freezen
     if (number == 0) loadCorrectGame();
     //volledige game terug aanmaken
