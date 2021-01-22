@@ -185,62 +185,29 @@ const shoot = function(wichbutton) {
 
 //#region *** Reload 2 duck Function ***
 
-const reload = function() {
+const reload = function(D1, DH1, D2) {
     //locatie eend resetten
     if (secondsPast != 0 && showPauseMenu == false && ShowReconnectionScreen == false) {
-        if (player2enable == true) {
-            player2plays = !player2plays;
-            if (player2plays == true) {
-                duckP2.x = (viewport * 0.07);
-                duckP2.y = (viewportHeight * 0.425);
-                duckP2.speedY = 0;
-                duckP2.gravitySpeed = 0;
-                duckP2.gravity = 0;
-                duckP2.amounthitbottom = 0;
-                duckHitbox.x = (viewport * 0.0925);
-                duckHitbox.y = (viewportHeight * 0.515);
-                duckHitbox.speedY = 0;
-                duckHitbox.gravitySpeed = 0;
-                duckHitbox.gravity = 0;
-                duckP1.x = (viewport * 0.01);
-                duckP1.y = (viewportHeight * 0.6);
-                duckP1.speedY = 0;
-                duckP1.gravitySpeed = 0;
-                duckP1.gravity = 0;
-            } else {
-                duckP1.x = (viewport * 0.07);
-                duckP1.y = (viewportHeight * 0.425);
-                duckP1.speedY = 0;
-                duckP1.gravitySpeed = 0;
-                duckP1.gravity = 0;
-                duckP1.amounthitbottom = 0;
-                duckHitbox.x = (viewport * 0.0925);
-                duckHitbox.y = (viewportHeight * 0.515);
-                duckHitbox.speedY = 0;
-                duckHitbox.gravitySpeed = 0;
-                duckHitbox.gravity = 0;
-                duckP2.x = (viewport * 0.01);
-                duckP2.y = (viewportHeight * 0.6);
-                duckP2.speedY = 0;
-                duckP2.gravitySpeed = 0;
-                duckP2.gravity = 0;
-            }
-
-
-        } else {
-            duckP1.x = (viewport * 0.07);
-            duckP1.y = (viewportHeight * 0.425);
-            duckP1.speedY = 0;
-            duckP1.gravitySpeed = 0;
-            duckP1.amounthitbottom = 0;
-            duckHitbox.x = (viewport * 0.0925);
-            duckHitbox.y = (viewportHeight * 0.515);
-            duckHitbox.speedY = 0;
-            duckHitbox.gravitySpeed = 0;
-            duckHitbox.gravity = 0;
+        D1.x = (viewport * 0.07);
+        D1.y = (viewportHeight * 0.425);
+        D1.speedY = 0;
+        D1.gravitySpeed = 0;
+        D1.gravity = 0;
+        D1.amounthitbottom = 0;
+        DH1.x = (viewport * 0.0925);
+        DH1.y = (viewportHeight * 0.515);
+        DH1.speedY = 0;
+        DH1.gravitySpeed = 0;
+        DH1.gravity = 0;
+        if(D2 != null){
+            D2.x = (viewport * 0.01);
+            D2.y = (viewportHeight * 0.6);
+            D2.speedY = 0;
+            D2.gravitySpeed = 0;
+            D2.gravity = 0;
         }
         canShoot = true;
-    }
+        
 }
 
 //#endregion 
