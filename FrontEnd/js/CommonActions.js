@@ -8,7 +8,7 @@ var showPauseMenu = false,
     btnPause, btnExit, bluetoothConnected = false,
     bluetoothConnected2 = false,
     timeStampHR, timeStampHR2;
-var canShoot, CalmHR, CalmHR2, ShootHR, duckPlayer1 = 0,
+var canShoot, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
     gameScore = 4,
@@ -63,7 +63,8 @@ const shoot = function(wichbutton) {
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
         if (player2plays == true && wichbutton == 2 && player2enable == true) {
-            if (HR2 != null) {
+          //var speed = 6.7;  
+          if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -79,6 +80,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
+          //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -95,7 +97,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2enable == false && wichbutton == 1) {
-            if (HR != null) {
+          //var speed = 6.7; 
+          if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -111,6 +114,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if ( wichbutton == 3) {
+          //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7
@@ -127,7 +131,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 4){
-            if (HR2 != null) {
+          var speed = 6.7;  
+          if (HR2 != null) {
               ShootHR = (HR2 - CalmHR2) / 5;
               var speed = ShootHR; //6.7
             } else {
@@ -264,8 +269,10 @@ const refresh = function(number = 0) {
 //#region *** set rusthartslag function ***
 
 const rusthartslag = function() {
-    CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
-    document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
+    if(HR > 30 && CalmHR > HR){ 
+        CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
+        document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
+    }
     if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) {
         if (CalmHR2 > 0) {
             document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
@@ -278,8 +285,10 @@ const rusthartslag = function() {
 }
 
 const rusthartslag2 = function() {
-    CalmHR2 = HR2;
-    document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
+    if(HR2 > 30 && CalmHR2 > HR2){
+        CalmHR2 = HR2;
+        document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
+    }
     if (CalmHR > 0) {
         document.querySelector(".js-togamemodeselect").style.backgroundColor = "#F88F3E";
     }
@@ -597,6 +606,9 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
 }
 
 const onHeartRateChanged = function(event) { //wordt om de __ seconden uitgevoerd om HR aan te passen
+    console.log('Hey lekker beest');
+    console.log(ShowReconnectionScreen);
+    if(ShowReconnectionScreen == true) rusthartslag();
     const characteristic = event.target;
     timeStampHR = event.timeStamp;
     HR = parseHeartRate(characteristic.value).heartRate;
@@ -642,6 +654,8 @@ const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
 }
 
 function onHeartRateChanged2(event) {
+    console.log('Hey lekker beest');
+    if(ShowReconnectionScreen == true) rusthartslag2();
     const characteristic = event.target;
     timeStampHR2 = event.timeStamp;
     HR2 = parseHeartRate(characteristic.value).heartRate;
@@ -733,23 +747,29 @@ const updateHeartRateColor = function() {
             case 7.5:
             case 7.6:
             case 7.7: //oranje
+                //document.querySelector(".js-BTConnectionP1").style.fill = "#F88F3E";
                 document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
                 break;
             case 6.3:
+            case 6.4:
             case 7.2:
             case 7.3:
             case 7.4: //geel
+                //document.querySelector(".js-BTConnectionP1").style.fill = "#EEFF00";
                 document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
                 break;
+            case 6.5:
             case 6.6:
             case 6.7:
             case 6.8:
             case 6.9:
             case 7.0:
             case 7.1: //groen
+                //document.querySelector(".js-BTConnectionP1").style.fill = "#00FF00";
                 document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
                 break;
             default: //rood
+                //document.querySelector(".js-BTConnectionP1").style.fill = "#EE1C25";
                 document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
                 break;
         }
@@ -761,23 +781,29 @@ const updateHeartRateColor = function() {
             case 7.5:
             case 7.6:
             case 7.7: //oranje
+                //document.querySelector(".js-BTConnectionP2").style.fill = "#F88F3E";
                 document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
                 break;
             case 6.3:
+            case 6.4:
             case 7.2:
             case 7.3:
             case 7.4: //geel
+                //document.querySelector(".js-BTConnectionP2").style.fill = "#EEFF00";
                 document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
                 break;
+            case 6.5:
             case 6.6:
             case 6.7:
             case 6.8:
             case 6.9:
             case 7.0:
             case 7.1: //groen
+                //document.querySelector(".js-BTConnectionP2").style.fill = "#00FF00";
                 document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
                 break;
             default: //rood
+                //document.querySelector(".js-BTConnectionP2").style.fill = "#EE1C25";
                 document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
                 break;
         }
