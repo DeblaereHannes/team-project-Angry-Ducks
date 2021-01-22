@@ -718,11 +718,13 @@ const updateHeartRateColor = function() {
                 document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
                 break;
             case 6.3:
+            case 6.4:
             case 7.2:
             case 7.3:
             case 7.4: //geel
                 document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
                 break;
+            case 6.5:
             case 6.6:
             case 6.7:
             case 6.8:
@@ -746,11 +748,13 @@ const updateHeartRateColor = function() {
                 document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
                 break;
             case 6.3:
+            case 6.4:
             case 7.2:
             case 7.3:
             case 7.4: //geel
                 document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
                 break;
+            case 6.5:
             case 6.6:
             case 6.7:
             case 6.8:
