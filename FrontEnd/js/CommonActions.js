@@ -142,7 +142,39 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
+        }else if(wichbutton == 5){
+            if (HR != null) {
+                ShootHR = (HR - CalmHR) / 5;
+                var speed = ShootHR; //6.7;
+            } else {
+                console.error("no HR");
             }
+            canShoot = false;
+            duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            duckHitbox.gravity = 0.075;
+            duckHitbox.speedX = speed;
+            duckHitbox.speedY = -3;
+            checkSecondsPast = secondsPast;
+        }else if(wichbutton == 6){
+            if (HR2 != null) {
+                ShootHR = (HR2 - CalmHR2) / 5;
+                var speed = ShootHR; //6.7;
+            } else {
+                console.error("no HR");
+            }
+            canShoot = false;
+            duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
+            duckP2.speedX = -speed; //horizontale snelheid volgens de slider waarde
+            duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+
+            // duckHitbox2.gravity = 0.075;
+            // duckHitbox2.speedX = -speed;
+            // duckHitbox2.speedY = -3;
+            checkSecondsPast = secondsPast;
+        }
       }
   }
 

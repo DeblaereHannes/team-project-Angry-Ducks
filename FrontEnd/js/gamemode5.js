@@ -1,3 +1,6 @@
+
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5;
+
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
     //alle componenten aanmaken
@@ -7,8 +10,20 @@ const loadGamemode5 = function() {
     mybackground = new component("bg", viewport, (viewportHeight), links[3], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    duckP2 = new component("duck2", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.9), (viewportHeight * 0.425), "image");
+    duckP2 = new component("duck2", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], viewport - (viewport * 0.115), (viewportHeight * 0.425), "image");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
+    target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
+    targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.6103515625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection3 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.68359375), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.5859375), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    target2 = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], viewport - (viewport * 0.5859375) - (viewport * 0.146484375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
+    target2Detection = new component("target", (viewport * 0.048828125), 1, "yellow", viewport - (viewport * 0.634765625) - (viewport * 0.048828125), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    target2Detection2 = new component("target", (viewport * 0.0244140625), 1, "green",viewport - (viewport * 0.6103515625) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    target2Detection3 = new component("target", (viewport * 0.0244140625), 1, "green", viewport - (viewport * 0.68359375) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    target2Detection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", viewport - (viewport * 0.5859375) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
+    target2Detection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", viewport - (viewport * 0.7080078125) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     // for (let index = 0; index < 10; index++) {
     //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
         
@@ -20,7 +35,7 @@ const loadGamemode5 = function() {
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
     player2plays == false;
-    myGameArea.load(3);  //laad de canvas in
+    myGameArea.load(5);  //laad de canvas in
 }
 
 //#endregion
@@ -53,10 +68,8 @@ const updateGameArea5 = function() {
     }
 
 
-    if (myGameArea.keys && myGameArea.keys[38]) {shoot(5)}
-    if(player2enable == true){
-        if (myGameArea.keys && myGameArea.keys[40]) {shoot(6)}
-    }
+    if (myGameArea.keys && myGameArea.keys[38]) {console.log("upsy"); shoot(5)}
+    if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(6)}
    
 
     myGameArea.clear();     //canvas clearen voor nieuwe frame
@@ -76,6 +89,22 @@ const updateGameArea5 = function() {
     //alles updaten: terug visueel maken na clearen
     mybackground.update();
     duckHitbox.update();
+
+    targetDetection.update();
+    targetDetection2.update();
+    targetDetection3.update();
+    targetDetection4.update();
+    targetDetection5.update();
+
+    target2Detection.update();
+    target2Detection2.update();
+    target2Detection3.update();
+    target2Detection4.update();
+    target2Detection5.update();
+    
+    target.update();
+    target2.update();
+    
     duckP1.update();
 
     duckP2.update();
@@ -85,31 +114,6 @@ const updateGameArea5 = function() {
     lblCountdownTimer.update();
     lblDeltaHR.update();
 
-
-    if(player2enable != true){
-        if (duckP1.amounthitbottom >= 2){
-            document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-            document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
-            CanvasBlur = true;
-            document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
-            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-        }
-    }else{
-        if(duckP2.amounthitbottom >= 2){
-            document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-            document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
-            CanvasBlur = true;
-            document.querySelector(".js-pause").style.display = "none";    
-            document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-            document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
-        }else{
-            if(showPauseMenu != true){
-                document.body.classList.remove("bgGamemode--blur");
-                document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
-            }
-        }
-    }
     
     //victory screen hidden houden
     if(showPauseMenu == true)

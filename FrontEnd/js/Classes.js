@@ -47,10 +47,6 @@ const component = function(name, width, height, color, x, y, type) {
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         }
-        if (name == "duck2"){
-            console.log("test");
-            ctx.transform = "scaleX(-1)";
-        }
     };
 
     //verandert de positie van het component
@@ -165,8 +161,10 @@ var myGameArea = {
         document.querySelector(".js-canvas-div").appendChild(this.canvas);
         if(gamemode == 1){
             this.interval = setInterval(updateGameArea, 20);
-        } else {
+        } else if (gamemode == 3) {
             this.interval = setInterval(updateGameArea3, 20);
+        } else if (gamemode == 5) {
+            this.interval = setInterval(updateGameArea5, 20);
         }
         
         window.addEventListener('keydown', function (e) {
