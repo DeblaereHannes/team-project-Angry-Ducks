@@ -1,3 +1,7 @@
+var mqtt = require('mqtt')
+var client = mqtt.connect('mqtt://13.81.105.139')
+var topic = '/angryducks/buttons'
+
 var five = require("johnny-five"),
     board = new five.Board(),
     button1,
@@ -11,6 +15,20 @@ var five = require("johnny-five"),
 var ready1 = false;
 var ready2 = false;
 
+client.on('connect', function() {
+    client.subscribe(topic, function(err) {
+        if (!err) {
+            client.publish(topic, 'Hello mqtt')
+        }
+    })
+})
+
+client.on('message', function(topic, message) {
+    // message is Buffer
+    console.log(message.toString())
+        // client.end()
+})
+
 board.on("ready", function() {
     button1 = new five.Button(2);
     button2 = new five.Button(3);
@@ -20,6 +38,7 @@ board.on("ready", function() {
     button1.on("down", function() {
         if (ready1 == true) {
             console.log("1 launch");
+            client.publish(topic, '{"player" : "1"}');
             led1.blink();
             ready1 = false;
             setTimeout(() => {
@@ -34,6 +53,7 @@ board.on("ready", function() {
     button2.on("down", function() {
         if (ready2 == true) {
             console.log("2 launch");
+            client.publish(topic, '{"player" : "2"}');
             led2.blink();
             ready2 = false;
             setTimeout(() => {
