@@ -173,9 +173,10 @@ const shoot = function(wichbutton) {
             duckP2.speedX = -speed; //horizontale snelheid volgens de slider waarde
             duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
 
-            // duckHitbox2.gravity = 0.075;
-            // duckHitbox2.speedX = -speed;
-            // duckHitbox2.speedY = -3;
+            duckHitbox2.gravity = 0.075;
+            duckHitbox2.speedX = -speed;
+            duckHitbox2.speedY = -3;
+            console.log(duckHitbox2);
             checkSecondsPast = secondsPast;
         }
       }
@@ -342,7 +343,7 @@ const scoreSelection = function(Number) {
             loadscores("versus-brood-oorlog", "s")
             break;
         case 3:
-            document.getElementById("gameModeScore").innerHTML = "Versus";
+            document.getElementById("gameModeScore").innerHTML = "Co-op";
             document.getElementById("gameTitleScore").innerHTML = "Ver Vliegen";
             loadscores("versus-ver-vliegen", "s")
             break;
@@ -438,7 +439,7 @@ const gameSelection = function(Number) {
                 document.getElementById("gameTitle").innerHTML = "Brood Oorlog";
                 break;
             case 3:
-                document.getElementById("gameMode").innerHTML = "Versus";
+                document.getElementById("gameMode").innerHTML = "Co-op";
                 document.getElementById("gameTitle").innerHTML = "Ver Vliegen";
                 break;
             case 4:

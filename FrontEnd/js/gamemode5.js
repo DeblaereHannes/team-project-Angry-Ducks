@@ -1,5 +1,5 @@
 
-var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5;
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2;
 
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
@@ -7,6 +7,7 @@ const loadGamemode5 = function() {
     duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
     lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox2 = new component("duckhitbox", 1, 1, "black", viewport - (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[3], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
@@ -34,7 +35,6 @@ const loadGamemode5 = function() {
     score1 = 300;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
-    player2plays == false;
     myGameArea.load(5);  //laad de canvas in
 }
 
@@ -73,7 +73,10 @@ const updateGameArea5 = function() {
 
 
     if(duckP1.amounthitbottom >= 2){
-        
+        reload(duckP1, duckHitbox);
+    }
+    if(duckP2.amounthitbottom >= 2){
+        reload(duckP2, duckHitbox2);
     }
    
 
@@ -113,6 +116,7 @@ const updateGameArea5 = function() {
     duckP1.update();
 
     duckP2.update();
+    duckHitbox2.update();
     lblDeltaHR2.update();
     
     lblScore.update();
