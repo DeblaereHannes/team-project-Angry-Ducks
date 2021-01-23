@@ -38,9 +38,7 @@ const loadGame = function() {
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
-    if(player2enable == true){
-        duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
-    }
+    duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
 
     frames = 0;         //aantal frames op 0 zetten
     secondsPast = 0;    //tijd in seconden op 0 zetten
@@ -103,11 +101,17 @@ const updateGameArea = function() {
     }
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
-   
+    //console.log(`wee ${player2plays}`);
     if(duckP1.amounthitbottom >= 2 && player2plays == false){    //auto reload 5sec na shoot
-        reload(duckP1, duckHitbox, duckP2);   //Common actions functie
+        if(player2enable == true){
+            reload(duckP2, duckHitbox, duckP1);
+            player2plays = true;
+        }else{
+            reload(duckP1, duckHitbox, duckP2);
+        }
     }else if(duckP2.amounthitbottom >= 2 && player2plays == true){
-        reload(duckP2, duckHitbox, duckP1);
+        reload(duckP1, duckHitbox, duckP2);
+        player2plays = false;
     }
 
     if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}

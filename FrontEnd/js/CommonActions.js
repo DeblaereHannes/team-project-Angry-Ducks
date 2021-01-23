@@ -207,7 +207,7 @@ const reload = function(D1, DH1, D2) {
             D2.gravity = 0;
         }
         canShoot = true;
-        
+    }    
 }
 
 //#endregion 
@@ -571,8 +571,8 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
 }
 
 const onHeartRateChanged = function(event) { //wordt om de __ seconden uitgevoerd om HR aan te passen
-    console.log('Hey lekker beest');
-    console.log(ShowReconnectionScreen);
+    //console.log('Hey lekker beest');
+    //console.log(ShowReconnectionScreen);
     if(ShowReconnectionScreen == true) rusthartslag();
     const characteristic = event.target;
     timeStampHR = event.timeStamp;
@@ -619,7 +619,7 @@ const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
 }
 
 function onHeartRateChanged2(event) {
-    console.log('Hey lekker beest');
+    //console.log('Hey lekker beest');
     if(ShowReconnectionScreen == true) rusthartslag2();
     const characteristic = event.target;
     timeStampHR2 = event.timeStamp;
