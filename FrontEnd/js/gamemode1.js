@@ -44,7 +44,7 @@ const loadGame = function() {
     secondsPast = 0;    //tijd in seconden op 0 zetten
     score = 500;        //max score
     countdownTimer = 3; //countdown van 3seconden
-    player2plays == false;
+    player2plays = false;
     myGameArea.load(1);  //laad de canvas in
 }
 
@@ -101,8 +101,8 @@ const updateGameArea = function() {
     }
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
-    //console.log(`wee ${player2plays}`);
-    if(duckP1.amounthitbottom >= 2 && player2plays == false){    //auto reload 5sec na shoot
+    console.log(`wee ${player2plays}`);
+    if(duckP1.amounthitbottom >= 2 && player2plays == false){    
         if(player2enable == true){
             reload(duckP2, duckHitbox, duckP1);
             player2plays = true;
