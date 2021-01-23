@@ -104,8 +104,10 @@ const updateGameArea = function() {
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
    
-    if(secondsPast - checkSecondsPast > 5 && canShoot == false){    //auto reload 5sec na shoot
-        reload();   //Common actions functie
+    if(duckP1.amounthitbottom >= 2 && player2plays == false){    //auto reload 5sec na shoot
+        reload(duckP1, duckHitbox, duckP2);   //Common actions functie
+    }else if(duckP2.amounthitbottom >= 2 && player2plays == true){
+        reload(duckP2, duckHitbox, duckP1);
     }
 
     if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}
