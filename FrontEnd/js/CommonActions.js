@@ -61,6 +61,7 @@ const shoot = function(wichbutton) {
     if (canShoot == true && showPauseMenu == false && ShowReconnectionScreen == false) {
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
+        checkScore2 = score1;
 
         if (player2plays == true && wichbutton == 2 && player2enable == true) {
           //var speed = 6.7;  
@@ -150,7 +151,7 @@ const shoot = function(wichbutton) {
         }else if(wichbutton == 5){
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
-                var speed = ShootHR; //6.7;
+                var speed = 6.7;
             } else {
                 console.error("no HR");
             }
@@ -165,7 +166,7 @@ const shoot = function(wichbutton) {
         }else if(wichbutton == 6){
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
-                var speed = ShootHR; //6.7;
+                var speed = 6.7;
             } else {
                 console.error("no HR");
             }
@@ -176,7 +177,6 @@ const shoot = function(wichbutton) {
             duckHitbox2.gravity = 0.075;
             duckHitbox2.speedX = -speed;
             duckHitbox2.speedY = -3;
-            console.log(duckHitbox2);
             checkSecondsPast = secondsPast;
         }
       }
