@@ -32,7 +32,7 @@ client.on('message', function(topic, message) {
 board.on("ready", function() {
     button1 = new five.Button(2);
     button2 = new five.Button(3);
-    led1 = new five.Led(13);
+    led1 = new five.Led(4);
     led2 = new five.Led(5);
 
     button1.on("down", function() {
