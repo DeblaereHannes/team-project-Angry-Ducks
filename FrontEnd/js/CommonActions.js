@@ -205,6 +205,7 @@ const reload = function(D1, DH1, D2) {
             D2.speedY = 0;
             D2.gravitySpeed = 0;
             D2.gravity = 0;
+            D2.amounthitbottom = 0;
         }
         canShoot = true;
     }    

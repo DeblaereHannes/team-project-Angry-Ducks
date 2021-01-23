@@ -50,6 +50,7 @@ const updateGameArea3 = function() {
         }else{
             if (duckP2.amounthitbottom >= 2){
                 timerOn = false;                //timer stoppen
+                duckP2.amounthitbottom = 2;
                 console.log(duckHitbox.x);
                 console.log(duckHitbox.y);
                 myGameArea.stop();  
@@ -59,7 +60,7 @@ const updateGameArea3 = function() {
     
 
 
-    console.log(`yeeet ${canShoot}`);
+    console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
 
     //console.log(`${duckP1.amounthitbottom} ..... ${duckP2.amounthitbottom}`);
     //console.log(`player2 ${player2plays}`);
@@ -67,7 +68,6 @@ const updateGameArea3 = function() {
     if(duckP1.amounthitbottom >= 2 && player2plays == false){
         score1 = score;
         player2plays = true;
-        canShoot = true;
         reload(duckP2, duckHitbox);
     }
     
@@ -93,8 +93,10 @@ const updateGameArea3 = function() {
     if (score < 0) {score = 0}
 
 
-    if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
-    if(player2enable == true){
+    if(player2plays == false){
+        if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
+    }
+    if(player2enable == true && player2plays == true){
         if (myGameArea.keys && myGameArea.keys[40]) {shoot(4)}
     }
    
@@ -133,14 +135,13 @@ const updateGameArea3 = function() {
     if(player2enable == false){
         if (duckP1.amounthitbottom >= 2){//alst ie gebounced heeft
             rounds--;
-            if(rounds == 0){
+            if(rounds <= 0){
                 document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
                 document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-                rounds = 3;
             }
             else reload(duckP1, duckHitbox);
         }
@@ -148,21 +149,16 @@ const updateGameArea3 = function() {
         if(duckP2.amounthitbottom >= 2){//alst ie gebounced heeft
             console.log("oops");
             rounds--;
-            if(rounds == 0){
+            player2plays = false;
+            if(rounds <= 0){
                 document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
                 document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";    
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
-                rounds = 3;
             }
             else reload(duckP1, duckHitbox, duckP2);
-        }else{
-            if(showPauseMenu == false){
-                document.body.classList.remove("bgGamemode--blur");
-                document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
-            }
         }
     }
     
