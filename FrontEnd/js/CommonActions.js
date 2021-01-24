@@ -436,14 +436,17 @@ const gameSelection = function(Number) {
             case 2:
                 document.getElementById("gameMode").innerHTML = "Versus";
                 document.getElementById("gameTitle").innerHTML = "Brood Oorlog";
+                document.getElementById("gameDescription").innerHTML = "Speel tegen elkaar en probeer zo snel mogelijk het doelwit van de tegenstander te vernietigen.";
                 break;
             case 3:
-                document.getElementById("gameMode").innerHTML = "Versus";
+                document.getElementById("gameMode").innerHTML = "Co-op";
                 document.getElementById("gameTitle").innerHTML = "Ver Vliegen";
+                document.getElementById("gameDescription").innerHTML = "Probeer samen zo ver mogelijk jullie eendjes te krijgen.";
                 break;
             case 4:
                 document.getElementById("gameMode").innerHTML = "Co-op";
                 document.getElementById("gameTitle").innerHTML = "Doelwit Verquakelen";
+                document.getElementById("gameDescription").innerHTML = "Vernietig het doelwit in de kortste tijd samen met je teamgenoot.";
                 break;
         }
 
@@ -464,10 +467,13 @@ const gameSelection = function(Number) {
             case 0:
                 document.getElementById("gameMode").innerHTML = "Solo";
                 document.getElementById("gameTitle").innerHTML = "Doelwit Verquackelen";
+                document.getElementById("gameDescription").innerHTML = "Vernietig het doelwit in de kortste tijd.";
+
                 break;
             case 1:
                 document.getElementById("gameMode").innerHTML = "Solo";
                 document.getElementById("gameTitle").innerHTML = "Ver Vliegen";
+                document.getElementById("gameDescription").innerHTML = "Probeer zo ver mogelijk te schieten met je eendje.";
                 break;
         }
         document.getElementById("gamepicture").src = gameSelections[gamePicture];
