@@ -1,11 +1,12 @@
 
-var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false;
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2;
 
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
     //alle componenten aanmaken
     duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
-    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.1), (viewport * 0.060), "text");
+    lblScore2 = new component("score", "30px", "Roboto", "black", viewport - (viewport * 0.1) - 300, (viewport * 0.060), "text");
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     duckHitbox2 = new component("duckhitbox", 1, 1, "black", viewport - (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[3], 0, 0, "image");
@@ -26,10 +27,10 @@ const loadGamemode5 = function() {
     target2Detection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", viewport - (viewport * 0.5859375) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     target2Detection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", viewport - (viewport * 0.7080078125) - (viewport * 0.0244140625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
 
-    progressbarHealth = new component("progressbar", (300), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
-    progressbarBackground = new component("progressbar", (300), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
-    progressbarHealth2 = new component("progressbar", (300), (viewport * 0.017578125), "red", viewport - (viewport * 0.09765625) - 300, (viewport * 0.025390625));
-    progressbarBackground2 = new component("progressbar", (300), (viewport * 0.01953125), "white", viewport - (viewport * 0.09765625) - 300, (viewport * 0.0244140625));
+    progressbarHealth = new component("progressbar", (300), (viewport * 0.017578125), "red", (viewport * 0.1), (viewport * 0.025390625));
+    progressbarBackground = new component("progressbar", (300), (viewport * 0.01953125), "white", (viewport * 0.1), (viewport * 0.0244140625));
+    progressbarHealth2 = new component("progressbar", (300), (viewport * 0.017578125), "red", viewport - (viewport * 0.1) - 300, (viewport * 0.025390625));
+    progressbarBackground2 = new component("progressbar", (300), (viewport * 0.01953125), "white", viewport - (viewport * 0.1) - 300, (viewport * 0.0244140625));
     // for (let index = 0; index < 10; index++) {
     //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
         
@@ -148,7 +149,8 @@ const updateGameArea5 = function() {
     lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblScore.text = "Score: " + (score + score1);              //text aanpassen van score
+    lblScore.text = "Score: " + (score);              //text aanpassen van score
+    lblScore2.text = "Score: " + (score1);  
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
@@ -185,6 +187,7 @@ const updateGameArea5 = function() {
     progressbarHealth2.update();
 
     lblScore.update();
+    lblScore2.update();
     lblCountdownTimer.update();
     lblDeltaHR.update();
 

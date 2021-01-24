@@ -9,8 +9,10 @@ var loadAlldetection, score1, rounds = 3;
 const loadGamemode3 = function() {
     //alle componenten aanmaken
     duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
-    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.1), (viewport * 0.060), "text");
+    lblScore2 = new component("score", "30px", "Roboto", "black", viewport - (viewport * 0.1) - 300, (viewport * 0.060), "text");
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox2 = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
@@ -68,7 +70,7 @@ const updateGameArea3 = function() {
     if(duckP1.amounthitbottom >= 2 && player2plays == false){
         score1 = score;
         player2plays = true;
-        reload(duckP2, duckHitbox);
+        reload(duckP2, duckHitbox2);
         canShoot = true;
     }
     
@@ -92,6 +94,8 @@ const updateGameArea3 = function() {
 
     score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
     if (score < 0) {score = 0}
+    score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    if (score1 < 0) {score1 = 0}
 
 
     if(player2plays == false){
@@ -112,20 +116,23 @@ const updateGameArea3 = function() {
     }
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblScore.text = "Score: " + (score + score1);              //text aanpassen van score
+    lblScore.text = "Score: " + (score);              //text aanpassen van score
+    lblScore2.text = "Score: " + (score1);
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-    mybackground.update();
     duckHitbox.update();
+    duckHitbox2.update();
+    mybackground.update();
     duckP1.update();
 
     if(player2enable == true){
         duckP2.update();
         lblDeltaHR2.update();
+        lblScore2.update();
     }
     
     lblScore.update();
