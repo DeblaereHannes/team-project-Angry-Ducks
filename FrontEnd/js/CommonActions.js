@@ -13,7 +13,7 @@ var canShoot, CalmHR = 1000,
     ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
-    gameScore = 4,
+    gameScore = 3,
     canAlert = true,
     hearts, isHeart1Red = false,
     isHeart2Red = false;
@@ -320,18 +320,18 @@ const scoreSelection = function(Number) {
     switch (Number) {
         case 1:
             gameScore--;
-            if (gameScore == -1) gameScore = 4;
+            if (gameScore == -1) gameScore = 3;
             break; //player 1 left
         case 2:
             gameScore++;
-            if (gameScore == 5) gameScore = 0;
+            if (gameScore == 4) gameScore = 0;
             break; //player 1 right  
     }
     switch (gameScore) {
         case 0:
             document.getElementById("gameModeScore").innerHTML = "Solo";
-            document.getElementById("gameTitleScore").innerHTML = "Snel Eendje";
-            loadscores("solo-snel-eendje", "t")
+            document.getElementById("gameTitleScore").innerHTML = "Doelwit Verquakelen";
+            loadscores("solo-doelwit-verquackelen", "t")
             break;
         case 1:
             document.getElementById("gameModeScore").innerHTML = "Solo";
@@ -340,15 +340,10 @@ const scoreSelection = function(Number) {
             break;
         case 2:
             document.getElementById("gameModeScore").innerHTML = "Versus";
-            document.getElementById("gameTitleScore").innerHTML = "Brood Oorlog";
-            loadscores("versus-brood-oorlog", "s")
-            break;
-        case 3:
-            document.getElementById("gameModeScore").innerHTML = "Versus";
             document.getElementById("gameTitleScore").innerHTML = "Ver Vliegen";
             loadscores("versus-ver-vliegen", "s")
             break;
-        case 4:
+        case 3:
             document.getElementById("gameModeScore").innerHTML = "Co-op";
             document.getElementById("gameTitleScore").innerHTML = "Doelwit Verquakelen";
             loadscores("coop-doelwit-verquackelen", "t")
