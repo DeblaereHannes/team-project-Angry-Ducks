@@ -18,11 +18,11 @@ const loadGamemode3 = function() {
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     // for (let index = 0; index < 10; index++) {
     //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
-        
+
     // }
-    frames = 0;         //aantal frames op 0 zetten
-    secondsPast = 0;    //tijd in seconden op 0 zetten
-    score = "unknown";          //max score
+    frames = 0; //aantal frames op 0 zetten
+    secondsPast = 0; //tijd in seconden op 0 zetten
+    score = "unknown"; //max score
     score1 = 0;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
@@ -30,7 +30,7 @@ const loadGamemode3 = function() {
     duckP1.amounthitbottom = 0;
     duckP2.amounthitbottom = 0;
     rounds = 3;
-    myGameArea.load(3);  //laad de canvas in
+    myGameArea.load(3); //laad de canvas in
 }
 
 //#endregion
@@ -39,25 +39,25 @@ const loadGamemode3 = function() {
 const updateGameArea3 = function() {
 
     //score controleren op einde spel
-    if(rounds == 0){
-        if(player2enable == false){
+    if (rounds == 0) {
+        if (player2enable == false) {
             if (duckP1.amounthitbottom >= 2) {
-                timerOn = false;                //timer stoppen
+                timerOn = false; //timer stoppen
                 console.log(duckHitbox.x);
                 console.log(duckHitbox.y);
-                myGameArea.stop();              //freeze de game
+                myGameArea.stop(); //freeze de game
             }
-        }else{
-            if (duckP2.amounthitbottom >= 2){
-                timerOn = false;                //timer stoppen
+        } else {
+            if (duckP2.amounthitbottom >= 2) {
+                timerOn = false; //timer stoppen
                 duckP2.amounthitbottom = 2;
                 console.log(duckHitbox.x);
                 console.log(duckHitbox.y);
-                myGameArea.stop();  
+                myGameArea.stop();
             }
         }
     }
-    
+
 
 
     console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
@@ -65,54 +65,54 @@ const updateGameArea3 = function() {
     //console.log(`${duckP1.amounthitbottom} ..... ${duckP2.amounthitbottom}`);
     //console.log(`player2 ${player2plays}`);
 
-    if(duckP1.amounthitbottom >= 2 && player2plays == false){
+    if (duckP1.amounthitbottom >= 2 && player2plays == false) {
         score1 = score;
         player2plays = true;
         reload(duckP2, duckHitbox);
     }
-    
+
 
     //tijd aanpassen
     if (showPauseMenu == false) {
-        frames += 1;            //aantal frames berekenen
-        if (frames == 50) {     //game doet 50 frames per seconde
+        frames += 1; //aantal frames berekenen
+        if (frames == 50) { //game doet 50 frames per seconde
             //aantal seconden berekenen
             frames = 0;
-            if(countdownTimer > 0) countdownTimer--;
-            else{
-                start();        //Common actions functie
-                secondsPast++;  //seconds past +1
+            if (countdownTimer > 0) countdownTimer--;
+            else {
+                start(); //Common actions functie
+                secondsPast++; //seconds past +1
 
                 checkBTconnection();
             }
         }
     }
-    
+
 
     score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
-    if (score < 0) {score = 0}
+    if (score < 0) { score = 0 }
 
 
-    if(player2plays == false){
-        if (myGameArea.keys && myGameArea.keys[38]) {shoot(3)}
+    if (player2plays == false) {
+        if (myGameArea.keys && myGameArea.keys[38]) { shoot(3) }
     }
-    if(player2enable == true && player2plays == true){
-        if (myGameArea.keys && myGameArea.keys[40]) {shoot(4)}
+    if (player2enable == true && player2plays == true) {
+        if (myGameArea.keys && myGameArea.keys[40]) { shoot(4) }
     }
-   
 
-    myGameArea.clear();     //canvas clearen voor nieuwe frame
 
-    duckHitbox.newPos();    //nieuwe positie van duck instellen
-    duckP1.newPos();          //nieuwe positie van duck instellen
-    if(player2enable == true){
+    myGameArea.clear(); //canvas clearen voor nieuwe frame
+
+    duckHitbox.newPos(); //nieuwe positie van duck instellen
+    duckP1.newPos(); //nieuwe positie van duck instellen
+    if (player2enable == true) {
         duckP2.newPos();
         lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblScore.text = "Score: " + (score + score1);              //text aanpassen van score
-    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
+    lblScore.text = "Score: " + (score + score1); //text aanpassen van score
+    if (countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
@@ -122,53 +122,52 @@ const updateGameArea3 = function() {
     duckHitbox.update();
     duckP1.update();
 
-    if(player2enable == true){
+    if (player2enable == true) {
         duckP2.update();
         lblDeltaHR2.update();
     }
-    
+
     lblScore.update();
     lblCountdownTimer.update();
     lblDeltaHR.update();
 
 
-    if(player2enable == false){
-        if (duckP1.amounthitbottom >= 2){//alst ie gebounced heeft
+    if (player2enable == false) {
+        if (duckP1.amounthitbottom >= 2) { //alst ie gebounced heeft
             rounds--;
-            if(rounds <= 0){
-                document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-                document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+            if (rounds <= 0) {
+                document.querySelector(".js-VictoryScreen").style.visibility = "visible";
+                document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
                 CanvasBlur = true;
-                document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
+                document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-            }
-            else reload(duckP1, duckHitbox);
+                PostLeaderboardEntry(mpname.value, "solo-ver-vliegen", score, 0)
+            } else reload(duckP1, duckHitbox);
         }
-    }else{
-        if(duckP2.amounthitbottom >= 2){//alst ie gebounced heeft
+    } else {
+        if (duckP2.amounthitbottom >= 2) { //alst ie gebounced heeft
             console.log("oops");
             rounds--;
             player2plays = false;
-            if(rounds <= 0){
-                document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
-                document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+            if (rounds <= 0) {
+                document.querySelector(".js-VictoryScreen").style.visibility = "visible";
+                document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
                 CanvasBlur = true;
-                document.querySelector(".js-pause").style.display = "none";    
+                document.querySelector(".js-pause").style.display = "none";
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
-            }
-            else reload(duckP1, duckHitbox, duckP2);
+                //PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "versus-ver-vliegen", (score1 + score), 0) //2 player post
+                //PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", score, 0) //1 player post stopt er een if in of zo
+            } else reload(duckP1, duckHitbox, duckP2);
         }
     }
-    
+
     //victory screen hidden houden
-    if(showPauseMenu == true)
-    {
+    if (showPauseMenu == true) {
         //opens or closes pause menu
         document.querySelector(".js-PauseMenu").style.visibility = "visible";
-    }
-    else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
+    } else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 
 }
 

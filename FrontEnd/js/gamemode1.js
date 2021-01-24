@@ -1,12 +1,16 @@
 //#region *** variablen definieren ***
 
 var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
-var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0, countdownTimer, lblCountdownTimer, checkSecondsPast = 0, previousTimestampHR = 0, previousTimestampHR2 = 0, lblDeltaHR, lblDeltaHR2;
-var viewport = document.documentElement.clientWidth, viewportHeight = document.documentElement.clientHeight;
+var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0,
+    countdownTimer, lblCountdownTimer, checkSecondsPast = 0,
+    previousTimestampHR = 0,
+    previousTimestampHR2 = 0,
+    lblDeltaHR, lblDeltaHR2;
+var viewport = document.documentElement.clientWidth,
+    viewportHeight = document.documentElement.clientHeight;
 //img ophalen
 var links = ["link1", "link2", "link3"]
-for(link of links)
-{
+for (link of links) {
     link = document.createElement('link');
 }
 links[0] = "./img/gamemodes/gamemode1.png";
@@ -34,18 +38,18 @@ const loadGame = function() {
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    mybackground = new component("bg", viewport, (viewportHeight), links[0], 0,0 , "image");
+    mybackground = new component("bg", viewport, (viewportHeight), links[0], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
     duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
 
-    frames = 0;         //aantal frames op 0 zetten
-    secondsPast = 0;    //tijd in seconden op 0 zetten
-    score = 500;        //max score
+    frames = 0; //aantal frames op 0 zetten
+    secondsPast = 0; //tijd in seconden op 0 zetten
+    score = 500; //max score
     countdownTimer = 3; //countdown van 3seconden
     player2plays = false;
-    myGameArea.load(1);  //laad de canvas in
+    myGameArea.load(1); //laad de canvas in
 }
 
 //#endregion
@@ -55,10 +59,10 @@ const updateGameArea = function() {
 
     //score controleren op einde spel
     if (score <= 0) {
-        timerOn = false;                //timer stoppen
-        score = 0;                      //score op 0 anders krijg je -....
-        progressbarHealth.width = 0;    //de breedte van rode bar op 0 anders krijg je -....
-        myGameArea.stop();              //freeze de game
+        timerOn = false; //timer stoppen
+        score = 0; //score op 0 anders krijg je -....
+        progressbarHealth.width = 0; //de breedte van rode bar op 0 anders krijg je -....
+        myGameArea.stop(); //freeze de game
     }
 
     //checken of de hitbox de targetDetection raakt
@@ -67,7 +71,7 @@ const updateGameArea = function() {
             score -= 25;
             progressbarHealth.width -= 25;
         }
-        
+
     }
     if (duckHitbox.crashWith(targetDetection2) || duckHitbox.crashWith(targetDetection3)) { //middelste ring 50 punten
         if (checkScore == score) {
@@ -82,18 +86,18 @@ const updateGameArea = function() {
             progressbarHealth.width -= 100;
         }
     }
-    
+
 
     //tijd aanpassen
     if (showPauseMenu == false && ShowReconnectionScreen == false) {
-        frames += 1;            //aantal frames berekenen
-        if (frames == 50) {     //game doet 50 frames per seconde
+        frames += 1; //aantal frames berekenen
+        if (frames == 50) { //game doet 50 frames per seconde
             //aantal seconden berekenen
             frames = 0;
-            if(countdownTimer > 0) countdownTimer--;
-            else{
-                start();        //Common actions functie
-                secondsPast++;  //seconds past +1
+            if (countdownTimer > 0) countdownTimer--;
+            else {
+                start(); //Common actions functie
+                secondsPast++; //seconds past +1
 
                 checkBTconnection();
             }
@@ -102,36 +106,36 @@ const updateGameArea = function() {
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
     console.log(`wee ${player2plays}`);
-    if(duckP1.amounthitbottom >= 2 && player2plays == false){    
-        if(player2enable == true){
+    if (duckP1.amounthitbottom >= 2 && player2plays == false) {
+        if (player2enable == true) {
             reload(duckP2, duckHitbox, duckP1);
             player2plays = true;
-        }else{
+        } else {
             reload(duckP1, duckHitbox, duckP2);
         }
-    }else if(duckP2.amounthitbottom >= 2 && player2plays == true){
+    } else if (duckP2.amounthitbottom >= 2 && player2plays == true) {
         reload(duckP1, duckHitbox, duckP2);
         player2plays = false;
     }
 
-    if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}
-    if(player2enable == true){
-        if (myGameArea.keys && myGameArea.keys[40]) {shoot(2)}
+    if (myGameArea.keys && myGameArea.keys[38]) { shoot(1) }
+    if (player2enable == true) {
+        if (myGameArea.keys && myGameArea.keys[40]) { shoot(2) }
     }
 
-    myGameArea.clear();     //canvas clearen voor nieuwe frame
+    myGameArea.clear(); //canvas clearen voor nieuwe frame
 
-    duckHitbox.newPos();    //nieuwe positie van duck instellen
-    duckP1.newPos();          //nieuwe positie van duck instellen
-    if(player2enable == true){
+    duckHitbox.newPos(); //nieuwe positie van duck instellen
+    duckP1.newPos(); //nieuwe positie van duck instellen
+    if (player2enable == true) {
         duckP2.newPos();
         lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblSecondsPast.text = "Tijd: " + secondsPast;   //text aanpassen van tijd
-    lblScore.text = "Score: " + score;              //text aanpassen van score
-    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
+    lblSecondsPast.text = "Tijd: " + secondsPast; //text aanpassen van tijd
+    lblScore.text = "Score: " + score; //text aanpassen van score
+    if (countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
@@ -146,9 +150,9 @@ const updateGameArea = function() {
     targetDetection5.update();
     mybackground.update();
     target.update();
-    
+
     duckP1.update();
-    if(player2enable == true){
+    if (player2enable == true) {
         duckP2.update();
         lblDeltaHR2.update();
     }
@@ -160,30 +164,29 @@ const updateGameArea = function() {
     lblCountdownTimer.update();
     lblDeltaHR.update();
 
-    if (score <= 0){
-        document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+    if (score <= 0) {
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible";
         document.querySelector(".js-VictoryScreen-spelers").innerHTML = spname.value;
-        document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+        document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
         CanvasBlur = true;
-        document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
-        if (player2enable == true){
+        document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
+        if (player2enable == true) {
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} & ${p2name.value}`;
-        }else{
+            PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
+        } else {
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
+            PostLeaderboardEntry(mpname.value, "solo-doelwit-verquackelen", 0, secondsPast)
         }
-    }
-    else if(showPauseMenu != true){
+    } else if (showPauseMenu != true) {
         document.body.classList.remove("bgGamemode--blur");
         document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
-    }    //victory screen hidden houden
-    if(showPauseMenu == true)
-    {
+    } //victory screen hidden houden
+    if (showPauseMenu == true) {
         //opens or closes pause menu
         document.querySelector(".js-PauseMenu").style.visibility = "visible";
-    }
-    else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
+    } else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 
 }
 

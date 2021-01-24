@@ -8,7 +8,9 @@ var showPauseMenu = false,
     btnPause, btnExit, bluetoothConnected = false,
     bluetoothConnected2 = false,
     timeStampHR, timeStampHR2;
-var canShoot, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
+var canShoot, CalmHR = 1000,
+    CalmHR2 = 1000,
+    ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
     gameScore = 4,
@@ -63,8 +65,8 @@ const shoot = function(wichbutton) {
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
 
         if (player2plays == true && wichbutton == 2 && player2enable == true) {
-          //var speed = 6.7;  
-          if (HR2 != null) {
+            //var speed = 6.7;  
+            if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -80,7 +82,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
-          //var speed = 6.7;
+            //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -97,8 +99,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2enable == false && wichbutton == 1) {
-          //var speed = 6.7; 
-          if (HR != null) {
+            //var speed = 6.7; 
+            if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
             } else {
@@ -113,8 +115,8 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        } else if ( wichbutton == 3) {
-          //var speed = 6.7;
+        } else if (wichbutton == 3) {
+            //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7
@@ -130,11 +132,11 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 4){
-          var speed = 6.7;  
-          if (HR2 != null) {
-              ShootHR = (HR2 - CalmHR2) / 5;
-              var speed = ShootHR; //6.7
+        } else if (wichbutton == 4) {
+            var speed = 6.7;
+            if (HR2 != null) {
+                ShootHR = (HR2 - CalmHR2) / 5;
+                var speed = ShootHR; //6.7
             } else {
                 console.error("no HR");
             }
@@ -147,7 +149,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 5){
+        } else if (wichbutton == 5) {
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -162,7 +164,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 6){
+        } else if (wichbutton == 6) {
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
@@ -178,8 +180,8 @@ const shoot = function(wichbutton) {
             // duckHitbox2.speedY = -3;
             checkSecondsPast = secondsPast;
         }
-      }
-  }
+    }
+}
 
 //#endregion
 
@@ -199,7 +201,7 @@ const reload = function(D1, DH1, D2) {
         DH1.speedY = 0;
         DH1.gravitySpeed = 0;
         DH1.gravity = 0;
-        if(D2 != null){
+        if (D2 != null) {
             D2.x = (viewport * 0.01);
             D2.y = (viewportHeight * 0.6);
             D2.speedY = 0;
@@ -208,7 +210,7 @@ const reload = function(D1, DH1, D2) {
             D2.amounthitbottom = 0;
         }
         canShoot = true;
-    }    
+    }
 }
 
 //#endregion 
@@ -235,7 +237,7 @@ const refresh = function(number = 0) {
 //#region *** set rusthartslag function ***
 
 const rusthartslag = function() {
-    if(HR > 30 && CalmHR > HR){ 
+    if (HR > 30 && CalmHR > HR) {
         CalmHR = HR; //rusthartslag gelijkstellen aan hartslag
         document.querySelector('.js-heartrateP1').innerHTML = CalmHR;
     }
@@ -251,7 +253,7 @@ const rusthartslag = function() {
 }
 
 const rusthartslag2 = function() {
-    if(HR2 > 30 && CalmHR2 > HR2){
+    if (HR2 > 30 && CalmHR2 > HR2) {
         CalmHR2 = HR2;
         document.querySelector('.js-heartrateP2').innerHTML = CalmHR2;
     }
@@ -580,7 +582,7 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
 const onHeartRateChanged = function(event) { //wordt om de __ seconden uitgevoerd om HR aan te passen
     //console.log('Hey lekker beest');
     //console.log(ShowReconnectionScreen);
-    if(ShowReconnectionScreen == true) rusthartslag();
+    if (ShowReconnectionScreen == true) rusthartslag();
     const characteristic = event.target;
     timeStampHR = event.timeStamp;
     HR = parseHeartRate(characteristic.value).heartRate;
@@ -627,7 +629,7 @@ const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
 
 function onHeartRateChanged2(event) {
     //console.log('Hey lekker beest');
-    if(ShowReconnectionScreen == true) rusthartslag2();
+    if (ShowReconnectionScreen == true) rusthartslag2();
     const characteristic = event.target;
     timeStampHR2 = event.timeStamp;
     HR2 = parseHeartRate(characteristic.value).heartRate;
@@ -808,5 +810,28 @@ const loadCorrectGame = function() {
                 loadGame();
                 break;
         }
+    }
+    //#endregion
+
+//#region *** load correct game***
+const PostLeaderboardEntry = function(name, gamemodename, score, time) {
+        var Url = 'https://angry-ducks-api.azurewebsites.net/api/gamemode/' + gamemodename;
+        $.get(Url, function(data, status) {
+            console.log(`${data}`);
+            var gamemodeId = data;
+
+            Url = 'https://angry-ducks-api.azurewebsites.net/api/scoreboard';
+            var data = {
+                "Name": name,
+                "GamemodeId": gamemodeId,
+                "Score": score,
+                "Time": time
+            }
+
+            data = JSON.stringify(data)
+            $.post(Url, data, function(data, status) {
+                console.log(`${data} and status is ${status}`);
+            })
+        })
     }
     //#endregion
