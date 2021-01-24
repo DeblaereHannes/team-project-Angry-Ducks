@@ -62,12 +62,12 @@ body {
 
 .c-live-heart-rates {
     display: flex;
-    flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 50%;
+    top: 100px;
+    left: 30%;
     /*margin-right: 1rem;*/
-    margin-left: 112.5rem;
+    /*margin-left: 112.5rem;*/
     /* display: flex;
     flex-direction: column;*/
     justify-content: center;
@@ -175,6 +175,8 @@ body {
 
 .c-card2 {
     background-color: #4A4A4A;
+    display: flex;
+    flex-direction: column;
     /*opacity: .5;*/
     border-radius: 0.8rem;
     margin-bottom: 2rem;
