@@ -202,6 +202,7 @@ const updateGameArea5 = function() {
 
     if (score <= 0 || score1 <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+        document.querySelector(".c-live-heart-rates").classList.add("game--blur");
         document.querySelector(".js-VictoryScreen-spelers").innerHTML = spname.value;
         document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
         document.getElementById("js-score").classList.add("ishidden");

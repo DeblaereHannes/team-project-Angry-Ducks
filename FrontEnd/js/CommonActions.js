@@ -229,6 +229,7 @@ const refresh = function(number = 0) {
     canShoot = false; //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display = "block";
     document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    document.querySelector(".c-live-heart-rates").classList.remove("game--blur");
     myGameArea.stop(); //canvas freezen
     if (number == 0) loadCorrectGame();
     //volledige game terug aanmaken
@@ -493,6 +494,7 @@ const listenToButtons2 = function() {
         if (ShowReconnectionScreen == false) {
             showPauseMenu = true;
             document.body.classList.add("bgGamemode--blur");
+            document.querySelector(".c-live-heart-rates").classList.add("game--blur");
             CanvasBlur = true;
         }
     });
@@ -506,6 +508,7 @@ const init2 = function() {
 const hidePauseMenu = function() {
     showPauseMenu = false;
     document.body.classList.remove("bgGamemode--blur");
+    document.querySelector(".c-live-heart-rates").classList.remove("game--blur");
     CanvasBlur = false;
 }
 
@@ -518,6 +521,7 @@ const hideReconnectionWindow = function() {
     document.body.classList.remove("bgGamemode--blur");
     backtohome.classList.remove("homescreen--blur");
     document.querySelector(".js-selectioncontainer").classList.remove("homescreen--blur");
+    document.querySelector(".c-live-heart-rates").classList.remove("game--blur");
     CanvasBlur = false;
 }
 
@@ -706,6 +710,7 @@ const ShowReconnectionWindow = function() {
     document.querySelector(".js-connect").style.visibility = "visible";
     backtohome.classList.add("homescreen--blur");
     document.querySelector(".js-selectioncontainer").classList.add("homescreen--blur");
+    document.querySelector(".c-live-heart-rates").classList.add("game--blur");
     document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
 
 }

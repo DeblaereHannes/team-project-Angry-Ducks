@@ -172,6 +172,7 @@ const updateGameArea = function() {
         document.querySelector(".js-VictoryScreen").style.visibility = "visible";
         document.querySelector(".js-VictoryScreen-spelers").innerHTML = spname.value;
         document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
+        document.querySelector(".c-live-heart-rates").classList.add("game--blur");
         CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
         if (player2enable == true) {
@@ -186,6 +187,7 @@ const updateGameArea = function() {
     } else if (showPauseMenu != true) {
         document.body.classList.remove("bgGamemode--blur");
         document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+        document.querySelector(".c-live-heart-rates").classList.remove("game--blur");
     } //victory screen hidden houden
     if (showPauseMenu == true) {
         //opens or closes pause menu

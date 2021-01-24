@@ -148,6 +148,7 @@ const updateGameArea3 = function() {
             if (rounds <= 0) {
                 document.querySelector(".js-VictoryScreen").style.visibility = "visible";
                 document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
+                document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
@@ -166,6 +167,7 @@ const updateGameArea3 = function() {
             if (rounds <= 0) {
                 document.querySelector(".js-VictoryScreen").style.visibility = "visible";
                 document.body.classList.add("bgGamemode--blur"); //victory screen unhiden
+                document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
