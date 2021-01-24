@@ -17,8 +17,7 @@ const loadGamemode3 = function() {
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-    
-    path = "./img/charactersflipped";
+
     duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     // for (let index = 0; index < 10; index++) {
