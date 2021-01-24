@@ -188,7 +188,17 @@ const updateGameArea5 = function() {
     lblCountdownTimer.update();
     lblDeltaHR.update();
 
-    
+    if (score <= 0 || score1 <= 0){
+        document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 
+        document.querySelector(".js-VictoryScreen-spelers").innerHTML = spname.value;
+        document.body.classList.add("bgGamemode--blur");      //victory screen unhiden
+        document.getElementById("js-score").classList.add("ishidden");
+        CanvasBlur = true;
+        document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
+        document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
+        if (score <= 0) document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} versloeg ${p2name.value}!`;
+        else if(score1 <= 0) document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${p2name.value} versloeg ${mpname.value}!`;
+    }
     //victory screen hidden houden
     if(showPauseMenu == true)
     {

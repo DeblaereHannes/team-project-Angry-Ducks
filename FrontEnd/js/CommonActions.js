@@ -65,7 +65,7 @@ const shoot = function(wichbutton) {
         checkScore2 = score1;
 
         if (player2plays == true && wichbutton == 2 && player2enable == true) {
-          //var speed = 6.7;  
+          var speed = 6.7;  
           if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
@@ -82,7 +82,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
-          //var speed = 6.7;
+          var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -116,7 +116,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if ( wichbutton == 3) {
-          //var speed = 6.7;
+            //var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7
@@ -133,7 +133,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 4){
-          var speed = 6.7;  
+          //var speed = 6.7;  
           if (HR2 != null) {
               ShootHR = (HR2 - CalmHR2) / 5;
               var speed = ShootHR; //6.7
@@ -150,6 +150,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 5){
+            var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = 6.7;
@@ -166,6 +167,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 6){
+            //var speed = 6.7;
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = 6.7;
@@ -223,6 +225,7 @@ const refresh = function(number = 0) {
     pauseYduck = 0;
     pauseXhitbox = 0;
     pauseYhitbox = 0;
+    document.getElementById("js-score").classList.remove("ishidden");
     CanvasBlur = false;
     timerOn = false; //tijd terug uit zetten
     canShoot = false; //niet shieten tijdens reset
@@ -345,7 +348,7 @@ const scoreSelection = function(Number) {
             loadscores("versus-brood-oorlog", "s")
             break;
         case 3:
-            document.getElementById("gameModeScore").innerHTML = "Co-op";
+            document.getElementById("gameModeScore").innerHTML = "Versus";
             document.getElementById("gameTitleScore").innerHTML = "Ver Vliegen";
             loadscores("versus-ver-vliegen", "s")
             break;
@@ -441,7 +444,7 @@ const gameSelection = function(Number) {
                 document.getElementById("gameTitle").innerHTML = "Brood Oorlog";
                 break;
             case 3:
-                document.getElementById("gameMode").innerHTML = "Co-op";
+                document.getElementById("gameMode").innerHTML = "Versus";
                 document.getElementById("gameTitle").innerHTML = "Ver Vliegen";
                 break;
             case 4:
