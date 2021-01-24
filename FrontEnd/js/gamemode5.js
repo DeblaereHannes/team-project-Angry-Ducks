@@ -40,8 +40,6 @@ const loadGamemode5 = function() {
     score1 = 300;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
-    canShoot = true;
-    canShoot2 = true;
     myGameArea.load(5);  //laad de canvas in
 }
 

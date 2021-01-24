@@ -8,7 +8,7 @@ var showPauseMenu = false,
     btnPause, btnExit, bluetoothConnected = false,
     bluetoothConnected2 = false,
     timeStampHR, timeStampHR2;
-var canShoot, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
+var canShoot = false, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
     gameScore = 4,
@@ -49,6 +49,7 @@ const start = function() {
     if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
+        canShoot2 = true;
     }
 }
 
