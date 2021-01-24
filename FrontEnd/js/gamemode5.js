@@ -113,7 +113,8 @@ const updateGameArea5 = function() {
             frames = 0;
             if(countdownTimer > 0) countdownTimer--;
             else{
-                start(canShoot2);        //Common actions functie
+                start();        //Common actions functie
+                canShoot2 = true;
                 secondsPast++;  //seconds past +1
 
                 checkBTconnection();
@@ -126,7 +127,7 @@ const updateGameArea5 = function() {
     if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(6)}
 
 
-    //console.log(`1. ${canShoot}    2. ${canShoot2}`);
+    console.log(`1. ${canShoot}    2. ${canShoot2}`);
 
     if(duckP1.amounthitbottom >= 2){
         reload(duckP1, duckHitbox);

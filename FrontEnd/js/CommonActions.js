@@ -44,12 +44,11 @@ gameSelections[4] = "./img/gameselection/imgGamemode5.png";
 
 //#region *** Start Function ***
 
-const start = function(shoot) {
+const start = function() {
     //tijd aanleggen
     if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
-        shoot = true;
     }
 }
 
