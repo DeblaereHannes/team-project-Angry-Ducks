@@ -1,5 +1,5 @@
 
-var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2;
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false;
 
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
@@ -112,7 +112,7 @@ const updateGameArea5 = function() {
             frames = 0;
             if(countdownTimer > 0) countdownTimer--;
             else{
-                start();        //Common actions functie
+                start(canShoot2);        //Common actions functie
                 secondsPast++;  //seconds past +1
 
                 checkBTconnection();
