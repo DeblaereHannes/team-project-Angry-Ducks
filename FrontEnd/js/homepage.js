@@ -197,7 +197,7 @@ const listenToButtons = function() {
 
                     if(spname.value != "")
                     {
-                        if (document.querySelector(".js-heartrateP1").innerHTML > 0) {*/
+                        if (document.querySelector(".js-heartrateP1").innerHTML > 0) {
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
                             gameselection.style.display = "block";

@@ -1,5 +1,9 @@
 
-var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2;
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2, winner ="", loser = "";
+
+var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}`, 
+                             `${winner} verkwaakte ${loser}`,
+                             `${winner} verkwaakte ${loser}`]
 
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
@@ -200,8 +204,16 @@ const updateGameArea5 = function() {
         CanvasBlur = true;
         document.querySelector(".js-pause").style.display = "none";                     //pause knop weg doen
         document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-        if (score <= 0) document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} versloeg ${p2name.value}!`;
-        else if(score1 <= 0) document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${p2name.value} versloeg ${mpname.value}!`;
+        if (score <= 0){
+            winner = mpname.value;
+            loser = p2name.value;
+        } 
+        else if(score1 <= 0) 
+        {
+            winner = p2name.value;
+            loser = mpname.value;
+        }
+        document.querySelector(".js-VictoryScreen-spelers").innerHTML = victoryScreenMessages[0];
     }
     //victory screen hidden houden
     if(showPauseMenu == true)
