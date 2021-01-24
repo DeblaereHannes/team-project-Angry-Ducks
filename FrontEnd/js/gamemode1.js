@@ -101,7 +101,7 @@ const updateGameArea = function() {
     }
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
-    console.log(`wee ${canShoot}`);
+    //console.log(`wee ${canShoot}`);
     if(duckP1.amounthitbottom >= 2 && player2plays == false){    
         if(player2enable == true){
             reload(duckP2, duckHitbox, duckP1);

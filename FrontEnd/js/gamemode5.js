@@ -28,8 +28,8 @@ const loadGamemode5 = function() {
 
     progressbarHealth = new component("progressbar", (300), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (300), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
-    progressbarHealth2 = new component("progressbar", (300), (viewport * 0.017578125), "red", viewport - (viewport * 0.09765625), (viewport * 0.025390625));
-    progressbarBackground2 = new component("progressbar", (300), (viewport * 0.01953125), "white", viewport - (viewport * 0.09765625), (viewport * 0.0244140625));
+    progressbarHealth2 = new component("progressbar", (300), (viewport * 0.017578125), "red", viewport - (viewport * 0.09765625) - 300, (viewport * 0.025390625));
+    progressbarBackground2 = new component("progressbar", (300), (viewport * 0.01953125), "white", viewport - (viewport * 0.09765625) - 300, (viewport * 0.0244140625));
     // for (let index = 0; index < 10; index++) {
     //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
         
@@ -125,7 +125,7 @@ const updateGameArea5 = function() {
     if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(6)}
 
 
-    console.log(`1. ${canShoot}    2. ${canShoot2}`);
+    //console.log(`1. ${canShoot}    2. ${canShoot2}`);
 
     if(duckP1.amounthitbottom >= 2){
         reload(duckP1, duckHitbox);
@@ -157,6 +157,7 @@ const updateGameArea5 = function() {
     //alles updaten: terug visueel maken na clearen
     mybackground.update();
     duckHitbox.update();
+    duckHitbox2.update();
 
     targetDetection.update();
     targetDetection2.update();
@@ -176,7 +177,6 @@ const updateGameArea5 = function() {
     duckP1.update();
 
     duckP2.update();
-    duckHitbox2.update();
     lblDeltaHR2.update();
     
     progressbarBackground.update();

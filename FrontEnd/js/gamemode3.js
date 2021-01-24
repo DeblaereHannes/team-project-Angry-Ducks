@@ -60,7 +60,7 @@ const updateGameArea3 = function() {
     
 
 
-    console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
+    //console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
 
     //console.log(`${duckP1.amounthitbottom} ..... ${duckP2.amounthitbottom}`);
     //console.log(`player2 ${player2plays}`);
