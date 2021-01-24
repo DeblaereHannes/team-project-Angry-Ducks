@@ -69,6 +69,7 @@ const updateGameArea3 = function() {
         score1 = score;
         player2plays = true;
         reload(duckP2, duckHitbox);
+        canShoot = true;
     }
     
 
@@ -143,7 +144,10 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
             }
-            else reload(duckP1, duckHitbox);
+            else{
+                reload(duckP1, duckHitbox);
+                canShoot = true;  
+            } 
         }
     }else{
         if(duckP2.amounthitbottom >= 2){//alst ie gebounced heeft
@@ -158,7 +162,10 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
             }
-            else reload(duckP1, duckHitbox, duckP2);
+            else {
+                reload(duckP1, duckHitbox, duckP2);
+                canShoot = true;  
+            }
         }
     }
     

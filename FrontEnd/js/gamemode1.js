@@ -105,12 +105,15 @@ const updateGameArea = function() {
     if(duckP1.amounthitbottom >= 2 && player2plays == false){    
         if(player2enable == true){
             reload(duckP2, duckHitbox, duckP1);
+            canShoot = true;
             player2plays = true;
         }else{
             reload(duckP1, duckHitbox, duckP2);
+            canShoot = true;
         }
     }else if(duckP2.amounthitbottom >= 2 && player2plays == true){
         reload(duckP1, duckHitbox, duckP2);
+        canShoot = true;
         player2plays = false;
     }
 

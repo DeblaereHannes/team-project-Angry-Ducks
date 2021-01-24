@@ -148,13 +148,14 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 5){
+        }else if(wichbutton == 5 && canShoot == true){
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = 6.7;
             } else {
                 console.error("no HR");
             }
+            canShoot = false;
             duckP1.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
             duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
             duckP1.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
@@ -163,13 +164,14 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 6){
+        }else if(wichbutton == 6 && canShoot2 == true){
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = 6.7;
             } else {
                 console.error("no HR");
             }
+            canShoot2 = false;
             duckP2.gravity = 0.075; //zwaartekracht aanmaken zodat de eend valt
             duckP2.speedX = -speed; //horizontale snelheid volgens de slider waarde
             duckP2.speedY = -3; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
@@ -208,7 +210,6 @@ const reload = function(D1, DH1, D2) {
             D2.gravity = 0;
             D2.amounthitbottom = 0;
         }
-        canShoot = true;
     }    
 }
 
