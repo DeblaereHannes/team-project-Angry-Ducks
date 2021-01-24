@@ -55,14 +55,14 @@ const start = function() {
 
 //#region *** Shoot Function ***
 
-const shoot = function(wichbutton) {
+const shoot = function(whichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
     if ((canShoot == true || canShoot2 == true) && showPauseMenu == false && ShowReconnectionScreen == false) {
         console.log("test");
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         checkScore2 = score1;
 
-        if (player2plays == true && wichbutton == 2 && player2enable == true) {
+        if (player2plays == true && whichbutton == 2 && player2enable == true) {
           var speed = 6.7;  
           if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
@@ -79,7 +79,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        } else if (player2plays == false && wichbutton == 1 && player2enable == true) {
+        } else if (player2plays == false && whichbutton == 1 && player2enable == true) {
           var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
@@ -96,7 +96,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        } else if (player2enable == false && wichbutton == 1) {
+        } else if (player2enable == false && whichbutton == 1) {
           var speed = 6.7; 
           if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
@@ -113,7 +113,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        } else if ( wichbutton == 3) {
+        } else if ( whichbutton == 3) {
             var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
@@ -130,7 +130,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        } else if (wichbutton == 4) {
+        } else if (whichbutton == 4) {
             var speed = 6.7;
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
@@ -147,7 +147,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 5){
+        }else if(whichbutton == 5){
             var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
@@ -164,7 +164,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 6){
+        }else if(whichbutton == 6){
             var speed = 6.7;
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
@@ -442,9 +442,9 @@ const gameSelection = function(Number) {
                 document.getElementById("gameDescription").innerHTML = "Speel tegen elkaar en probeer zo snel mogelijk het doelwit van de tegenstander te vernietigen.";
                 break;
             case 3:
-                document.getElementById("gameMode").innerHTML = "Co-op";
+                document.getElementById("gameMode").innerHTML = "Versus";
                 document.getElementById("gameTitle").innerHTML = "Ver Vliegen";
-                document.getElementById("gameDescription").innerHTML = "Probeer samen zo ver mogelijk jullie eendjes te krijgen.";
+                document.getElementById("gameDescription").innerHTML = "Probeer verder te vliegen dan je tegenstander.";
                 break;
             case 4:
                 document.getElementById("gameMode").innerHTML = "Co-op";
