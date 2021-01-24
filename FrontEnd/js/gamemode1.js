@@ -177,7 +177,7 @@ const updateGameArea = function() {
             PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
         } else {
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
-            PostLeaderboardEntry(mpname.value, "solo-doelwit-verquackelen", 0, secondsPast)
+            PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
         }
     } else if (showPauseMenu != true) {
         document.body.classList.remove("bgGamemode--blur");

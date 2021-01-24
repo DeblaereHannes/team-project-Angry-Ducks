@@ -142,7 +142,7 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-                PostLeaderboardEntry(mpname.value, "solo-ver-vliegen", score, 0)
+                PostLeaderboardEntry(spname.value, "solo-ver-vliegen", score, 0)
             } else reload(duckP1, duckHitbox);
         }
     } else {
