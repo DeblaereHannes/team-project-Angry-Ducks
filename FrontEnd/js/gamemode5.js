@@ -1,10 +1,6 @@
 
 var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2, winner ="", loser = "";
 
-var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}`, 
-                             `${winner} verkwaakte ${loser}`,
-                             `${winner} verkwaakte ${loser}`]
-
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
     //alle componenten aanmaken
@@ -218,7 +214,16 @@ const updateGameArea5 = function() {
             winner = p2name.value;
             loser = mpname.value;
         }
-        document.querySelector(".js-VictoryScreen-spelers").innerHTML = victoryScreenMessages[0];
+        var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`, 
+                                    `${winner} verkwaakte ${loser}!`,
+                                    `${winner} verkwaakte ${loser}!`,
+                                    `${winner} vloog het snelst!`,
+                                    `${winner} vloog sneller dan ${loser}!`,
+                                `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
+                            var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
+                            console.log(randomNum); 
+                            console.log(victoryScreenMessages[randomNum]);
+                            document.querySelector(".js-VictoryScreen-spelers").innerHTML = victoryScreenMessages[randomNum];
     }
     //victory screen hidden houden
     if(showPauseMenu == true)
