@@ -18,7 +18,7 @@ const loadGamemode5 = function() {
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     path = "./img/charactersflipped";
-    duckP2 = new component("duck2", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], viewport - (viewport * 0.115), (viewportHeight * 0.425), "image");
+    duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], viewport - (viewport * 0.115), (viewportHeight * 0.425), "image");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
@@ -120,7 +120,9 @@ const updateGameArea5 = function() {
             if(countdownTimer > 0) countdownTimer--;
             else{
                 start();        //Common actions functie
-                canShoot2 = true;
+                if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
+                    canShoot2 = true;
+                }
                 secondsPast++;  //seconds past +1
 
                 checkBTconnection();
