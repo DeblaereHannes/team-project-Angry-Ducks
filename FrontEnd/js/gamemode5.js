@@ -56,7 +56,8 @@ const updateGameArea5 = function() {
             console.log(duckHitbox.x);
             console.log(duckHitbox.y);
             progressbarHealth.width = 0; 
-            progressbarHealth2.width = 0; 
+            progressbarHealth2.width = 0;
+            canShoot2 = false;
             myGameArea.stop();              //freeze de game
     }
 

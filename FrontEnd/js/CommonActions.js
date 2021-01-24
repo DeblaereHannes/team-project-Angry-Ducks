@@ -58,7 +58,7 @@ const start = function() {
 
 const shoot = function(wichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
-    if (canShoot == true && showPauseMenu == false && ShowReconnectionScreen == false) {
+    if ((canShoot == true || canShoot2 == true) && showPauseMenu == false && ShowReconnectionScreen == false) {
         //console.log(speed);
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         checkScore2 = score1;
@@ -148,7 +148,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 5 && canShoot == true){
+        }else if(wichbutton == 5){
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = 6.7;
@@ -164,7 +164,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedX = speed;
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
-        }else if(wichbutton == 6 && canShoot2 == true){
+        }else if(wichbutton == 6){
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = 6.7;
