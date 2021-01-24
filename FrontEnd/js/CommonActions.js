@@ -98,7 +98,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if (player2enable == false && wichbutton == 1) {
-          //var speed = 6.7; 
+          var speed = 6.7; 
           if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7;
@@ -115,7 +115,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         } else if ( wichbutton == 3) {
-            //var speed = 6.7;
+            var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
                 var speed = ShootHR; //6.7
@@ -132,7 +132,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -1;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 4){
-          //var speed = 6.7;  
+          var speed = 6.7;  
           if (HR2 != null) {
               ShootHR = (HR2 - CalmHR2) / 5;
               var speed = ShootHR; //6.7
@@ -166,7 +166,7 @@ const shoot = function(wichbutton) {
             duckHitbox.speedY = -3;
             checkSecondsPast = secondsPast;
         }else if(wichbutton == 6){
-            //var speed = 6.7;
+            var speed = 6.7;
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR;
