@@ -19,7 +19,7 @@
 
 
 var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://13.81.105.139')
+var client = mqtt.connect('ws://broker.emqx.io:8083/mqtt')
 var topic = '/angryducks/buttons'
 
 var five = require("johnny-five"),
