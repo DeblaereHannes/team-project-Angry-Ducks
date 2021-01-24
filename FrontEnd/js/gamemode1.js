@@ -1,6 +1,6 @@
 //#region *** variablen definieren ***
 
-var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth;
+var duckP1, duckP2, duckHitbox, target, targetDetection, targetDetection2, targetDetection3, targetDetection4, targetDetection5, progressbarBackground, progressbarHealth, path;
 var lblScore, score, checkScore, timerOn, lblSecondsPast, frames, secondsPast = 0,
     countdownTimer, lblCountdownTimer, checkSecondsPast = 0,
     previousTimestampHR = 0,
@@ -25,7 +25,8 @@ timerOn = false;
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGame = function() {
     //alle componenten aanmaken
-    duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
+    path = "./img/characters";
+    duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
     lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
     lblSecondsPast = new component("timer", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.025), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
@@ -42,7 +43,8 @@ const loadGame = function() {
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
 
-    duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
+    path = "./img/charactersflipped";
+    duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
 
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten

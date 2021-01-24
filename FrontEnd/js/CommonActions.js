@@ -17,21 +17,20 @@ var canShoot, CalmHR = 1000,
     canAlert = true,
     hearts, isHeart1Red = false,
     isHeart2Red = false;
-
 var characters = ["", "", "", "", "", "", "", "", ""],
     gameSelections = ["", "", "", ""];
 for (link of characters) {
     link = document.createElement('character');
 }
-characters[0] = "./img/characters/Duck_Male1.png";
-characters[1] = "./img/characters/Duck_Male2.png";
-characters[2] = "./img/characters/Duck_Male3.png";
-characters[3] = "./img/characters/Duck_Female1.png";
-characters[4] = "./img/characters/Duck_Female2.png";
-characters[5] = "./img/characters/Duck_Female3.png";
-characters[6] = "./img/characters/Duck_White.png";
-characters[7] = "./img/characters/Duck_Yellow.png";
-characters[8] = "./img/characters/Duck_Gray.png";
+characters[0] = "/Duck_Male1.png";
+characters[1] = "/Duck_Male2.png";
+characters[2] = "/Duck_Male3.png";
+characters[3] = "/Duck_Female1.png";
+characters[4] = "/Duck_Female2.png";
+characters[5] = "/Duck_Female3.png";
+characters[6] = "/Duck_White.png";
+characters[7] = "/Duck_Yellow.png";
+characters[8] = "/Duck_Gray.png";
 
 for (link of gameSelections) {
     link = document.createElement('gameSelection');
@@ -305,11 +304,13 @@ const characterSelection = function(Number) {
                 break; //player 1 right   
         }
     }
-    document.getElementById("0").src = characters[duckPlayer1];
-    document.getElementById("1").src = characters[duckPlayer1];
-    document.getElementById("2").src = characters[duckPlayer2];
-    document.getElementById("DuckP1Connect").src = characters[duckPlayer1];
-    document.getElementById("DuckP2Connect").src = characters[duckPlayer2];
+    path  = "./img/characters";
+    document.getElementById("0").src = path + characters[duckPlayer1];
+    document.getElementById("1").src = path + characters[duckPlayer1];
+    document.getElementById("DuckP2Connect").src = path + characters[duckPlayer2];
+    
+    path = "./img/charactersflipped";
+    document.getElementById("2").src = path + characters[duckPlayer2];
 }
 
 
