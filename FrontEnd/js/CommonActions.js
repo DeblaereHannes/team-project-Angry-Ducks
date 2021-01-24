@@ -151,7 +151,7 @@ const shoot = function(wichbutton) {
         }else if(wichbutton == 5){
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
-                var speed = 6.7;
+                var speed = ShootHR;
             } else {
                 console.error("no HR");
             }
@@ -167,7 +167,7 @@ const shoot = function(wichbutton) {
         }else if(wichbutton == 6){
             if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
-                var speed = 6.7;
+                var speed = ShootHR;
             } else {
                 console.error("no HR");
             }

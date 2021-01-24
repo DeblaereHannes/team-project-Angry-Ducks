@@ -173,7 +173,7 @@ const listenToButtons = function() {
         })
         togamemodeselect.addEventListener("click", function() {
             if (ShowReconnectionScreen == false) {
-            /*if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+            if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                 {
                     if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) {
 
@@ -189,7 +189,7 @@ const listenToButtons = function() {
 
                     }
                 } else {
-                    if (document.querySelector(".js-heartrateP1").innerHTML > 0) {*/
+                    if (document.querySelector(".js-heartrateP1").innerHTML > 0) {
                         playerselection.classList.remove("current");
                         gameselection.classList.add("current");
                         gameselection.style.display = "block";
@@ -199,8 +199,8 @@ const listenToButtons = function() {
                         for (let player of players) {
                             if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
                         }
-                   // }
-              //  }
+                    }
+                }
             }
         })
     }
