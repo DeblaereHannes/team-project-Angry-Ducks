@@ -10,8 +10,10 @@ const loadGamemode3 = function() {
     //alle componenten aanmaken
     path = "./img/characters";
     duckP1 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer1], (viewport * 0.07), (viewportHeight * 0.425), "image");
-    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.055), "text");
+    lblScore = new component("score", "30px", "Roboto", "black", (viewport * 0.1), (viewport * 0.060), "text");
+    lblScore2 = new component("score", "30px", "Roboto", "black", viewport - (viewport * 0.1) - 300, (viewport * 0.060), "text");
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox2 = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
@@ -63,7 +65,7 @@ const updateGameArea3 = function() {
 
 
 
-    console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
+    //console.log(`yeeet ${player2plays} .. ${duckP1.amounthitbottom}`);
 
     //console.log(`${duckP1.amounthitbottom} ..... ${duckP2.amounthitbottom}`);
     //console.log(`player2 ${player2plays}`);
@@ -71,7 +73,8 @@ const updateGameArea3 = function() {
     if (duckP1.amounthitbottom >= 2 && player2plays == false) {
         score1 = score;
         player2plays = true;
-        reload(duckP2, duckHitbox);
+        reload(duckP2, duckHitbox2);
+        canShoot = true;
     }
 
 
@@ -93,7 +96,9 @@ const updateGameArea3 = function() {
 
 
     score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
-    if (score < 0) { score = 0 }
+    if (score < 0) {score = 0}
+    score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    if (score1 < 0) {score1 = 0}
 
 
     if (player2plays == false) {
@@ -114,20 +119,23 @@ const updateGameArea3 = function() {
     }
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblScore.text = "Score: " + (score + score1); //text aanpassen van score
-    if (countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
+    lblScore.text = "Score: " + (score);              //text aanpassen van score
+    lblScore2.text = "Score: " + (score1);
+    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-    mybackground.update();
     duckHitbox.update();
+    duckHitbox2.update();
+    mybackground.update();
     duckP1.update();
 
     if (player2enable == true) {
         duckP2.update();
         lblDeltaHR2.update();
+        lblScore2.update();
     }
 
     lblScore.update();
@@ -145,8 +153,11 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-                PostLeaderboardEntry(spname.value, "solo-ver-vliegen", score, 0)
-            } else reload(duckP1, duckHitbox);
+            }
+            else{
+                reload(duckP1, duckHitbox);
+                canShoot = true;  
+            } 
         }
     } else {
         if (duckP2.amounthitbottom >= 2) { //alst ie gebounced heeft
@@ -160,9 +171,11 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-pause").style.display = "none";
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
-                //PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "versus-ver-vliegen", (score1 + score), 0) //2 player post
-                //PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", score, 0) //1 player post stopt er een if in of zo
-            } else reload(duckP1, duckHitbox, duckP2);
+            }
+            else {
+                reload(duckP1, duckHitbox, duckP2);
+                canShoot = true;  
+            }
         }
     }
 
