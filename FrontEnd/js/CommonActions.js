@@ -312,6 +312,7 @@ const characterSelection = function(Number) {
     document.getElementById("0").src = path + characters[duckPlayer1];
     document.getElementById("1").src = path + characters[duckPlayer1];
     document.getElementById("DuckP2Connect").src = path + characters[duckPlayer2];
+    document.getElementById("DuckP1Connect").src = path + characters[duckPlayer1];
     
     path = "./img/charactersflipped";
     document.getElementById("2").src = path + characters[duckPlayer2];
