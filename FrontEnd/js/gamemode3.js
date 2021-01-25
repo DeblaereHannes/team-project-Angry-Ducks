@@ -154,7 +154,6 @@ const updateGameArea3 = function() {
                 document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
-                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
             } else {
                 reload(duckP1, duckHitbox);
