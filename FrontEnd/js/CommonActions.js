@@ -364,7 +364,7 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     return parseFloat(a.score) + parseFloat(b.score);
                 });
                 document.querySelector(".js-scoreboard-container").innerHTML = "";
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < data.length; i++) {
                     const e = data[i];
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
@@ -378,7 +378,7 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                 });
                 //console.log(data)
                 document.querySelector(".js-scoreboard-container").innerHTML = "";
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < data.length; i++) {
                     const e = data[i];
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
