@@ -219,8 +219,12 @@ body {
 }
 
 .c-label--positie {
-    padding-left: 1rem;
     font-size: 2rem;
+}
+
+.c-label--positie-2{
+    margin: auto;
+    font-weight: 700;
 }
 
 .menu-container {
