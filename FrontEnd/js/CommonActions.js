@@ -550,12 +550,12 @@ const handleHeartRateMeasurementCharacteristic = function(characteristic) {
     {
         if (isHeart1Red == true && isHeart2Red == true) {
             document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
-            document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
+            document.querySelector(".js-text").innerHTML = "Rust even terwijl we je rusthartslag meten.";
         } else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeters."
     } else {
         if (isHeart1Red == true) {
             document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
-            document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
+            document.querySelector(".js-text").innerHTML = "Rust even terwijl we je rusthartslag meten.";
         } else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeter.";
     }
 
@@ -603,7 +603,7 @@ const handleHeartRateMeasurementCharacteristic2 = function(characteristic) {
     {
         if (isHeart1Red == true && isHeart2Red == true) {
             document.querySelector(".js-ShowConnectionWindow").style.fill = "#EE1C25";
-            document.querySelector(".js-text").innerHTML = "Klik het hartje om je rusthartslag te meten.";
+            document.querySelector(".js-text").innerHTML = "Rust even terwijl we je rusthartslag meten.";
         } else document.querySelector(".js-text").innerHTML = "Verbind de nodige hartslagmeters.";
     }
 
@@ -703,7 +703,7 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-    if(gamePicture != 1 && gamePicture != 3){
+    if(gamePicture != 1 || gamePicture != 3){
             switch ((HR - CalmHR) / 5) {
                 case 6.0:
                 case 6.1:
