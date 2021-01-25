@@ -75,21 +75,21 @@ const updateGameArea = function() {
     }
 
     //checken of de hitbox de targetDetection raakt
-    if (duckHitbox.crashWith(targetDetection4) || duckHitbox.crashWith(targetDetection5)) { //buitenste ring 25 punten
+    if (duckHitbox.crashWith(targetDetection4) || duckHitbox.crashWith(targetDetection5) || duckHitbox2.crashWith(targetDetection4) || duckHitbox2.crashWith(targetDetection5)) { //buitenste ring 25 punten
         if (checkScore == score) {
             score -= 25;
             progressbarHealth.width -= 25;
         }
 
     }
-    if (duckHitbox.crashWith(targetDetection2) || duckHitbox.crashWith(targetDetection3)) { //middelste ring 50 punten
+    if (duckHitbox.crashWith(targetDetection2) || duckHitbox.crashWith(targetDetection3) || duckHitbox2.crashWith(targetDetection2) || duckHitbox2.crashWith(targetDetection3)) { //middelste ring 50 punten
         if (checkScore == score) {
             score -= 50;
             progressbarHealth.width -= 50;
         }
 
     }
-    if (duckHitbox.crashWith(targetDetection)) { //middelpunt 100 punten
+    if (duckHitbox.crashWith(targetDetection) || duckHitbox2.crashWith(targetDetection)) { //middelpunt 100 punten
         if (checkScore == score) {
             score -= 100;
             progressbarHealth.width -= 100;
@@ -117,7 +117,7 @@ const updateGameArea = function() {
     //console.log(`wee ${canShoot}`);
     if (duckP1.amounthitbottom >= 2 && player2plays == false) {
         if (player2enable == true) {
-            reload(duckP2, duckHitbox2, duckP1);
+            reload(duckP2, duckHitbox2, duckP1, duckHitbox);
             canShoot2 = true;
             MQTTSendReload("2");
             player2plays = true;
@@ -127,7 +127,7 @@ const updateGameArea = function() {
             canShoot = true;
         }
     } else if (duckP2.amounthitbottom >= 2 && player2plays == true) {
-        reload(duckP1, duckHitbox, duckP2);
+        reload(duckP1, duckHitbox, duckP2, duckHitbox2);
         canShoot = true;
         MQTTSendReload("1");
         player2plays = false;
@@ -141,6 +141,7 @@ const updateGameArea = function() {
     myGameArea.clear(); //canvas clearen voor nieuwe frame
 
     duckHitbox.newPos(); //nieuwe positie van duck instellen
+    console.log(duckHitbox2.x);
     duckP1.newPos(); //nieuwe positie van duck instellen
     if (player2enable == true) {
         duckP2.newPos();
@@ -157,7 +158,7 @@ const updateGameArea = function() {
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-    duckHitbox2.update();
+    
     duckHitbox.update();
     targetDetection.update();
     targetDetection2.update();
@@ -171,6 +172,7 @@ const updateGameArea = function() {
     if (player2enable == true) {
         duckP2.update();
         lblDeltaHR2.update();
+        duckHitbox2.update();
     }
 
     lblScore.update();

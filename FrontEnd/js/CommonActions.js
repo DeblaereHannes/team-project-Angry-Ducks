@@ -121,7 +121,7 @@ const shoot = function(whichbutton) {
 
 //#region *** Reload 2 duck Function ***
 
-const reload = function(D1, DH1, D2) {
+const reload = function(D1, DH1, D2, DH2) {
     //locatie eend resetten
     if (secondsPast != 0 && showPauseMenu == false && ShowReconnectionScreen == false) {
         D1.x = (viewport * 0.07);
@@ -142,6 +142,10 @@ const reload = function(D1, DH1, D2) {
             D2.gravitySpeed = 0;
             D2.gravity = 0;
             D2.amounthitbottom = 0;
+        }
+        if(DH2 != null){
+            DH2.x = 0;
+            DH2.y = 0;
         }
     }
 }
