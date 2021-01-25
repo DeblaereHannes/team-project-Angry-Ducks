@@ -36,7 +36,7 @@ const loadGame = function() {
     targetDetection4 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.5859375), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     targetDetection5 = new component("target", (viewport * 0.0244140625), 1, "yellow", (viewport * 0.7080078125), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.5) - 250, (viewport * 0.025390625));
-    progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.5) -250, (viewport * 0.0244140625));
+    progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.5) - 250, (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     duckHitbox2 = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
@@ -110,8 +110,8 @@ const updateGameArea = function() {
 
     //console.log(`${previousTimestampHR} .. ${timeStampHR}`);
     //console.log(`wee ${canShoot}`);
-    if(duckP1.amounthitbottom >= 2 && player2plays == false){    
-        if(player2enable == true){
+    if (duckP1.amounthitbottom >= 2 && player2plays == false) {
+        if (player2enable == true) {
             reload(duckP2, duckHitbox2, duckP1);
             canShoot2 = true;
             MQTTSendReload("2");
@@ -186,10 +186,10 @@ const updateGameArea = function() {
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} & ${p2name.value}`;
-            PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
+            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
         } else {
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
-            PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
+            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
         }
     } else if (showPauseMenu != true) {
         document.body.classList.remove("bgGamemode--blur");

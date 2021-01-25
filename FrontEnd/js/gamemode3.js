@@ -1,6 +1,7 @@
 //#region *** variablen ***
 
-var loadAlldetection, score1, rounds = 3, winner, loser;
+var loadAlldetection, score1, rounds = 3,
+    winner, loser;
 
 //#endregion
 
@@ -97,9 +98,9 @@ const updateGameArea3 = function() {
 
 
     score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
-    if (score < 0) {score = 0}
+    if (score < 0) { score = 0 }
     score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
-    if (score1 < 0) {score1 = 0}
+    if (score1 < 0) { score1 = 0 }
 
 
     if (player2plays == false) {
@@ -120,9 +121,9 @@ const updateGameArea3 = function() {
     }
 
     lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
-    lblScore.text = "Score: " + (score);              //text aanpassen van score
+    lblScore.text = "Score: " + (score); //text aanpassen van score
     lblScore2.text = "Score: " + (score1);
-    if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
+    if (countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
         lblCountdownTimer.text = countdownTimer;
     else lblCountdownTimer.text = "";
 
@@ -155,12 +156,11 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `1 speler`;
                 document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${score}`;
-            }
-            else{
+            } else {
                 reload(duckP1, duckHitbox);
                 MQTTSendReload("1");
-                canShoot = true;  
-            } 
+                canShoot = true;
+            }
         }
     } else {
         if (duckP2.amounthitbottom >= 2) { //alst ie gebounced heeft
@@ -174,34 +174,33 @@ const updateGameArea3 = function() {
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${(mpname.value)}: ${(score)}m / ${(p2name.value)}: ${(score1)}m`;
-            }
-            else {
+            } else {
                 reload(duckP1, duckHitbox, duckP2);
-                canShoot = true;  
+                canShoot = true;
             }
-            if (score > score1){
+            if (score > score1) {
                 winner = mpname.value;
                 loser = p2name.value;
-                
-            } 
-            else if(score < score1) 
-            {
+                document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(mpname.value, "coop-ver-vervliegen", score, 0)
+            } else if (score < score1) {
                 winner = p2name.value;
                 loser = mpname.value;
+                document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(spname.value, "coop-ver-vliegen", score1, 0)
             }
-            var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`, 
-                                        `${winner} verkwaakte ${loser}!`,
-                                        `${winner} versloeg ${loser}!`,
-                                        `${winner} vloog het verst!`,
-                                        `${winner} vloog verder dan ${loser}!`,
-                                    `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
-                                var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
-                                console.log(randomNum); 
-                                console.log(victoryScreenMessages[randomNum]);
-            if(score != score1) document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
+            var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`,
+                `${winner} verkwaakte ${loser}!`,
+                `${winner} versloeg ${loser}!`,
+                `${winner} vloog het verst!`,
+                `${winner} vloog verder dan ${loser}!`,
+                `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`
+            ];
+            var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
+            console.log(randomNum);
+            console.log(victoryScreenMessages[randomNum]);
+            if (score != score1) document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
             else document.querySelector(".js-VictoryScreen-Time").innerHTML = 'Jullie speelden gelijk!'
+        }
     }
-}
 
     //victory screen hidden houden
     if (showPauseMenu == true) {

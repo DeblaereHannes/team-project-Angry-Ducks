@@ -63,18 +63,18 @@ const listenToButtons = function() {
         background.classList.add("homescreen--blur");
     });
 
-    for(scoreboardButton of scoreboardButtons){
+    for (scoreboardButton of scoreboardButtons) {
         scoreboardButton.addEventListener("click", function() {
             scoreSelection(2);
         }, { once: true });
-            scoreboardButton.addEventListener("click", function() {
-                homepage.classList.remove("current");
-                document.querySelector(".js-gamemode1").classList.remove("current");
-                scoreboard.classList.add("current");
-                background.classList.add("current");
-                background.classList.add("homescreen--blur");
-            });
-        }
+        scoreboardButton.addEventListener("click", function() {
+            homepage.classList.remove("current");
+            document.querySelector(".js-gamemode1").classList.remove("current");
+            scoreboard.classList.add("current");
+            background.classList.add("current");
+            background.classList.add("homescreen--blur");
+        });
+    }
 
     backtohomescore.addEventListener("click", function() {
         scoreboard.classList.remove("current");
@@ -173,12 +173,10 @@ const listenToButtons = function() {
         })
         togamemodeselect.addEventListener("click", function() {
             if (ShowReconnectionScreen == false) {
-            if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
+                if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                 {
-                    if(p2name.value != "" && mpname.value != "")
-                    {
-                        if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) 
-                        {
+                    if (p2name.value != "" && mpname.value != "") {
+                        if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) {
 
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
@@ -186,8 +184,7 @@ const listenToButtons = function() {
                             gameSelection(2);
 
                             let showmodesforplayer;
-                            for (let player of players) 
-                            {
+                            for (let player of players) {
                                 if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
                             }
 
@@ -195,9 +192,8 @@ const listenToButtons = function() {
                     }
                 } else {
 
-                    if(spname.value != "")
-                    {
-                        if (document.querySelector(".js-heartrateP1").innerHTML > 0) {*/
+                    if (spname.value != "") {
+                        if (document.querySelector(".js-heartrateP1").innerHTML > 0) {
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
                             gameselection.style.display = "block";

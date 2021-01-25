@@ -8,7 +8,10 @@ var showPauseMenu = false,
     btnPause, btnExit, bluetoothConnected = false,
     bluetoothConnected2 = false,
     timeStampHR, timeStampHR2;
-var canShoot = false, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
+var canShoot = false,
+    CalmHR = 1000,
+    CalmHR2 = 1000,
+    ShootHR, duckPlayer1 = 0,
     duckPlayer2 = 3,
     gamePicture = 1,
     gameScore = 3,
@@ -72,7 +75,7 @@ const shoot = function(whichbutton) {
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         checkScore2 = score1;
 
-        if(whichbutton == 1 && canShoot == true){
+        if (whichbutton == 1 && canShoot == true) {
             var speed = 6.7;
             if (HR != null) {
                 ShootHR = (HR - CalmHR) / 5;
@@ -81,27 +84,27 @@ const shoot = function(whichbutton) {
                 console.error("no HR");
             }
             canShoot = false;
-            duckP1.gravity = VarGravity;    //zwaartekracht aanmaken zodat de eend valt
-            duckP1.speedX = speed;          //horizontale snelheid volgens de slider waarde
-            duckP1.speedY = VarSpeedy;      //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
+            duckP1.gravity = VarGravity; //zwaartekracht aanmaken zodat de eend valt
+            duckP1.speedX = speed; //horizontale snelheid volgens de slider waarde
+            duckP1.speedY = VarSpeedy; //verticale snelheid zodat de eend eerst beetje omhoog gaat (meer parabool vorm dan gwn vallen)
 
             duckHitbox.gravity = VarGravity;
             duckHitbox.speedX = speed;
             duckHitbox.speedY = VarSpeedy;
             checkSecondsPast = secondsPast;
-        } else if (whichbutton == 0 && canShoot2 == true){
-            var speed = 6.7;  
-          if (HR2 != null) {
+        } else if (whichbutton == 0 && canShoot2 == true) {
+            var speed = 6.7;
+            if (HR2 != null) {
                 ShootHR = (HR2 - CalmHR2) / 5;
                 var speed = ShootHR; //6.7;
             } else {
                 console.error("no HR2");
             }
             canShoot2 = false;
-            if(VarNeg == true){
+            if (VarNeg == true) {
                 duckP2.speedX = -speed; //horizontale snelheid volgens de slider waarde
                 duckHitbox2.speedX = -speed;
-            }else{
+            } else {
                 duckP2.speedX = speed; //horizontale snelheid volgens de slider waarde
                 duckHitbox2.speedX = speed;
             }
@@ -141,7 +144,7 @@ const reload = function(D1, DH1, D2) {
             D2.gravity = 0;
             D2.amounthitbottom = 0;
         }
-    }    
+    }
 }
 
 //#endregion 
@@ -206,25 +209,43 @@ const characterSelection = function(Number) {
         while (duckPlayer1 == duckPlayer2 || check == false) {
             switch (Number) {
 
-                case 1: duckPlayer1--; if (duckPlayer1 == -1) duckPlayer1 = 16; break; //player 1 left
-                case 2: duckPlayer1++; if (duckPlayer1 == 17) duckPlayer1 = 0; break; //player 1 right
-                case 3: duckPlayer2--; if (duckPlayer2 == -1) duckPlayer2 = 16; break; //player 2 left
-                case 4: duckPlayer2++; if (duckPlayer2 == 17) duckPlayer2 = 0; break; //player 2 right
+                case 1:
+                    duckPlayer1--;
+                    if (duckPlayer1 == -1) duckPlayer1 = 16;
+                    break; //player 1 left
+                case 2:
+                    duckPlayer1++;
+                    if (duckPlayer1 == 17) duckPlayer1 = 0;
+                    break; //player 1 right
+                case 3:
+                    duckPlayer2--;
+                    if (duckPlayer2 == -1) duckPlayer2 = 16;
+                    break; //player 2 left
+                case 4:
+                    duckPlayer2++;
+                    if (duckPlayer2 == 17) duckPlayer2 = 0;
+                    break; //player 2 right
             }
             check = true;
         }
     } else {
         switch (Number) {
-            case 1: duckPlayer1--; if (duckPlayer1 == -1) duckPlayer1 = 16; break; //player 1 left
-            case 2: duckPlayer1++; if (duckPlayer1 == 17) duckPlayer1 = 0; break; //player 1 right   
+            case 1:
+                duckPlayer1--;
+                if (duckPlayer1 == -1) duckPlayer1 = 16;
+                break; //player 1 left
+            case 2:
+                duckPlayer1++;
+                if (duckPlayer1 == 17) duckPlayer1 = 0;
+                break; //player 1 right   
         }
     }
-    path  = "./img/characters";
+    path = "./img/characters";
     document.getElementById("0").src = path + characters[duckPlayer1];
     document.getElementById("1").src = path + characters[duckPlayer1];
     document.getElementById("DuckP2Connect").src = path + characters[duckPlayer2];
     document.getElementById("DuckP1Connect").src = path + characters[duckPlayer1];
-    
+
     path = "./img/charactersflipped";
     document.getElementById("2").src = path + characters[duckPlayer2];
 }
@@ -321,6 +342,52 @@ const loadscores = function(gamemodename, sortvalue) {
             }
 
             request1.send()
+        } else {
+            console.log('error')
+        }
+    }
+
+    request.send()
+}
+
+const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryId) {
+    var request = new XMLHttpRequest()
+
+    request.open('GET', 'https://angry-ducks-api.azurewebsites.net/api/scoreboard/' + gamemodeid, true)
+    request.onload = function() {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            if (sortvalue == "s") {
+                data.sort(function(a, b) {
+                    return parseFloat(a.score) + parseFloat(b.score);
+                });
+                document.querySelector(".js-scoreboard-container").innerHTML = "";
+                for (let i = 0; i < 5; i++) {
+                    const e = data[i];
+                    if (e != null) {
+                        if (e.scoreboardEntryId == checkscoreboardEntryId) {
+                            return (i + 1);
+                        }
+                    }
+                }
+            } else if (sortvalue == "t") {
+                data.sort(function(a, b) {
+                    return parseFloat(a.time) - parseFloat(b.time);
+                });
+                //console.log(data)
+                document.querySelector(".js-scoreboard-container").innerHTML = "";
+                for (let i = 0; i < 5; i++) {
+                    const e = data[i];
+                    if (e != null) {
+                        if (e.scoreboardEntryId == checkscoreboardEntryId) {
+                            return (i + 1);
+                        }
+                    }
+                }
+                //console.log(data)
+            }
         } else {
             console.log('error')
         }
@@ -630,73 +697,73 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-    switch ((HR - CalmHR) / 5) {
-        case 6.0:
-        case 6.1:
-        case 6.2:
-        case 7.5:
-        case 7.6:
-        case 7.7: //oranje
-            document.querySelector(".js-liveHeartRateP1").style.fill = "#F88F3E";
-            document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
-            break;
-        case 6.3:
-        case 6.4:
-        case 7.2:
-        case 7.3:
-        case 7.4: //geel
-            document.querySelector(".js-liveHeartRateP1").style.fill = "#EEFF00";
-            document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
-            break;
-        case 6.5:
-        case 6.6:
-        case 6.7:
-        case 6.8:
-        case 6.9:
-        case 7.0:
-        case 7.1: //groen
-            document.querySelector(".js-liveHeartRateP1").style.fill = "#00FF00";
-            document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
-            break;
-        default: //rood
-            document.querySelector(".js-liveHeartRateP1").style.fill = "#EE1C25";
-            document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
-            break;
-    }
+        switch ((HR - CalmHR) / 5) {
+            case 6.0:
+            case 6.1:
+            case 6.2:
+            case 7.5:
+            case 7.6:
+            case 7.7: //oranje
+                document.querySelector(".js-liveHeartRateP1").style.fill = "#F88F3E";
+                document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
+                break;
+            case 6.3:
+            case 6.4:
+            case 7.2:
+            case 7.3:
+            case 7.4: //geel
+                document.querySelector(".js-liveHeartRateP1").style.fill = "#EEFF00";
+                document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
+                break;
+            case 6.5:
+            case 6.6:
+            case 6.7:
+            case 6.8:
+            case 6.9:
+            case 7.0:
+            case 7.1: //groen
+                document.querySelector(".js-liveHeartRateP1").style.fill = "#00FF00";
+                document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
+                break;
+            default: //rood
+                document.querySelector(".js-liveHeartRateP1").style.fill = "#EE1C25";
+                document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
+                break;
+        }
 
-    switch ((HR2 - CalmHR2) / 5) {
-        case 6.0:
-        case 6.1:
-        case 6.2:
-        case 7.5:
-        case 7.6:
-        case 7.7: //oranje
-            document.querySelector(".js-liveHeartRateP2").style.fill = "#F88F3E";
-            document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
-            break;
-        case 6.3:
-        case 6.4:
-        case 7.2:
-        case 7.3:
-        case 7.4: //geel
-            document.querySelector(".js-liveHeartRateP2").style.fill = "#EEFF00";
-            document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
-            break;
-        case 6.5:
-        case 6.6:
-        case 6.7:
-        case 6.8:
-        case 6.9:
-        case 7.0:
-        case 7.1: //groen
-            document.querySelector(".js-liveHeartRateP2").style.fill = "#00FF00";
-            document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
-            break;
-        default: //rood
-            document.querySelector(".js-liveHeartRateP2").style.fill = "#EE1C25";
-            document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
-            break;
-    }
+        switch ((HR2 - CalmHR2) / 5) {
+            case 6.0:
+            case 6.1:
+            case 6.2:
+            case 7.5:
+            case 7.6:
+            case 7.7: //oranje
+                document.querySelector(".js-liveHeartRateP2").style.fill = "#F88F3E";
+                document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
+                break;
+            case 6.3:
+            case 6.4:
+            case 7.2:
+            case 7.3:
+            case 7.4: //geel
+                document.querySelector(".js-liveHeartRateP2").style.fill = "#EEFF00";
+                document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
+                break;
+            case 6.5:
+            case 6.6:
+            case 6.7:
+            case 6.8:
+            case 6.9:
+            case 7.0:
+            case 7.1: //groen
+                document.querySelector(".js-liveHeartRateP2").style.fill = "#00FF00";
+                document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
+                break;
+            default: //rood
+                document.querySelector(".js-liveHeartRateP2").style.fill = "#EE1C25";
+                document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
+                break;
+        }
     }
     //#endregion
     //#region *** load correct game***
@@ -732,6 +799,19 @@ const loadCorrectGame = function() {
 //#region *** load correct game***
 const PostLeaderboardEntry = function(name, gamemodename, score, time) {
         var Url = 'https://angry-ducks-api.azurewebsites.net/api/gamemode/' + gamemodename;
+        switch (gamemodename) {
+            case "coop-doelwit-verquackelen":
+            case "solo-doelwit-verquackelen":
+                var sortvalue = "t";
+                break;
+            case "coop-ver-vliegen":
+            case "solo-ver-vliegen":
+                var sortvalue = "s";
+                break;
+            default:
+                var sortvalue = "f";
+                break;
+        }
         $.get(Url, function(data, status) {
             console.log(`${data}`);
             var gamemodeId = data;
@@ -747,6 +827,9 @@ const PostLeaderboardEntry = function(name, gamemodename, score, time) {
             data = JSON.stringify(data)
             $.post(Url, data, function(data, status) {
                 console.log(`${data} and status is ${status}`);
+                data = JSON.parse(data);
+                console.log(data.scoreboardEntryId)
+                return loadscoresposition(gamemodeId, sortvalue, data.scoreboardEntryId)
             })
         })
     }
