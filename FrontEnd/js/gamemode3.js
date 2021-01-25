@@ -201,6 +201,7 @@ const updateGameArea3 = function() {
             if(score != score1) document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
             else document.querySelector(".js-VictoryScreen-Time").innerHTML = 'Jullie speelden gelijk!'
     }
+}
 
     //victory screen hidden houden
     if (showPauseMenu == true) {
@@ -209,5 +210,6 @@ const updateGameArea3 = function() {
     } else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 
 }
+
 
 //#endregion
