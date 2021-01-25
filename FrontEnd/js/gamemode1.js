@@ -67,6 +67,11 @@ const updateGameArea = function() {
         score = 0; //score op 0 anders krijg je -....
         progressbarHealth.width = 0; //de breedte van rode bar op 0 anders krijg je -....
         myGameArea.stop(); //freeze de game
+        if (player2enable == true) {
+            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
+        } else {
+            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
+        }
     }
 
     //checken of de hitbox de targetDetection raakt
@@ -186,10 +191,8 @@ const updateGameArea = function() {
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie tijd was: ${secondsPast} seconden`;
             document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${mpname.value} & ${p2name.value}`;
-            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
         } else {
             document.querySelector(".js-VictoryScreen-Time").innerHTML = `je tijd was: ${secondsPast} seconden`;
-            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
         }
     } else if (showPauseMenu != true) {
         document.body.classList.remove("bgGamemode--blur");
