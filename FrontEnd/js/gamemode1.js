@@ -114,14 +114,17 @@ const updateGameArea = function() {
         if(player2enable == true){
             reload(duckP2, duckHitbox2, duckP1);
             canShoot2 = true;
+            MQTTSendReload("2");
             player2plays = true;
         } else {
             reload(duckP1, duckHitbox, duckP2);
+            MQTTSendReload("1");
             canShoot = true;
         }
     } else if (duckP2.amounthitbottom >= 2 && player2plays == true) {
         reload(duckP1, duckHitbox, duckP2);
         canShoot = true;
+        MQTTSendReload("1");
         player2plays = false;
     }
 

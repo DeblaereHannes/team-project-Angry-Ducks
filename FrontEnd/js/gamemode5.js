@@ -131,20 +131,22 @@ const updateGameArea5 = function() {
     }
 
 
-    if (myGameArea.keys && myGameArea.keys[38]) {console.log("upsy"); shoot(1)}
-    if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(0)}
+    if (myGameArea.keys && myGameArea.keys[38]) {shoot(1)}
+    if (myGameArea.keys && myGameArea.keys[40]) {shoot(0)}
 
 
     //console.log(`1. ${canShoot}    2. ${canShoot2}`);
 
     if(duckP1.amounthitbottom >= 2){
         reload(duckP1, duckHitbox);
+        MQTTSendReload("1");
         canShoot = true;
     }
     if(duckP2.amounthitbottom >= 2){
         reload(duckP2, duckHitbox2);
         duckP2.x = viewport - (viewport * 0.115);
         duckHitbox2.x = viewport - (viewport * 0.0925);
+        MQTTSendReload("2");
         canShoot2 = true;
     }
    

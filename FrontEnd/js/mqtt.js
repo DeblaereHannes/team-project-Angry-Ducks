@@ -42,11 +42,17 @@ MQTTclient.on('connect', () => {
 
 
 MQTTclient.on('message', (topic, message, packet) => {
-  console.log('Received Message: ' + message.toString() + '\nOn topic: ' + topic)
+  console.log('Received Message: ' + message.toString() + '\nOn topic: ' + topic);
+  let test = JSON.parse(message.toString());
+  if (test.launch == 1){
+    shoot(1);
+  } else if(test.launch == 2){
+    shoot(0);
+  }
 })
 
 
 
-function MQTTSendReload(){
-  MQTTclient.publish('/angryducks/buttons', '{"ready" : "both"}', { qos: 0, retain: false })
+function MQTTSendReload(varPlayer){
+  MQTTclient.publish('/angryducks/buttons', `{"ready" : "${varPlayer}"}`, { qos: 0, retain: false })
 }

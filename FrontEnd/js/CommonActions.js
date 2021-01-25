@@ -57,6 +57,7 @@ const start = function() {
     if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
         timerOn = true;
         canShoot = true;
+        MQTTSendReload("1");
     }
 }
 

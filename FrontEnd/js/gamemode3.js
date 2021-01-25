@@ -74,6 +74,7 @@ const updateGameArea3 = function() {
         score1 = score;
         player2plays = true;
         reload(duckP2, duckHitbox2);
+        MQTTSendReload("2");
         canShoot2 = true;
     }
 
@@ -157,6 +158,7 @@ const updateGameArea3 = function() {
             }
             else{
                 reload(duckP1, duckHitbox);
+                MQTTSendReload("1");
                 canShoot = true;  
             } 
         }
@@ -176,6 +178,7 @@ const updateGameArea3 = function() {
             }
             else {
                 reload(duckP1, duckHitbox, duckP2);
+                MQTTSendReload("1");
                 canShoot = true;  
             }
         }
