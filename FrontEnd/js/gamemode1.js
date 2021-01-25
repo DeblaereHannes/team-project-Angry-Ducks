@@ -139,6 +139,7 @@ const updateGameArea = function() {
     duckP1.newPos(); //nieuwe positie van duck instellen
     if (player2enable == true) {
         duckP2.newPos();
+        duckHitbox2.newPos();
         lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
@@ -151,7 +152,7 @@ const updateGameArea = function() {
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-
+    duckHitbox2.update();
     duckHitbox.update();
     targetDetection.update();
     targetDetection2.update();

@@ -169,9 +169,10 @@ const updateGameArea5 = function() {
 
     //deze orde bepaalt de stacking order: meer naar onder komt het voorandere componenten te staan
     //alles updaten: terug visueel maken na clearen
-    mybackground.update();
     duckHitbox.update();
     duckHitbox2.update();
+    mybackground.update();
+
 
     targetDetection.update();
     targetDetection2.update();
