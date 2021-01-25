@@ -356,18 +356,16 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
     request.onload = function() {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
-
         if (request.status >= 200 && request.status < 400) {
             if (sortvalue == "s") {
                 data.sort(function(a, b) {
                     return parseFloat(a.score) + parseFloat(b.score);
                 });
-                document.querySelector(".js-scoreboard-container").innerHTML = "";
                 for (let i = 0; i < data.length; i++) {
                     const e = data[i];
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
-                            return (i + 1);
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = (i + 1);
                         }
                     }
                 }
@@ -376,12 +374,11 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     return parseFloat(a.time) - parseFloat(b.time);
                 });
                 //console.log(data)
-                document.querySelector(".js-scoreboard-container").innerHTML = "";
                 for (let i = 0; i < data.length; i++) {
                     const e = data[i];
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
-                            return (i + 1);
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = (i + 1);
                         }
                     }
                 }
@@ -826,9 +823,9 @@ const PostLeaderboardEntry = function(name, gamemodename, score, time) {
             data = JSON.stringify(data)
             $.post(Url, data, function(data, status) {
                 console.log(`${data} and status is ${status}`);
-                data = JSON.parse(data);
-                console.log(data.scoreboardEntryId)
-                return loadscoresposition(gamemodeId, sortvalue, data.scoreboardEntryId)
+                //data = JSON.parse(data);
+                //console.log(data.scoreboardEntryId);
+                loadscoresposition(gamemodeId, sortvalue, data.scoreboardEntryId);
             })
         })
     }

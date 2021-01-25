@@ -1,7 +1,8 @@
 //#region *** variablen ***
 
 var loadAlldetection, score1, rounds = 3,
-    winner, loser, highscore1 = 0, highscore2 = 0;
+    winner, loser, highscore1 = 0,
+    highscore2 = 0;
 
 //#endregion
 
@@ -59,25 +60,26 @@ const updateGameArea3 = function() {
                 if (highscore1 > highscore2) {
                     winner = mpname.value;
                     loser = p2name.value;
-                    document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(mpname.value, "coop-ver-vervliegen", highscore1, 0);
+                    PostLeaderboardEntry(mpname.value, "coop-ver-vervliegen", highscore1, 0);
                 } else if (highscore1 < highscore2) {
                     winner = p2name.value;
                     loser = mpname.value;
-                    document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
                 }
                 var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`,
-                                            `${winner} verkwaakte ${loser}!`,
-                                            `${winner} versloeg ${loser}!`,
-                                            `${winner} vloog het verst!`,
-                                            `${winner} vloog verder dan ${loser}!`,
-                                            `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
+                    `${winner} verkwaakte ${loser}!`,
+                    `${winner} versloeg ${loser}!`,
+                    `${winner} vloog het verst!`,
+                    `${winner} vloog verder dan ${loser}!`,
+                    `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`
+                ];
                 var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
                 if (highscore1 != highscore2)
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
                 else {
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = "Jullie vlogen gelijk!";
-                    document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(mpname.value, "coop-ver-vliegen", highscore1, 0);
-                    document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(mpname.value, "coop-ver-vliegen", highscore1, 0);
+                    PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
                 }
             }
         }
@@ -197,7 +199,7 @@ const updateGameArea3 = function() {
             } else {
                 reload(duckP1, duckHitbox, duckP2);
                 canShoot = true;
-            }            
+            }
         }
     }
 
@@ -208,16 +210,15 @@ const updateGameArea3 = function() {
     } else document.querySelector(".js-PauseMenu").style.visibility = "hidden";
 
 }
-const checkIfHighScore = function(player, score){
+const checkIfHighScore = function(player, score) {
     console.log(highscore1);
-    if(player == 1){
-        if(highscore1 == 0) highscore1 = score;
-        else if(highscore1 > score) highscore1 = score;
+    if (player == 1) {
+        if (highscore1 == 0) highscore1 = score;
+        else if (highscore1 > score) highscore1 = score;
         console.log(highscore1);
-    }
-    else if(player == 2){
-        if(highscore2 == 0) highscore2 = score;
-        else if(highscore2 > score) highscore2 = score;
+    } else if (player == 2) {
+        if (highscore2 == 0) highscore2 = score;
+        else if (highscore2 > score) highscore2 = score;
     }
 }
 
