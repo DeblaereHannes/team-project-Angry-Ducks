@@ -365,7 +365,11 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     const e = data[i];
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
-                            document.querySelector(".js-VictoryScreen-positie").innerHTML = (i + 1);
+                            if (i == 0) {
+                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "nieuwe high score!";
+                            } else {
+                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
+                            }
                         }
                     }
                 }
@@ -377,8 +381,10 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                 for (let i = 0; i < data.length; i++) {
                     const e = data[i];
                     if (e != null) {
-                        if (e.scoreboardEntryId == checkscoreboardEntryId) {
-                            document.querySelector(".js-VictoryScreen-positie").innerHTML = (i + 1);
+                        if (i == 0) {
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "nieuwe high score!";
+                        } else {
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                         }
                     }
                 }
