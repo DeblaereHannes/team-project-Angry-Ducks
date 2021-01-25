@@ -57,8 +57,8 @@ const updateGameArea5 = function() {
     //score controleren op einde spel
     if(score == 0 || score1 == 0){
             timerOn = false;                //timer stoppen
-            console.log(duckHitbox.x);
-            console.log(duckHitbox.y);
+            // console.log(duckHitbox.x);
+            // console.log(duckHitbox.y);
             progressbarHealth.width = 0; 
             progressbarHealth2.width = 0;
             canShoot2 = false;
@@ -229,8 +229,6 @@ const updateGameArea5 = function() {
                                     `${winner} vloog sneller dan ${loser}!`,
                                 `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
                             var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
-                            console.log(randomNum); 
-                            console.log(victoryScreenMessages[randomNum]);
                             document.querySelector(".js-VictoryScreen-spelers").innerHTML = victoryScreenMessages[randomNum];
     }
     //victory screen hidden houden

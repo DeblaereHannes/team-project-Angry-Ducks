@@ -71,7 +71,6 @@ const start = function() {
 const shoot = function(whichbutton) {
     //ophalen van snelheid (slider ingesteld in html: 1-6)
     if (showPauseMenu == false && ShowReconnectionScreen == false) {
-        console.log("test");
         checkScore = score; //checkScore gelijkstellen zodat de score niet blijft -100 ofzo doen als de hitbox de detection raakt
         checkScore2 = score1;
 
