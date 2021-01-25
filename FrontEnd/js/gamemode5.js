@@ -122,6 +122,7 @@ const updateGameArea5 = function() {
                 start();        //Common actions functie
                 if (secondsPast == 0 && showPauseMenu == false && ShowReconnectionScreen == false) { //timer kan niet aan worden gelegd als die al aan staat (vermijd meermaals schieten)
                     canShoot2 = true;
+                    MQTTSendReload(2);
                 }
                 secondsPast++;  //seconds past +1
 
