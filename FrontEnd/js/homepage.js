@@ -163,8 +163,8 @@ const listenToButtons = function() {
                     document.querySelector(".js-2spelers").classList.remove("ishidden");
                     if (duckPlayer1 == duckPlayer2) {
                         duckPlayer2++;
-                        duckPlayer2 = duckPlayer2 % 9;
-                        document.getElementById("2").src = characters[duckPlayer2];
+                        duckPlayer2 = duckPlayer2 % 17;
+                        document.getElementById("2").src = path + characters[duckPlayer2];
                     };
 
                     connectionWindow.classList.remove("ellendig_lange_naam_om_te_zeggen_dat_er_maar_1_speler_speelt");
