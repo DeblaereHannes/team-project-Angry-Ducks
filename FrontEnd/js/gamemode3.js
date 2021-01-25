@@ -1,6 +1,6 @@
 //#region *** variablen ***
 
-var loadAlldetection, score1, rounds = 3;
+var loadAlldetection, score1, rounds = 3, winner, loser;
 
 //#endregion
 
@@ -173,15 +173,33 @@ const updateGameArea3 = function() {
                 document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";
-                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `2 spelers`;
-                document.querySelector(".js-VictoryScreen-Time").innerHTML = `jullie score was: ${(score1 + score)}`;
+                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${(mpname.value)}: ${(score)}m / ${(p2name.value)}: ${(score1)}m`;
             }
             else {
                 reload(duckP1, duckHitbox, duckP2);
-                MQTTSendReload("1");
                 canShoot = true;  
             }
-        }
+            if (score > score1){
+                winner = mpname.value;
+                loser = p2name.value;
+                
+            } 
+            else if(score < score1) 
+            {
+                winner = p2name.value;
+                loser = mpname.value;
+            }
+            var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`, 
+                                        `${winner} verkwaakte ${loser}!`,
+                                        `${winner} versloeg ${loser}!`,
+                                        `${winner} vloog het verst!`,
+                                        `${winner} vloog verder dan ${loser}!`,
+                                    `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
+                                var randomNum = Math.floor(Math.random() * Math.floor(victoryScreenMessages.length));
+                                console.log(randomNum); 
+                                console.log(victoryScreenMessages[randomNum]);
+            if(score != score1) document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
+            else document.querySelector(".js-VictoryScreen-Time").innerHTML = 'Jullie speelden gelijk!'
     }
 
     //victory screen hidden houden
