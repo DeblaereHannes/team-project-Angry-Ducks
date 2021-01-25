@@ -67,10 +67,11 @@ const updateGameArea = function() {
         score = 0; //score op 0 anders krijg je -....
         progressbarHealth.width = 0; //de breedte van rode bar op 0 anders krijg je -....
         myGameArea.stop(); //freeze de game
+        document.querySelector(".js-VictoryScreen-positie").innerHTML = "loading"
         if (player2enable == true) {
-            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
+            PostLeaderboardEntry(`${mpname.value} & ${p2name.value}`, "coop-doelwit-verquackelen", 0, secondsPast)
         } else {
-            document.querySelector(".js-VictoryScreen-positie").innerHTML = PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
+            PostLeaderboardEntry(spname.value, "solo-doelwit-verquackelen", 0, secondsPast)
         }
     }
 
