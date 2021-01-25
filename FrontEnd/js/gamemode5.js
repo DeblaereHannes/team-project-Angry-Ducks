@@ -1,5 +1,5 @@
 
-var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2, winner ="", loser = "";
+var target2, target2Detection, target2Detection2, target2Detection3, target2Detection4 , target2Detection5, duckHitbox2, checkScore2, canShoot2 = false, lblScore2, winner ="", loser = "", VarNeg;
 
 //#region *** loadgame function (components aanmaken voor canvas) ***
 const loadGamemode5 = function() {
@@ -43,6 +43,9 @@ const loadGamemode5 = function() {
     score1 = 300;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
+    VarGravity = 0.075;
+    VarSpeedy = -3;
+    VarNeg = true;
     myGameArea.load(5);  //laad de canvas in
 }
 
@@ -59,6 +62,7 @@ const updateGameArea5 = function() {
             progressbarHealth.width = 0; 
             progressbarHealth2.width = 0;
             canShoot2 = false;
+            VarNeg = false;
             myGameArea.stop();              //freeze de game
     }
 
@@ -127,11 +131,11 @@ const updateGameArea5 = function() {
     }
 
 
-    if (myGameArea.keys && myGameArea.keys[38]) {console.log("upsy"); shoot(5)}
-    if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(6)}
+    if (myGameArea.keys && myGameArea.keys[38]) {console.log("upsy"); shoot(1)}
+    if (myGameArea.keys && myGameArea.keys[40]) {console.log("downsy"); shoot(0)}
 
 
-    console.log(`1. ${canShoot}    2. ${canShoot2}`);
+    //console.log(`1. ${canShoot}    2. ${canShoot2}`);
 
     if(duckP1.amounthitbottom >= 2){
         reload(duckP1, duckHitbox);

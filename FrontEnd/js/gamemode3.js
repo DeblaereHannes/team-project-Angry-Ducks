@@ -17,7 +17,6 @@ const loadGamemode3 = function() {
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
-
     duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
     lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     // for (let index = 0; index < 10; index++) {
@@ -34,6 +33,8 @@ const loadGamemode3 = function() {
     duckP1.amounthitbottom = 0;
     duckP2.amounthitbottom = 0;
     rounds = 3;
+    VarGravity = 0.14;
+    VarSpeedy = -1;
     myGameArea.load(3); //laad de canvas in
 }
 
@@ -73,7 +74,7 @@ const updateGameArea3 = function() {
         score1 = score;
         player2plays = true;
         reload(duckP2, duckHitbox2);
-        canShoot = true;
+        canShoot2 = true;
     }
 
 
@@ -101,10 +102,10 @@ const updateGameArea3 = function() {
 
 
     if (player2plays == false) {
-        if (myGameArea.keys && myGameArea.keys[38]) { shoot(3) }
+        if (myGameArea.keys && myGameArea.keys[38]) { shoot(1) }
     }
     if (player2enable == true && player2plays == true) {
-        if (myGameArea.keys && myGameArea.keys[40]) { shoot(4) }
+        if (myGameArea.keys && myGameArea.keys[40]) { shoot(0) }
     }
 
 
