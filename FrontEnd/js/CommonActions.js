@@ -637,7 +637,7 @@ const updateHeartRateColor = function() {
         case 7.5:
         case 7.6:
         case 7.7: //oranje
-            document.querySelector(".js-brothistestm8").style.fill = "#F88F3E";
+            document.querySelector(".js-liveHeartRateP1").style.fill = "#F88F3E";
             document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
             break;
         case 6.3:
@@ -645,7 +645,7 @@ const updateHeartRateColor = function() {
         case 7.2:
         case 7.3:
         case 7.4: //geel
-            document.querySelector(".js-brothistestm8").style.fill = "#EEFF00";
+            document.querySelector("..js-liveHeartRateP1").style.fill = "#EEFF00";
             document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
             break;
         case 6.5:
@@ -655,11 +655,11 @@ const updateHeartRateColor = function() {
         case 6.9:
         case 7.0:
         case 7.1: //groen
-            document.querySelector(".js-brothistestm8").style.fill = "#00FF00";
+            document.querySelector("..js-liveHeartRateP1").style.fill = "#00FF00";
             document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
             break;
         default: //rood
-            document.querySelector(".js-brothistestm8").style.fill = "#EE1C25";
+            document.querySelector("..js-liveHeartRateP1").style.fill = "#EE1C25";
             document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
             break;
     }
@@ -671,7 +671,7 @@ const updateHeartRateColor = function() {
         case 7.5:
         case 7.6:
         case 7.7: //oranje
-            document.querySelector(".js-brothistestm9").style.fill = "#F88F3E";
+            document.querySelector("..js-liveHeartRateP2").style.fill = "#F88F3E";
             document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
             break;
         case 6.3:
@@ -679,7 +679,7 @@ const updateHeartRateColor = function() {
         case 7.2:
         case 7.3:
         case 7.4: //geel
-            document.querySelector(".js-brothistestm9").style.fill = "#EEFF00";
+            document.querySelector(".js-liveHeartRateP2").style.fill = "#EEFF00";
             document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
             break;
         case 6.5:
@@ -689,11 +689,11 @@ const updateHeartRateColor = function() {
         case 6.9:
         case 7.0:
         case 7.1: //groen
-            document.querySelector(".js-brothistestm9").style.fill = "#00FF00";
+            document.querySelector(".js-liveHeartRateP2").style.fill = "#00FF00";
             document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
             break;
         default: //rood
-            document.querySelector(".js-brothistestm9").style.fill = "#EE1C25";
+            document.querySelector(".js-liveHeartRateP2").style.fill = "#EE1C25";
             document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
             break;
     }
