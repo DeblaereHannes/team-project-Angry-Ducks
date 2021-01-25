@@ -222,7 +222,7 @@ const updateGameArea5 = function() {
         }
         var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`, 
                                     `${winner} verkwaakte ${loser}!`,
-                                    `${winner} verkwaakte ${loser}!`,
+                                    `${winner} versloeg ${loser}!`,
                                     `${winner} vloog het snelst!`,
                                     `${winner} vloog sneller dan ${loser}!`,
                                 `twee 🦆 vochten, ${loser} werd verkwakeld door ${winner}`];
