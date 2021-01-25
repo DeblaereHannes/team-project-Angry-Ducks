@@ -703,72 +703,74 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-        switch ((HR - CalmHR) / 5) {
-            case 6.0:
-            case 6.1:
-            case 6.2:
-            case 7.5:
-            case 7.6:
-            case 7.7: //oranje
-                document.querySelector(".js-liveHeartRateP1").style.fill = "#F88F3E";
-                document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
-                break;
-            case 6.3:
-            case 6.4:
-            case 7.2:
-            case 7.3:
-            case 7.4: //geel
-                document.querySelector(".js-liveHeartRateP1").style.fill = "#EEFF00";
-                document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
-                break;
-            case 6.5:
-            case 6.6:
-            case 6.7:
-            case 6.8:
-            case 6.9:
-            case 7.0:
-            case 7.1: //groen
-                document.querySelector(".js-liveHeartRateP1").style.fill = "#00FF00";
-                document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
-                break;
-            default: //rood
-                document.querySelector(".js-liveHeartRateP1").style.fill = "#EE1C25";
-                document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
-                break;
-        }
+    if(gamePicture != 1 || gamePicture != 3){
+            switch ((HR - CalmHR) / 5) {
+                case 6.0:
+                case 6.1:
+                case 6.2:
+                case 7.5:
+                case 7.6:
+                case 7.7: //oranje
+                    document.querySelector(".js-liveHeartRateP1").style.fill = "#F88F3E";
+                    document.querySelector(".js-GMheartrateP1").style.color = "#F88F3E";
+                    break;
+                case 6.3:
+                case 6.4:
+                case 7.2:
+                case 7.3:
+                case 7.4: //geel
+                    document.querySelector(".js-liveHeartRateP1").style.fill = "#EEFF00";
+                    document.querySelector(".js-GMheartrateP1").style.color = "#EEFF00";
+                    break;
+                case 6.5:
+                case 6.6:
+                case 6.7:
+                case 6.8:
+                case 6.9:
+                case 7.0:
+                case 7.1: //groen
+                    document.querySelector(".js-liveHeartRateP1").style.fill = "#00FF00";
+                    document.querySelector(".js-GMheartrateP1").style.color = "#00FF00";
+                    break;
+                default: //rood
+                    document.querySelector(".js-liveHeartRateP1").style.fill = "#EE1C25";
+                    document.querySelector(".js-GMheartrateP1").style.color = "#EE1C25";
+                    break;
+            }
 
-        switch ((HR2 - CalmHR2) / 5) {
-            case 6.0:
-            case 6.1:
-            case 6.2:
-            case 7.5:
-            case 7.6:
-            case 7.7: //oranje
-                document.querySelector(".js-liveHeartRateP2").style.fill = "#F88F3E";
-                document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
-                break;
-            case 6.3:
-            case 6.4:
-            case 7.2:
-            case 7.3:
-            case 7.4: //geel
-                document.querySelector(".js-liveHeartRateP2").style.fill = "#EEFF00";
-                document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
-                break;
-            case 6.5:
-            case 6.6:
-            case 6.7:
-            case 6.8:
-            case 6.9:
-            case 7.0:
-            case 7.1: //groen
-                document.querySelector(".js-liveHeartRateP2").style.fill = "#00FF00";
-                document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
-                break;
-            default: //rood
-                document.querySelector(".js-liveHeartRateP2").style.fill = "#EE1C25";
-                document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
-                break;
+            switch ((HR2 - CalmHR2) / 5) {
+                case 6.0:
+                case 6.1:
+                case 6.2:
+                case 7.5:
+                case 7.6:
+                case 7.7: //oranje
+                    document.querySelector(".js-liveHeartRateP2").style.fill = "#F88F3E";
+                    document.querySelector(".js-GMheartrateP2").style.color = "#F88F3E";
+                    break;
+                case 6.3:
+                case 6.4:
+                case 7.2:
+                case 7.3:
+                case 7.4: //geel
+                    document.querySelector(".js-liveHeartRateP2").style.fill = "#EEFF00";
+                    document.querySelector(".js-GMheartrateP2").style.color = "#EEFF00";
+                    break;
+                case 6.5:
+                case 6.6:
+                case 6.7:
+                case 6.8:
+                case 6.9:
+                case 7.0:
+                case 7.1: //groen
+                    document.querySelector(".js-liveHeartRateP2").style.fill = "#00FF00";
+                    document.querySelector(".js-GMheartrateP2").style.color = "#00FF00";
+                    break;
+                default: //rood
+                    document.querySelector(".js-liveHeartRateP2").style.fill = "#EE1C25";
+                    document.querySelector(".js-GMheartrateP2").style.color = "#EE1C25";
+                    break;
+            }
         }
     }
     //#endregion
