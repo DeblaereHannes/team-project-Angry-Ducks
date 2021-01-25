@@ -366,7 +366,7 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
                             if (i == 0) {
-                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "nieuwe high score!";
+                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "NIEUWE HIGH SCORE!";
                             } else {
                                 document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                             }
@@ -382,7 +382,7 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     const e = data[i];
                     if (e != null) {
                         if (i == 0) {
-                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "nieuwe high score!";
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "NIEUWE HIGH SCORE!";
                         } else {
                             document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                         }
