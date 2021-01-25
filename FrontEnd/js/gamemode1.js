@@ -38,6 +38,7 @@ const loadGame = function() {
     progressbarHealth = new component("progressbar", (500), (viewport * 0.017578125), "red", (viewport * 0.09765625), (viewport * 0.025390625));
     progressbarBackground = new component("progressbar", (500), (viewport * 0.01953125), "white", (viewport * 0.09765625), (viewport * 0.0244140625));
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
+    duckHitbox2 = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     mybackground = new component("bg", viewport, (viewportHeight), links[0], 0, 0, "image");
     lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
@@ -50,6 +51,8 @@ const loadGame = function() {
     score = 500; //max score
     countdownTimer = 3; //countdown van 3seconden
     player2plays = false;
+    VarGravity = 0.075;
+    VarSpeedy = -3;
     myGameArea.load(1); //laad de canvas in
 }
 
@@ -109,8 +112,8 @@ const updateGameArea = function() {
     //console.log(`wee ${canShoot}`);
     if(duckP1.amounthitbottom >= 2 && player2plays == false){    
         if(player2enable == true){
-            reload(duckP2, duckHitbox, duckP1);
-            canShoot = true;
+            reload(duckP2, duckHitbox2, duckP1);
+            canShoot2 = true;
             player2plays = true;
         } else {
             reload(duckP1, duckHitbox, duckP2);
@@ -124,7 +127,7 @@ const updateGameArea = function() {
 
     if (myGameArea.keys && myGameArea.keys[38]) { shoot(1) }
     if (player2enable == true) {
-        if (myGameArea.keys && myGameArea.keys[40]) { shoot(2) }
+        if (myGameArea.keys && myGameArea.keys[40]) { shoot(0) }
     }
 
     myGameArea.clear(); //canvas clearen voor nieuwe frame
