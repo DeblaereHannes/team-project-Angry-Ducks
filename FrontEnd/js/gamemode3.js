@@ -26,7 +26,7 @@ const loadGamemode3 = function() {
     // }
     frames = 0; //aantal frames op 0 zetten
     secondsPast = 0; //tijd in seconden op 0 zetten
-    score = "unknown"; //max score
+    score = 0; //max score
     score1 = 0;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
@@ -49,16 +49,12 @@ const updateGameArea3 = function() {
         if (player2enable == false) {
             if (duckP1.amounthitbottom >= 2) {
                 timerOn = false; //timer stoppen
-                console.log(duckHitbox.x);
-                console.log(duckHitbox.y);
                 myGameArea.stop(); //freeze de game
             }
         } else {
             if (duckP2.amounthitbottom >= 2) {
                 timerOn = false; //timer stoppen
                 duckP2.amounthitbottom = 2;
-                console.log(duckHitbox.x);
-                console.log(duckHitbox.y);
                 myGameArea.stop();
             }
         }
@@ -72,7 +68,6 @@ const updateGameArea3 = function() {
     //console.log(`player2 ${player2plays}`);
 
     if (duckP1.amounthitbottom >= 2 && player2plays == false) {
-        score1 = score;
         player2plays = true;
         reload(duckP2, duckHitbox2);
         MQTTSendReload("2");
@@ -117,6 +112,7 @@ const updateGameArea3 = function() {
     duckP1.newPos(); //nieuwe positie van duck instellen
     if (player2enable == true) {
         duckP2.newPos();
+        duckHitbox2.newPos();
         lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
