@@ -15,7 +15,7 @@ var canShoot = false, CalmHR = 1000, CalmHR2 = 1000, ShootHR, duckPlayer1 = 0,
     canAlert = true,
     hearts, isHeart1Red = false,
     isHeart2Red = false;
-var characters = ["", "", "", "", "", "", "", "", ""],
+var characters = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     gameSelections = ["", "", "", ""];
 for (link of characters) {
     link = document.createElement('character');
@@ -29,6 +29,14 @@ characters[5] = "/Duck_Female3.png";
 characters[6] = "/Duck_White.png";
 characters[7] = "/Duck_Yellow.png";
 characters[8] = "/Duck_Gray.png";
+characters[9] = "/Duck_Black.png";
+characters[10] = "/Duck_Blue.png";
+characters[11] = "/Duck_CyanParakeet.png";
+characters[12] = "/Duck_GrayParakeet.png";
+characters[13] = "/Duck_LimeParakeet.png";
+characters[14] = "/Duck_Pink.png";
+characters[15] = "/Duck_Rainbow.png";
+characters[16] = "/Duck_Red.png";
 
 for (link of gameSelections) {
     link = document.createElement('gameSelection');
@@ -276,36 +284,17 @@ const characterSelection = function(Number) {
         while (duckPlayer1 == duckPlayer2 || check == false) {
             switch (Number) {
 
-                case 1:
-                    duckPlayer1--;
-                    if (duckPlayer1 == -1) duckPlayer1 = 8;
-                    break; //player 1 left
-                case 2:
-                    duckPlayer1++;
-                    if (duckPlayer1 == 9) duckPlayer1 = 0;
-                    break; //player 1 right
-                case 3:
-                    duckPlayer2--;
-                    if (duckPlayer2 == -1) duckPlayer2 = 8;
-                    break; //player 2 left
-                case 4:
-                    duckPlayer2++;
-                    if (duckPlayer2 == 9) duckPlayer2 = 0;
-                    break; //player 2 right
-
+                case 1: duckPlayer1--; if (duckPlayer1 == -1) duckPlayer1 = 16; break; //player 1 left
+                case 2: duckPlayer1++; if (duckPlayer1 == 17) duckPlayer1 = 0; break; //player 1 right
+                case 3: duckPlayer2--; if (duckPlayer2 == -1) duckPlayer2 = 16; break; //player 2 left
+                case 4: duckPlayer2++; if (duckPlayer2 == 17) duckPlayer2 = 0; break; //player 2 right
             }
             check = true;
         }
     } else {
         switch (Number) {
-            case 1:
-                duckPlayer1--;
-                if (duckPlayer1 == -1) duckPlayer1 = 8;
-                break; //player 1 left
-            case 2:
-                duckPlayer1++;
-                if (duckPlayer1 == 9) duckPlayer1 = 0;
-                break; //player 1 right   
+            case 1: duckPlayer1--; if (duckPlayer1 == -1) duckPlayer1 = 16; break; //player 1 left
+            case 2: duckPlayer1++; if (duckPlayer1 == 17) duckPlayer1 = 0; break; //player 1 right   
         }
     }
     path  = "./img/characters";
