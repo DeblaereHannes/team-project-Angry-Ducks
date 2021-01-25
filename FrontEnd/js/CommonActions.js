@@ -703,7 +703,7 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-    if(gamePicture != 1 || gamePicture != 3){
+    if(gamePicture != 1 && gamePicture != 3){
             switch ((HR - CalmHR) / 5) {
                 case 6.0:
                 case 6.1:
