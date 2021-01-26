@@ -143,7 +143,7 @@ const reload = function(D1, DH1, D2, DH2) {
             D2.gravity = 0;
             D2.amounthitbottom = 0;
         }
-        if(DH2 != null){
+        if (DH2 != null) {
             DH2.x = 0;
             DH2.y = 0;
         }
@@ -322,7 +322,7 @@ const loadscores = function(gamemodename, sortvalue) {
                         for (let i = 0; i < 5; i++) {
                             const e = data1[i];
                             if (e != null) {
-                                document.querySelector(".js-scoreboard-container").innerHTML += '<div class="score-container"> <div class = "score-position" >' + (i + 1) + '.</div> <div class = "score-name" >' + e.name + '</div> <div class = "score-points" >' + e.score + 'pt</div> </div >';
+                                document.querySelector(".js-scoreboard-container").innerHTML += '<div class="score-container"> <div class = "score-position" >' + (i + 1) + '.</div> <div class = "score-name" >' + e.name + '</div> <div class = "score-points" >' + e.score + 'm</div> </div >';
                             }
                         }
                     } else if (sortvalue == "t") {
@@ -703,7 +703,7 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-    if(gamePicture != 1 || gamePicture != 3){
+        if (gamePicture != 1 || gamePicture != 3) {
             switch ((HR - CalmHR) / 5) {
                 case 6.0:
                 case 6.1:
