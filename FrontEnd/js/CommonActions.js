@@ -316,7 +316,7 @@ const loadscores = function(gamemodename, sortvalue) {
                 if (request1.status >= 200 && request1.status < 400) {
                     if (sortvalue == "s") {
                         data1.sort(function(a, b) {
-                            return parseFloat(a.score) + parseFloat(b.score);
+                            return b.score - a.score;
                         });
                         document.querySelector(".js-scoreboard-container").innerHTML = "";
                         for (let i = 0; i < 5; i++) {
