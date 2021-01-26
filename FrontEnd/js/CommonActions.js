@@ -170,6 +170,7 @@ const refresh = function(number = 0) {
     canShoot = false; //niet shieten tijdens reset
     document.querySelector(".js-pause").style.display = "block";
     document.querySelector(".js-VictoryScreen").style.visibility = "hidden";
+    document.querySelector(".js-record").innerHTML = "";
     document.querySelector(".c-live-heart-rates").classList.remove("game--blur");
     myGameArea.stop(); //canvas freezen
     if (number == 0) loadCorrectGame();
@@ -376,8 +377,6 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
                             if (i == 0) {
                                 document.querySelector(".js-record").innerHTML = "NIEUWE HIGH SCORE!";
-                            } else {
-                                document.querySelector(".js-record").innerHTML = "";
                             }
                             document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                         }
@@ -393,8 +392,6 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     if (e != null) {
                         if (i == 0) {
                             document.querySelector(".js-record").innerHTML = "NIEUWE HIGH SCORE!";
-                        } else {
-                            document.querySelector(".js-record").innerHTML = "";
                         }
                         document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                     }

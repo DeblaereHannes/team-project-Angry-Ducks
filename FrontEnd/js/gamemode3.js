@@ -29,6 +29,8 @@ const loadGamemode3 = function() {
     secondsPast = 0; //tijd in seconden op 0 zetten
     score = 0; //max score
     score1 = 0;
+    highscore1 = 0;
+    highscore2 = 0;
     countdownTimer = 3; //countdown van 3seconden
     loadAlldetection = false;
     player2plays = false;
@@ -55,7 +57,7 @@ const updateGameArea3 = function() {
                 timerOn = false; //timer stoppen
                 myGameArea.stop(); //freeze de game
                 //console.log(spname.value + " solo-ver-vliegen " + highscore1);
-                PostLeaderboardEntry(spname.value, "solo-ver-vliegen", highscore1, 0);
+                PostLeaderboardEntry(spname.value, "solo-ver-vliegen", Math.round(highscore1), 0);
             }
         } else {
             if (duckP2.amounthitbottom >= 2) {
@@ -65,11 +67,11 @@ const updateGameArea3 = function() {
                 if (highscore1 > highscore2) {
                     winner = mpname.value;
                     loser = p2name.value;
-                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore1, 0);
+                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", Math.round(highscore1), 0);
                 } else if (highscore1 < highscore2) {
                     winner = p2name.value;
                     loser = mpname.value;
-                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", Math.round(highscore2), 0);
                 }
                 var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`,
                     `${winner} verkwaakte ${loser}!`,
@@ -84,8 +86,8 @@ const updateGameArea3 = function() {
                 else {
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = "Jullie vlogen gelijk!";
                     //console.log(mpname.value + " versus-ver-vliegen " + highscore1);
-                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore1, 0);
-                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", Math.round(highscore1), 0);
+                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", Math.round(highscore2), 0);
                 }
             }
         }
@@ -182,7 +184,7 @@ const updateGameArea3 = function() {
                 document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none"; //pause knop weg doen
-                document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${highscore1}`;
+                document.querySelector(".js-VictoryScreen-Time").innerHTML = `je score was: ${Math.round(highscore1)}`;
             } else {
                 reload(duckP1, duckHitbox);
                 MQTTSendReload("1");
@@ -201,7 +203,7 @@ const updateGameArea3 = function() {
                 document.querySelector(".c-live-heart-rates").classList.add("game--blur");
                 CanvasBlur = true;
                 document.querySelector(".js-pause").style.display = "none";
-                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${(mpname.value)}: ${(highscore1)}m / ${(p2name.value)}: ${(highscore2)}m`;
+                document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${(mpname.value)}: ${(Math.round(highscore1))}m / ${(p2name.value)}: ${(Math.round(highscore2))}m`;
             } else {
                 reload(duckP1, duckHitbox, duckP2);
                 MQTTSendReload("1");

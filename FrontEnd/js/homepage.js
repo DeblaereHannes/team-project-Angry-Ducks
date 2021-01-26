@@ -103,6 +103,7 @@ const listenToButtons = function() {
         document.querySelector(".js-gameselection").style.display = "none";
         background.classList.remove("current");
         document.querySelector(".js-gamemode1").classList.add("current");
+        document.querySelector(".js-record").innerHTML = "";
         loadCorrectGame();
     })
 
