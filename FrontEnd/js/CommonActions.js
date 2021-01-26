@@ -368,7 +368,7 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
         if (request.status >= 200 && request.status < 400) {
             if (sortvalue == "s") {
                 data.sort(function(a, b) {
-                    return parseFloat(a.score) + parseFloat(b.score);
+                    return b.score - a.score;
                 });
                 for (let i = 0; i < data.length; i++) {
                     const e = data[i];
