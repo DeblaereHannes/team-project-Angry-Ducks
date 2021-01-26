@@ -37,6 +37,9 @@ const loadGamemode3 = function() {
     rounds = 3;
     VarGravity = 0.14;
     VarSpeedy = -1;
+    if(player2enable == false){
+        duckP2.amounthitbottom = 0;
+    }
     myGameArea.load(3); //laad de canvas in
 }
 
@@ -201,6 +204,7 @@ const updateGameArea3 = function() {
                 document.querySelector(".js-VictoryScreen-spelers").innerHTML = `${(mpname.value)}: ${(highscore1)}m / ${(p2name.value)}: ${(highscore2)}m`;
             } else {
                 reload(duckP1, duckHitbox, duckP2);
+                MQTTSendReload("1");
                 canShoot = true;
             }
         }

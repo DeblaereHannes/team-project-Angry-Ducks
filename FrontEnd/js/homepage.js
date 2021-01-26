@@ -73,6 +73,7 @@ const listenToButtons = function() {
             scoreboard.classList.add("current");
             background.classList.add("current");
             background.classList.add("homescreen--blur");
+            refresh(1);
         });
     }
 

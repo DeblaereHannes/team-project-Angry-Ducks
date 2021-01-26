@@ -155,10 +155,15 @@ const reload = function(D1, DH1, D2, DH2) {
 //#region *** restart game function ***
 
 const refresh = function(number = 0) {
+    console.log("refresh");
     pauseXduck = 0;
     pauseYduck = 0;
     pauseXhitbox = 0;
     pauseYhitbox = 0;
+    duckP1.gravity = 0;
+    duckP2.gravity = 0;
+    duckP1.gravitySpeed = 0;
+    duckP2.gravitySpeed = 0;
     document.querySelector(".js-score").classList.remove("ishidden");
     CanvasBlur = false;
     timerOn = false; //tijd terug uit zetten
