@@ -176,7 +176,7 @@ const listenToButtons = function() {
                 if ((document.querySelector(".js-1speler").classList.contains("ishidden"))) //2 spelers
                 {
                     if (p2name.value != "" && mpname.value != "") {
-                        if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) {
+                        //if (document.querySelector(".js-heartrateP1").innerHTML > 0 && document.querySelector(".js-heartrateP2").innerHTML > 0) {
 
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
@@ -188,12 +188,12 @@ const listenToButtons = function() {
                                 if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
                             }
 
-                        }
+                        //}
                     }
                 } else {
 
                     if (spname.value != "") {
-                        if (document.querySelector(".js-heartrateP1").innerHTML > 0) {
+                        //if (document.querySelector(".js-heartrateP1").innerHTML > 0) {
                             playerselection.classList.remove("current");
                             gameselection.classList.add("current");
                             gameselection.style.display = "block";
@@ -203,7 +203,7 @@ const listenToButtons = function() {
                             for (let player of players) {
                                 if (player.classList.contains("player--selected")) showmodesforplayer = player.innerHTML;
                             }
-                        }
+                        //}
                     }
                 }
             }

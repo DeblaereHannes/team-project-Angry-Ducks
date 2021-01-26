@@ -159,7 +159,7 @@ const refresh = function(number = 0) {
     pauseYduck = 0;
     pauseXhitbox = 0;
     pauseYhitbox = 0;
-    document.getElementById("js-score").classList.remove("ishidden");
+    document.querySelector(".js-score").classList.remove("ishidden");
     CanvasBlur = false;
     timerOn = false; //tijd terug uit zetten
     canShoot = false; //niet shieten tijdens reset
