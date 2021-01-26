@@ -11,11 +11,11 @@ const loadGamemode5 = function() {
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     duckHitbox2 = new component("duckhitbox", 1, 1, "black", viewport - (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[3], 0, 0, "image");
-    lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
+    //lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     path = "./img/charactersflipped";
     duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], viewport - (viewport * 0.115), (viewportHeight * 0.425), "image");
-    lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
+    //lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     target = new component("target", (viewport * 0.146484375), (viewport * 0.048828125), links[2], (viewport * 0.5859375), (viewportHeight * 0.95) - (viewportHeight * 0.05), "image");
     targetDetection = new component("target", (viewport * 0.048828125), 1, "yellow", (viewport * 0.634765625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
     targetDetection2 = new component("target", (viewport * 0.0244140625), 1, "green", (viewport * 0.6103515625), (viewportHeight * 0.999) - (viewportHeight * 0.05));
@@ -158,9 +158,9 @@ const updateGameArea5 = function() {
     duckHitbox2.newPos();
     duckP1.newPos();          //nieuwe positie van duck instellen
     duckP2.newPos();
-    lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
+    //lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
 
-    lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
+    //lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
     lblScore.text = "Score: " + (score);              //text aanpassen van score
     lblScore2.text = "Score: " + (score1);  
     if(countdownTimer != 0)                         //toont timer vanaf wanneer je kan schieten
@@ -192,7 +192,7 @@ const updateGameArea5 = function() {
     duckP1.update();
 
     duckP2.update();
-    lblDeltaHR2.update();
+    //lblDeltaHR2.update();
     
     progressbarBackground.update();
     progressbarHealth.update();
@@ -202,7 +202,7 @@ const updateGameArea5 = function() {
     lblScore.update();
     lblScore2.update();
     lblCountdownTimer.update();
-    lblDeltaHR.update();
+    //lblDeltaHR.update();
 
     if (score <= 0 || score1 <= 0){
         document.querySelector(".js-VictoryScreen").style.visibility = "visible"; 

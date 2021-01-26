@@ -17,10 +17,10 @@ const loadGamemode3 = function() {
     duckHitbox = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515)); //hitbox en duck zijn 2 componenten maar alle movement is 2 keer
     duckHitbox2 = new component("duckhitbox", 1, 1, "black", (viewport * 0.0925), (viewportHeight * 0.515));
     mybackground = new component("bg", viewport, (viewportHeight), links[1], 0, 0, "image");
-    lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
+    //lblDeltaHR = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.085), "text");
     lblCountdownTimer = new component("score", "300px", "Roboto", "orange", (viewport * 0.45), (viewport * 0.3), "text");
     duckP2 = new component("duck", (viewport * 0.045), (viewport * 0.045), path + characters[duckPlayer2], (viewport * 0.01), (viewportHeight * 0.6), "image");
-    lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
+    //lblDeltaHR2 = new component("HR", "30px", "Roboto", "black", (viewport * 0.78125), (viewport * 0.115), "text");
     // for (let index = 0; index < 10; index++) {
     //     distancedetection.push(new component("target", 1, 1, "red", (viewport * 0.382) + (index * (viewport * 0.064453125)), (viewportHeight * 0.999) - (viewportHeight * 0.05)));
 
@@ -141,10 +141,10 @@ const updateGameArea3 = function() {
     if (player2enable == true) {
         duckP2.newPos();
         duckHitbox2.newPos();
-        lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
+        //lblDeltaHR2.text = "Δ heart beat 2: " + (HR2 - CalmHR2);
     }
 
-    lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
+    //lblDeltaHR.text = "Δ heart beat: " + (HR - CalmHR);
     lblScore.text = "Score: " + (score); //text aanpassen van score
     lblScore2.text = "Score: " + (score1);
     if (countdownTimer != 0) //toont timer vanaf wanneer je kan schieten
@@ -160,13 +160,13 @@ const updateGameArea3 = function() {
 
     if (player2enable == true) {
         duckP2.update();
-        lblDeltaHR2.update();
+        //lblDeltaHR2.update();
         lblScore2.update();
     }
 
     lblScore.update();
     lblCountdownTimer.update();
-    lblDeltaHR.update();
+    //lblDeltaHR.update();
 
 
     if (player2enable == false) {
