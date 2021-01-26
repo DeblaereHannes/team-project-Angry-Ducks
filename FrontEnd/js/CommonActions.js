@@ -375,10 +375,11 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     if (e != null) {
                         if (e.scoreboardEntryId == checkscoreboardEntryId) {
                             if (i == 0) {
-                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "NIEUWE HIGH SCORE!";
+                                document.querySelector(".js-record").innerHTML = "NIEUWE HIGH SCORE!";
                             } else {
-                                document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
+                                document.querySelector(".js-record").innerHTML = "";
                             }
+                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                         }
                     }
                 }
@@ -391,10 +392,11 @@ const loadscoresposition = function(gamemodeid, sortvalue, checkscoreboardEntryI
                     const e = data[i];
                     if (e != null) {
                         if (i == 0) {
-                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "NIEUWE HIGH SCORE!";
+                            document.querySelector(".js-record").innerHTML = "NIEUWE HIGH SCORE!";
                         } else {
-                            document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
+                            document.querySelector(".js-record").innerHTML = "";
                         }
+                        document.querySelector(".js-VictoryScreen-positie").innerHTML = "positie " + (i + 1);
                     }
                 }
                 //console.log(data)
@@ -708,7 +710,7 @@ const ShowReconnectionWindow = function() {
 //#endregion
 //#region *** heartrate color ***
 const updateHeartRateColor = function() {
-        if (gamePicture != 1 || gamePicture != 3) {
+        if (gamePicture != 1 && gamePicture != 3) {
             switch ((HR - CalmHR) / 5) {
                 case 6.0:
                 case 6.1:

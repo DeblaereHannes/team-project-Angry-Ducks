@@ -84,7 +84,7 @@ const updateGameArea3 = function() {
                 else {
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = "Jullie vlogen gelijk!";
                     //console.log(mpname.value + " versus-ver-vliegen " + highscore1);
-                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore1, 0);
                     PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", highscore2, 0);
                 }
             }
@@ -123,9 +123,9 @@ const updateGameArea3 = function() {
     }
 
 
-    score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1)  * 100;
     if (score < 0) { score = 0 }
-    score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1);
+    score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1) * 100;
     if (score1 < 0) { score1 = 0 }
 
 
@@ -218,7 +218,6 @@ const updateGameArea3 = function() {
 
 }
 const checkIfHighScore = function(player, score) {
-    score = score * 100;
     console.log(highscore1);
     if (player == 1) {
         if (highscore1 == 0) highscore1 = score;
