@@ -51,6 +51,8 @@ const updateGameArea3 = function() {
             if (duckP1.amounthitbottom >= 2) {
                 timerOn = false; //timer stoppen
                 myGameArea.stop(); //freeze de game
+                //console.log(spname.value + " solo-ver-vliegen " + highscore1);
+                PostLeaderboardEntry(spname.value, "solo-ver-vliegen", highscore1, 0);
             }
         } else {
             if (duckP2.amounthitbottom >= 2) {
@@ -60,11 +62,11 @@ const updateGameArea3 = function() {
                 if (highscore1 > highscore2) {
                     winner = mpname.value;
                     loser = p2name.value;
-                    PostLeaderboardEntry(mpname.value, "coop-ver-vervliegen", highscore1, 0);
+                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore1, 0);
                 } else if (highscore1 < highscore2) {
                     winner = p2name.value;
                     loser = mpname.value;
-                    PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", highscore2, 0);
                 }
                 var victoryScreenMessages = [`${winner} wou je niet zo hard inmaken, kop op ${loser}!`,
                     `${winner} verkwaakte ${loser}!`,
@@ -78,8 +80,9 @@ const updateGameArea3 = function() {
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = victoryScreenMessages[randomNum];
                 else {
                     document.querySelector(".js-VictoryScreen-Time").innerHTML = "Jullie vlogen gelijk!";
-                    PostLeaderboardEntry(mpname.value, "coop-ver-vliegen", highscore1, 0);
-                    PostLeaderboardEntry(p2name.value, "coop-ver-vliegen", highscore2, 0);
+                    //console.log(mpname.value + " versus-ver-vliegen " + highscore1);
+                    PostLeaderboardEntry(mpname.value, "versus-ver-vliegen", highscore2, 0);
+                    PostLeaderboardEntry(p2name.value, "versus-ver-vliegen", highscore2, 0);
                 }
             }
         }
@@ -211,6 +214,7 @@ const updateGameArea3 = function() {
 
 }
 const checkIfHighScore = function(player, score) {
+    score = score * 100;
     console.log(highscore1);
     if (player == 1) {
         if (highscore1 == 0) highscore1 = score;
