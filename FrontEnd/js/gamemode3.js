@@ -221,11 +221,11 @@ const checkIfHighScore = function(player, score) {
     console.log(highscore1);
     if (player == 1) {
         if (highscore1 == 0) highscore1 = score;
-        else if (highscore1 > score) highscore1 = score;
+        else if (highscore1 < score) highscore1 = score;
         console.log(highscore1);
     } else if (player == 2) {
         if (highscore2 == 0) highscore2 = score;
-        else if (highscore2 > score) highscore2 = score;
+        else if (highscore2 < score) highscore2 = score;
     }
 }
 
