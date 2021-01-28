@@ -125,9 +125,9 @@ const updateGameArea3 = function() {
     }
 
 
-    score = ((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1)  * 100;
+    score = Math.round(((((duckHitbox.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1)  * 100);
     if (score < 0) { score = 0 }
-    score1 = ((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1) * 100;
+    score1 = Math.round(((((duckHitbox2.x / viewport) - 0.0925) - (0.29 - 0.064453125)) * 15.5151515151).toFixed(1) * 100);
     if (score1 < 0) { score1 = 0 }
 
 
